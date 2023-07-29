@@ -1,0 +1,14 @@
+@use './mixins' as *;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Yellowtail&display=swap");
+
+//font family
+
+$primaryFontFamily:'Roboto', sans-serif;
+$secondaryFontFamily:'Yellowtail', sans-serif;
+
+// font sizes
+
+$headingSize: rem(50);
+$pHeadSize: rem(25);
+$buttonSize: rem(20);
+$pSize: rem(18);

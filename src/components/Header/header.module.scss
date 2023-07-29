@@ -1,3 +1,5 @@
+@use '../../scss/global' as *;
+
 .header {
    width: 100%;
    padding: 70px 120px;
@@ -17,7 +19,7 @@
 }
 
 .text {
-   font-size: 38px;
+   font-size: rem(38);
    line-height: 44px;
    margin-left: 8px;
 }
@@ -33,15 +35,11 @@
 }
 
 .item {
-   font-size: 20px;
-   line-height: 24px;
+   font-size: rem(20);
+   line-height: calc(24 / 20 * 100%);
    font-weight: 700;
 }
 
-.search {
-  
-  
-}
 
 .bar {
    display: flex;
@@ -54,7 +52,6 @@
    background-color: #fafafa;
    padding: 14px 10px;
    border-radius: 36px;
-   // position: relative;
 }
 
 .outsearch {
@@ -74,7 +71,7 @@
       height: 42px;
       right: 3px;
       top: 2.5px;
-      background-color: #7EB693;
+      background-color: $primaryGreen;
       border-radius: 50%;
    }
 }
@@ -92,7 +89,7 @@
       height: 43px;
       left: 2.5px;
       top: 2.7px;
-      background-color: #274C5B;
+      background-color: $textBlue;
       border-radius: 50%;
    }
 }
@@ -107,13 +104,13 @@
 .name {
    padding-left: 30px;
    font-weight: 600;
-   font-size: 18px;
+   font-size: rem(18);
 }
 
 .login {
    padding-left: 30px;
    font-weight: 600;
-   font-size: 18px;
+   font-size: rem(18);
 }
 
 button {
