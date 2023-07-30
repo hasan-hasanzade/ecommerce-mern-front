@@ -1,0 +1,102 @@
+@use '../../scss/global' as *;
+
+.body {
+   display: flex;
+   align-items: flex-start;
+   justify-content: space-between;
+   padding-bottom: 70px;
+   border-bottom: 1px solid #d4d4d4;
+}
+
+.contact {
+   border-right: 1px solid #d4d4d4;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   padding: 0 50px 0px 20px;
+}
+
+.content{
+   text-align: right;
+   color: $textGray;
+}
+
+.title {
+   font-weight: 700;
+   font-size: rem(30);
+   line-height: calc(36 / 30 * 100%);
+   margin-bottom: 20px;
+}
+
+.heading {
+   font-weight: 700;
+   font-size: rem(18);
+   line-height: calc(30 / 18 * 100%);
+   margin-bottom: 10px;
+}
+.item {
+   margin-bottom: 30px;
+}
+
+.image {
+   width: 37px;
+   height: 54px;
+}
+
+.logo {
+   text-align: center;
+}
+
+.block {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 25px;
+}
+
+.comp {
+   font-size: 38px;
+   font-weight: 700;
+   line-height: calc(44 / 38 * 100%);
+   margin-left: 10px;
+}
+
+.desc {
+   font-size: 18px;
+   font-weight: 400;
+   line-height: calc(30 / 18 * 100%);
+   letter-spacing: 0.5px;
+   margin-bottom: 50px;
+}
+
+.social {
+  a {
+   &:not(:first-child) {
+      margin-left: 10px;
+   }
+  }
+}
+
+.page {
+   border-left: 1px solid #d4d4d4;
+   padding: 0px 80px 30px 50px;
+}
+
+.links {
+   display: flex;
+   flex-direction: column;
+}
+
+.link {
+   font-size: 18px;
+   font-weight: 400;
+   line-height: calc(30 / 18 * 100%);
+   letter-spacing: 0.5px;
+   margin-bottom: 15px;
+   color: $textGray;
+}
+
+.copy {
+   padding: 20px 0;
+   text-align: center;
+}

@@ -1,0 +1,75 @@
+@use '../../scss/global' as *;
+
+.eco {
+   position: relative;
+}
+
+.wrapper {
+   padding: 100px 0;
+   display: flex;
+   // align-items: flex-end;
+}
+
+.body {
+   background-color: $primaryWhite;
+   width: 700px;
+   border-radius: 20px;
+   margin-left: 650px;
+
+}
+
+.inner {
+   padding: 50px;
+}
+
+.subtitle {
+   text-align: left;
+   font-family: $secondaryFontFamily;
+   color: $primaryGreen;
+   font-weight: 400;
+   font-size: rem(36);
+   line-height: calc(49 / 36 * 100%);
+   margin-bottom: 10px;
+}
+
+.title {
+   text-align: left;
+   font-size: rem(50);
+   line-height: calc(59 / 50 * 100%);
+   font-weight: 800;
+   margin-bottom: 20px;
+}
+
+.content {
+   
+}
+
+.item {
+   &:not(:last-child) {
+      margin-bottom: 20px;
+   }
+}
+
+.heading {
+   font-size: rem(25);
+   font-weight: 500;
+   line-height: calc(29 / 25 * 100%);
+   margin-bottom: 10px;
+}
+
+.text {
+   color: $textGray;
+   font-size: rem(18);
+   font-weight: 400;
+   line-height: calc(29 / 18 * 100%);
+}
+
+.image {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   z-index: -1;
+   object-fit: cover;
+}
