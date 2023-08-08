@@ -1,7 +1,7 @@
 @use '../../scss/global' as *;
 
 .about {
-   position: relative;
+   background-color: #f9f8f8;
 }
 
 .subtitle {
@@ -14,7 +14,7 @@
 
 
 .body {
-   padding: 204px 0px 291px 750px;
+   padding: 155px 0px 155px 0px;
    position: relative;
    z-index: 2;
    // max-width: 500px;
@@ -156,10 +156,36 @@
 }
 
 .image {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   top: 0;
-   left: 0;
-   object-fit: cover;
+   img {
+      max-width: 100%;
+   }
+}
+
+.wrapper {
+   display: grid;
+   grid-template-columns: percent(611, 1300) 1fr;
+   align-items: center;
+   @media (max-width: $tablet) {
+    display: flex;
+   }
+
+}
+
+
+@media (max-width: $tablet) {
+   .icon {
+      margin-bottom: 10px;
+   }
+   .item {
+      margin-left: 0;
+   }
+   .content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 30px;
+   }
+   .btn {
+      margin-top: 70px;
+   }
 }

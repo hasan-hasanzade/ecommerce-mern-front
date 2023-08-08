@@ -6,19 +6,22 @@ import Slider from "react-slick";
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import bg from '../../assets/img/testimonial/bgtest.png';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 const Testimonials = () => {
 
    const settings = {
       dots: true,
-      infinite: false,
-      speed: 500,
+      infinite: true,
+      speed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: false,
-      autoplaySpeed: 1000,
-      cssEase: "linear"
+      autoplay: true,
+      autoplaySpeed: 2000,
+      cssEase: "linear",
+      arrows: true,
     };
 
   return (
@@ -30,6 +33,32 @@ const Testimonials = () => {
          <h3 className={styles.title}>What Our Customer Saying?</h3>
             <div className={styles.content}>
                <Slider {...settings}>
+                  <div className={styles.item}>
+                           <div className={styles.user}>
+                              <img src={sara} alt="consumer" />
+                           </div>
+                           <div className={styles.rating}>
+                              <Rating name="read-only" defaultValue={5} precision={0.5} readOnly />
+                           </div>
+                           <p className={styles.text}>
+                           Simply dummy text of the printing and typesetting industry. Lorem Ipsum simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.
+                           </p>
+                           <div className={styles.name}>Sarah Taylor</div>
+                           <div className={styles.role}>Consumer</div>
+                  </div>
+                  <div className={styles.item}>
+                           <div className={styles.user}>
+                              <img src={sara} alt="consumer" />
+                           </div>
+                           <div className={styles.rating}>
+                              <Rating name="read-only" defaultValue={5} precision={0.5} readOnly />
+                           </div>
+                           <p className={styles.text}>
+                           Simply dummy text of the printing and typesetting industry. Lorem Ipsum simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.
+                           </p>
+                           <div className={styles.name}>Sarah Taylor</div>
+                           <div className={styles.role}>Consumer</div>
+                  </div>
                   <div className={styles.item}>
                            <div className={styles.user}>
                               <img src={sara} alt="consumer" />
@@ -109,7 +138,7 @@ const Testimonials = () => {
             </div>
          </div>
       </div>
-      <div className={styles.image}>
+      <div className={`${styles.image} ${styles._ibg}`}>
             <img src={bg} alt="" />
       </div>
     </section>
