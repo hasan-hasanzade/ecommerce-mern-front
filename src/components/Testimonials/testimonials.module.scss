@@ -3,13 +3,21 @@
 .testimonials {
    position: relative;
    text-align: center;
+   padding: 100px 0;
+   @media (max-width: $mobileSmall) {
+
+      padding: 50px 0;
+   }
 }
 
 .body {
-   padding: 180px 0;
-   width: 1000px;
-  margin: 0 auto;
+   // max-width: 950px;
+//   @media(max-width: $tablet) {
+//    width: 650px;
+//   }
 }
+
+
 
 .subtitle {
    font-size: rem(36);
@@ -28,12 +36,29 @@
    margin-bottom: 50px;
 }
 
+@media (max-width: $mobile) {
+   .subtitle {
+      font-size: rem(28);
+   }
+   .title {
+      font-size: rem(40);
+   }
+}
+
+@media (max-width: $mobileSmall) {
+   .subtitle {
+      font-size: rem(25);
+   }
+   .title {
+      font-size: rem(30);
+   }
+}
+
 .content {
    width: 100%;
    text-align: center;
    padding-bottom: 100px;
    border-bottom: 1px solid #e0e0e0;
-   margin-bottom: 100px;
 }
 
 .user {
@@ -79,10 +104,11 @@
 
 .countup {
    display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   grid-template-rows: repeat(auto, 1fr);
-   grid-column-gap: 20px;
-   grid-row-gap: 20px;
+   grid-template-columns: repeat(auto-fit, minmax(211px, 1fr));
+   align-items: center;
+   justify-items: center;
+   gap: 25px;
+   padding: 50px 0;
 }
 
 .green {

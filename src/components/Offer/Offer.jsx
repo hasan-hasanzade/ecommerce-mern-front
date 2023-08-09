@@ -16,86 +16,94 @@ const Offer = () => {
             </div>
          </div>
          <div className={styles.body}>
-         <a href='/product' className={styles.content}>
-               <div  className={styles.item}>
+         <div className={styles.content}>
+               <article className={styles.item}>
                   <div className={styles.category}>
                      <span>Vegetable</span>
                   </div>
-                  <div className={styles.image}>
+                  <a href='/product' className={`${styles.image} ${styles._ibg}`}>
                      <img src={broc} alt="" />
-                  </div>
+                  </a>
                   <div className={styles.bottom}>
-                     <div className={styles.name}>Calabrese Broccoli</div>
+                     <div className={styles.main}>
+                        <div className={styles.name}>Calabrese Broccoli</div>
+                     </div>
                      <div className={styles.pricing}>
                         <div className={styles.price}>
                            <div className={styles.old}>$20.00</div>
                            <div className={styles.new}>$10.00</div>
                         </div>
-                        <div className={styles.rating}>&copy;&copy;&copy;&copy;&copy;</div>
+                        <div className={styles.rating}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                      </div>
                   </div>
-               </div>
-            </a>
-            <a href='/product' className={styles.content}>
-               <div  className={styles.item}>
+               </article>
+            </div>
+            <div className={styles.content}>
+               <article className={styles.item}>
                   <div className={styles.category}>
                      <span>Vegetable</span>
                   </div>
-                  <div className={styles.image}>
+                  <a href='/product' className={`${styles.image} ${styles._ibg}`}>
                      <img src={broc} alt="" />
-                  </div>
+                  </a>
                   <div className={styles.bottom}>
-                     <div className={styles.name}>Calabrese Broccoli</div>
+                     <div className={styles.main}>
+                        <div className={styles.name}>Calabrese Broccoli</div>
+                     </div>
                      <div className={styles.pricing}>
                         <div className={styles.price}>
                            <div className={styles.old}>$20.00</div>
                            <div className={styles.new}>$10.00</div>
                         </div>
-                        <div className={styles.rating}>&copy;&copy;&copy;&copy;&copy;</div>
+                        <div className={styles.rating}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                      </div>
                   </div>
-               </div>
-            </a>
-            <a href='/product' className={styles.content}>
-               <div  className={styles.item}>
+               </article>
+            </div>
+            <div className={styles.content}>
+               <article className={styles.item}>
                   <div className={styles.category}>
                      <span>Vegetable</span>
                   </div>
-                  <div className={styles.image}>
+                  <a href='/product' className={`${styles.image} ${styles._ibg}`}>
                      <img src={broc} alt="" />
-                  </div>
+                  </a>
                   <div className={styles.bottom}>
-                     <div className={styles.name}>Calabrese Broccoli</div>
+                     <div className={styles.main}>
+                        <div className={styles.name}>Calabrese Broccoli</div>
+                     </div>
                      <div className={styles.pricing}>
                         <div className={styles.price}>
                            <div className={styles.old}>$20.00</div>
                            <div className={styles.new}>$10.00</div>
                         </div>
-                        <div className={styles.rating}>&copy;&copy;&copy;&copy;&copy;</div>
+                        <div className={styles.rating}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                      </div>
                   </div>
-               </div>
-            </a>
-            <a href='/product' className={styles.content}>
-               <div  className={styles.item}>
+               </article>
+            </div>
+            <div className={styles.content}>
+               <article className={styles.item}>
                   <div className={styles.category}>
                      <span>Vegetable</span>
                   </div>
-                  <div className={styles.image}>
+                  <a href='/product' className={`${styles.image} ${styles._ibg}`}>
                      <img src={broc} alt="" />
-                  </div>
+                  </a>
                   <div className={styles.bottom}>
-                     <div className={styles.name}>Calabrese Broccoli</div>
+                     <div className={styles.main}>
+                        <div className={styles.name}>Calabrese Broccoli</div>
+                     </div>
                      <div className={styles.pricing}>
                         <div className={styles.price}>
                            <div className={styles.old}>$20.00</div>
                            <div className={styles.new}>$10.00</div>
                         </div>
-                        <div className={styles.rating}>&copy;&copy;&copy;&copy;&copy;</div>
+                        <div className={styles.rating}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                      </div>
                   </div>
-               </div>
-            </a>
+               </article>
+            </div>
          </div>
       </div>
     </section>

@@ -1,7 +1,11 @@
 @use '../../scss/global' as *;
 
 .blogs {
-   padding: 200px 0;
+   padding: 100px 0 170px 0;
+   @media (max-width: $mobileSmall) {
+
+      padding: 50px 0;
+   }
 }
 
 .heading {
@@ -18,15 +22,38 @@
    margin-bottom: 10px;
 }
 
+@media (max-width: $mobile) {
+   .subtitle {
+      font-size: rem(28);
+   }
+}
+
+@media (max-width: $mobileSmall) {
+   .subtitle {
+      font-size: rem(25);
+   }
+}
+
 .title {
    display: flex;
    align-items: center;
    justify-content: space-between;
+   flex-wrap: wrap;
    h2{
+      margin-bottom: 20px;
       text-align: left;
       font-size: rem(50);
       line-height: calc(59 / 50 * 100%);
       font-weight: 800;
+      @media (max-width: $mobile) {
+         text-align: left;
+         font-size: rem(40);
+         
+         }
+         @media (max-width: $mobileSmall) {
+   
+            font-size: rem(30);
+            }
    }
 }
 
@@ -43,6 +70,10 @@
    font-weight: 700;
    transition: all .2s linear;
    border: 1px solid $textBlue;
+   @media (max-width: $mobileSmall) {
+
+      padding: 12px 20px;
+   }
    
 }
 
@@ -52,13 +83,14 @@
 }
 
 .body {
-   display: flex;
-   justify-content: space-between;
+   display: grid;
+   gap: 52px;
+   grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
 }
 
 .card {
-   width: 48%;
    position: relative;
+   
 }
 
 .picture {
@@ -67,6 +99,13 @@
 
 .cardimg {
    border-radius: 30px;
+   @media (max-width: $tablet) {
+      border-radius: 0;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+   }
+   max-width: 100%;
+   // padding: 0px 0px 501px/285px * 100% 0px;
   
 }
 
@@ -82,32 +121,69 @@
    flex-direction: column;
    align-items: center;
    justify-content: center;
+   @media (max-width: $tablet) {
+      width: 62px;
+      height: 62px;
+      top: 20px;
+   left: 20px;
+   }
+   @media (max-width: $mobileSmall) {
+      width: 52px;
+      height: 52px;
+      top: 10px;
+   left: 10px;
+   }
+
    span {
       font-weight: 800;
       font-size: rem(25);
       line-height: calc(30 / 25 * 100%);
+      @media (max-width: $tablet) {
+         font-size: rem(20);
+      }
+      @media (max-width: $mobileSmall) {
+         font-size: rem(16);
+      }
    }
 }
 
 .bottom {
    position: absolute;
-   top: 400px;
+   flex: 1 1 auto;
+   @media (max-width: $tablet) {
+      position: static;
+      border-radius: 0;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+   }
+   top: 250px;
    left: 30px;
+   right: 30px;
    border-radius: 20px;
    background-color: rgb(255, 255, 255);
-   width: 620px;
+   // width: 620px;
    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .inner {
-   padding: 35px;
+   padding: 55px;
+   @media (max-width: $tablet) {
+      padding: 35px;
+   }
+   @media (max-width: $mobileSmall) {
+      padding: 25px;
+   }
 }
 
 .name {
+   flex: 1 1 auto;
    font-size: rem(18);
    font-weight: 400;
    line-height: calc(22 / 18 * 100%);
    margin-bottom: 10px;
+   @media (max-width: $mobile) {
+      font-size: rem(17);
+   }
 }
 
 .blogname {
@@ -115,6 +191,9 @@
    font-weight: 800;
    line-height: calc(29 / 25 * 100%);
    margin-bottom: 10px;
+   @media (max-width: $mobile) {
+      font-size: rem(22);
+   }
 }
 
 .text {
@@ -123,6 +202,9 @@
    font-weight: 400;
    line-height: calc(22 / 18 * 100%);
    margin-bottom: 30px;
+   @media (max-width: $mobile) {
+      font-size: rem(17);
+   }
 }
 
 .btn {
@@ -137,4 +219,9 @@
    text-align: center;
    font-weight: 700;
    transition: all .2s linear;
+   @media (max-width: $mobileSmall) {
+
+      padding: 12px 20px;
+      font-size: rem(15);
+   }
 }

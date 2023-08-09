@@ -15,10 +15,10 @@ const Testimonials = () => {
    const settings = {
       dots: true,
       infinite: true,
-      speed: 2500,
+      speed: 1500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 2000,
       cssEase: "linear",
       arrows: true,
@@ -75,7 +75,9 @@ const Testimonials = () => {
                   
                </Slider>
             </div>
-            <div className={styles.countup}>
+            
+         </div>
+         <div className={styles.countup}>
                   <div className={styles.green}>
                      <div className={styles.gray}>
                         <div className={styles.count}>
@@ -136,7 +138,6 @@ const Testimonials = () => {
                      </div>
                   </div>
             </div>
-         </div>
       </div>
       <div className={`${styles.image} ${styles._ibg}`}>
             <img src={bg} alt="" />

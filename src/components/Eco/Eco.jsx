@@ -1,12 +1,15 @@
 import React from 'react';
 import styles from './eco.module.scss';
-import bg from '../../assets/img/eco/bgeco.png'
+import bg from '../../assets/img/eco/bgeco.jpg'
 
 const Eco = () => {
   return (
     <section className={styles.eco}>
-      <div className="container">
+
          <div className={styles.wrapper}>
+            <div className={styles.image}>
+               <img src={bg} alt="background" />
+            </div>
             <div className={styles.body}>
                <div className={styles.inner}>
                   <div className={styles.subtitle}>Eco Friendly</div>
@@ -29,10 +32,6 @@ const Eco = () => {
             </div>
          </div>
 
-      </div>
-      <div className={styles.image}>
-         <img src={bg} alt="background" />
-      </div>
     </section>
   )
 }

@@ -14,12 +14,12 @@ const Newsletter = () => {
                </div>
                <div className={styles.actions}>
                   <input placeholder='Your Email Address' type="text" />
-                  <a className={styles.button}>
+                  <a href='/loc' className={styles.button}>
                      Subscribe
                   </a>
                </div>
             </div>
-            <div className={styles.image}>
+            <div className={`${styles.image} ${styles._ibg}`}>
                <img src={bg} alt="background" />
             </div>
          </div>
