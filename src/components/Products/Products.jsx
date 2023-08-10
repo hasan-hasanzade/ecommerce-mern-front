@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './products.module.scss';
 import broc from '../../assets/img/products/broc.png';
-import { BsFillArrowRightCircleFill } from 'react-icons/bs';
+// import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 
 const Products = () => {
   return (
@@ -121,9 +121,9 @@ const Products = () => {
                </article>
             </div>
          </div>
-         <div className={styles.load}>
-         <a href="/shop" className={styles.button}>Load More <span className={styles.arrow}><BsFillArrowRightCircleFill /></span> </a>
-         </div>
+         {/* <div className={styles.load}>
+            <a href="/shop" className={styles.button}>Load More <span className={styles.arrow}><BsFillArrowRightCircleFill /></span> </a>
+         </div> */}
          
       </div>
     </section>

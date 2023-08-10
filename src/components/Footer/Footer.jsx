@@ -66,7 +66,7 @@ const Footer = () => {
          </div>
       </div>
       <div className={styles.copy}>
-      Copyright © Organick | Designed by VictorFlow Templates - Powered by Webflow
+      Copyright © Organick | Designed by VictorFlow Templates - Powered by Hasan Hasanzade
          </div>
     </footer>
   )

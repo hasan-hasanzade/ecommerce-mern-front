@@ -1,11 +1,11 @@
-import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import './scss/app.scss';
 
 function App() {
   return (
     <div className="wrapper">
-      <Header />
+      <Navbar />
       <Home />
     </div>
   );

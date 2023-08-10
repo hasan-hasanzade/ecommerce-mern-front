@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../assets/img/logo.png'
 import { AiOutlineSearch, AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';
 
-import styles from './header.module.scss'
+import styles from './navbar.module.scss'
 
 const Header = () => {
   return (
@@ -35,9 +35,9 @@ const Header = () => {
                   <span>0</span>
                </button>
             </div>
-            <a href='#' className={styles.login}>
+            {/* <a href='#' className={styles.login}>
                <button>Login<AiOutlineLogin className={styles.aiout} ai size={24} /></button> 
-            </a>
+            </a> */}
          </div>
       </div>
     </div>

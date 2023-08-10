@@ -29,6 +29,9 @@
    @media (max-width: $tablet) {
       padding: 50px;
    }
+   @media (max-width: $mobileSmall) {
+      padding: 50px 25px;
+   }
 }
 
 .subtitle {

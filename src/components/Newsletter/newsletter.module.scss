@@ -28,6 +28,8 @@
    }
 }
 
+
+
 .content{
    display: flex;
    justify-content: space-between;
@@ -38,6 +40,12 @@
       
       justify-content: center;
      
+   }
+   @media (max-width: $mobile) {
+      padding: 70px 50px;
+   }
+   @media (max-width: $mobileSmall) {
+      padding: 50px 30px;
    }
 }
 

@@ -2,6 +2,12 @@
 
 .products {
    padding: 150px 0px;
+   @media (max-width: $mobile) {
+      padding: 75px 0px;
+   }
+   @media (max-width: $mobileSmall) {
+      padding: 50px 0px;
+   }
 }
 
 .title {
@@ -137,6 +143,24 @@
 .arrow {
    margin-left: 10px;
    vertical-align: text-top;
+}
+
+@media (max-width: $mobile) {
+   .subtitle {
+      font-size: rem(28);
+   }
+   .title {
+      font-size: rem(40);
+   }
+}
+
+@media (max-width: $mobileSmall) {
+   .subtitle {
+      font-size: rem(28);
+   }
+   .title {
+      font-size: rem(26);
+   }
 }
 
 .load {

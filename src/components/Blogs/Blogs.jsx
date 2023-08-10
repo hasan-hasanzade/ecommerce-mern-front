@@ -27,7 +27,7 @@ const Blogs = () => {
                <div className={styles.bottom}>
                   <div className={styles.inner}>
                      <div className={styles.name}> <BsFillPersonFill color='#EFD372' /> By Rachi Card</div>
-                     <h4 className={styles.blogname}>The Benefits of Vitamin D & How to Get It</h4>
+                     <h4 className={styles.blogname}>Everything You Need to Know About Organic</h4>
                      <p className={styles.text}>
                         Simply dummy text of the printing and typesetting industry. Lorem Ipsum
                      </p>
@@ -48,7 +48,7 @@ const Blogs = () => {
                <div className={styles.bottom}>
                   <div className={styles.inner}>
                      <div className={styles.name}> <BsFillPersonFill color='#EFD372' /> By Rachi Card</div>
-                     <h4 className={styles.blogname}>Our Favourite Summertime Tomato</h4>
+                     <h4 className={styles.blogname}>Organic Fruits: Surprising Benefits and Facts</h4>
                      <p className={styles.text}>
                         Simply dummy text of the printing and typesetting industry. Lorem Ipsum
                      </p>

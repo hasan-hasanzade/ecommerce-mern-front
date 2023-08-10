@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './testimonials.module.scss';
 import sara from '../../assets/img/testimonial/sara.png';
 import Rating from '@mui/material/Rating';
 import Slider from "react-slick";
@@ -8,6 +7,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import bg from '../../assets/img/testimonial/bgtest.png';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import styles from './testimonials.module.scss';
 
 
 const Testimonials = () => {
@@ -18,10 +18,10 @@ const Testimonials = () => {
       speed: 1500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: false,
-      autoplaySpeed: 2000,
+      autoplay: true,
+      autoplaySpeed: 3000,
       cssEase: "linear",
-      arrows: true,
+      arrows: false,
     };
 
   return (
