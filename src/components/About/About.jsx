@@ -5,7 +5,7 @@ import vegan from '../../assets/img/about/vegan.svg';
 import mailbox from '../../assets/img/about/mailbox.svg';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 
-const AboutUs = () => {
+const About = () => {
   return (
     <>
       <section className={styles.about}>
@@ -54,4 +54,4 @@ const AboutUs = () => {
   )
 }
 
-export default AboutUs
+export default About

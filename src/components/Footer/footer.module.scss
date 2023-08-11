@@ -1,5 +1,9 @@
 @use '../../scss/global' as *;
 
+.footer {
+   padding: 100px 0 0 0;
+}
+
 .body {
    display: flex;
    align-items: flex-start;
