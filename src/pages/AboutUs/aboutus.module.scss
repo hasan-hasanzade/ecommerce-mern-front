@@ -2,6 +2,12 @@
 
 .hero, .store, .team {
    padding: 130px 0;
+   @media (max-width: $tablet) {
+      padding: 80px 0;
+   }
+   @media (max-width: $mobileSmall) {
+      padding: 60px 0;
+   }
 
 }
 .team {
@@ -18,6 +24,7 @@
    align-items: center;
    @media (max-width: $tablet) {
     display: flex;
+    flex-wrap: wrap;
    }
 }
 
@@ -73,9 +80,9 @@
    letter-spacing: 1.1px;
    font-size: 18px;
    color: $textGray;
-   p:first-child {
-      margin-bottom: 20px;
-   }
+   // p:first-child {
+   //    margin-bottom: 20px;
+   // }
    margin-bottom: 30px;
 }
 
@@ -84,6 +91,10 @@
    justify-content: space-between;
    align-items: center;
    margin-bottom: 70px;
+   @media (max-width: $tablet) {
+      flex-wrap: wrap;
+   }
+
 }
 
 .trac {
@@ -100,6 +111,12 @@
       background-color: #fff4cd;
       border-radius: 50%;
    }
+   @media (max-width: $tablet) {
+      margin-right: 10px;
+   }
+   @media (max-width: $mobile) {
+      margin-bottom: 20px;
+    }
 }
 .chem {
    position: relative;
@@ -115,16 +132,37 @@
       background-color: #fff4cd;
       border-radius: 50%;
    }
+   @media (max-width: $mobile) {
+      margin-bottom: 20px;
+    }
 }
 
 .item {
    display: flex;
    align-items: center;
+   @media (max-width: $mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+   &:first-child {
+      @media (max-width: $tablet) {
+         margin-bottom: 30px;
+      }
+   }
+   @media (max-width: $tablet) {
+      width: 100%;
+   }
 }
 
 .text {
    padding-left: 20px;
    font-size: 25px;
+   @media (max-width: $mobileSmall) {
+      font-size: 20px;
+   }
+   @media (max-width: $mobile) {
+     padding-left: 0;
+   }
 }
 
 .btn {
@@ -140,6 +178,11 @@
    font-weight: 700;
    transition: all .2s linear;
    color: $primaryWhite;
+   @media (max-width: $mobileSmall) {
+
+      padding: 12px 20px;
+      font-size: 15px;
+   }
 }
 
 .arrow {
@@ -183,6 +226,9 @@
 
 ._pl {
    padding-left: 50px;
+   @media (max-width: $mobile) {
+      padding-left: 0px;
+   }
 }
 
 .wrapper {
@@ -295,7 +341,7 @@
 }
 
 .team_img {
-   padding: 0px 0px 301px/305px * 100% 0px;
+   padding: 0px 0px calc(301px / 305px)  * 100% 0px;
    img {
      border-top-left-radius: 30px;
      border-top-right-radius: 30px;
@@ -324,10 +370,6 @@
    align-items: center;
    justify-content: space-between;
    transition: all .3 ease;
-}
-
-.desc {
-  
 }
 
 .name {

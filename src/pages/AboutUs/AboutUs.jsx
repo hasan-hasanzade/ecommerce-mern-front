@@ -15,7 +15,7 @@ import angelineImg from '../../assets/img/about-page/riga.jpg';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import Offer from '../../components/Offer/Offer';
 
-import { BsFillArrowRightCircleFill} from 'react-icons/bs';
+import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { AiOutlineInstagram, AiOutlineTwitter, AiFillFacebook } from 'react-icons/ai';
 
 const AboutUs = () => {
@@ -171,70 +171,76 @@ const AboutUs = () => {
           </div>
           <div className={styles.team_cards}>
             <div className={styles.team_card}>
-               <div className={`${styles.team_img} ${styles._ibg}`}>
-                  <img src={shaneImg} alt="Giovanni" />
-               </div>
-               <div className={styles.bottom}>
-                  <div className={styles.desc}>
-                     <div className={styles.name}>
-                        Shane Watson
-                     </div>
-                     <div className={styles.prof}>
-                        Farmer
-                     </div>
-                  </div>
-                  <div className={styles.social}>
-                     <AiFillFacebook size={22}/>
-                     <AiOutlineInstagram size={22}/>
-                     <AiOutlineTwitter size={22}/>
-                  </div>
-               </div>
+              <div className={`${styles.team_img} ${styles._ibg}`}>
+                <img src={shaneImg} alt="Giovanni" />
+              </div>
+              <div className={styles.bottom}>
+                <div className={styles.desc}>
+                  <div className={styles.name}>Shane Watson</div>
+                  <div className={styles.prof}>Farmer</div>
+                </div>
+                <div className={styles.social}>
+                  <a href="https://www.facebook.com/">
+                    <AiFillFacebook size={22} />
+                  </a>
+                  <a href="https://www.instagram.com/">
+                    <AiOutlineInstagram size={22} />
+                  </a>
+                  <a href="https://twitter.com/">
+                    <AiOutlineTwitter size={22} />
+                  </a>
+                </div>
+              </div>
             </div>
             <div className={styles.team_card}>
-               <div className={`${styles.team_img} ${styles._ibg}`}>
-                  <img src={mariaImg} alt="Giovanni" />
-               </div>
-               <div className={styles.bottom}>
-                  <div className={styles.desc}>
-                     <div className={styles.name}>
-                        Maria Thomas
-                     </div>
-                     <div className={styles.prof}>
-                        Marketing
-                     </div>
-                  </div>
-                  <div className={styles.social}>
-                     <AiFillFacebook size={22}/>
-                     <AiOutlineInstagram size={22}/>
-                     <AiOutlineTwitter size={22}/>
-                  </div>
-               </div>
+              <div className={`${styles.team_img} ${styles._ibg}`}>
+                <img src={mariaImg} alt="Giovanni" />
+              </div>
+              <div className={styles.bottom}>
+                <div className={styles.desc}>
+                  <div className={styles.name}>Maria Thomas</div>
+                  <div className={styles.prof}>Marketing</div>
+                </div>
+                <div className={styles.social}>
+                  <a href="https://www.facebook.com/">
+                    <AiFillFacebook size={22} />
+                  </a>
+                  <a href="https://www.instagram.com/">
+                    <AiOutlineInstagram size={22} />
+                  </a>
+                  <a href="https://twitter.com/">
+                    <AiOutlineTwitter size={22} />
+                  </a>
+                </div>
+              </div>
             </div>
             <div className={styles.team_card}>
-               <div className={`${styles.team_img} ${styles._ibg}`}>
-                  <img src={angelineImg} alt="Giovanni" />
-               </div>
-               <div className={styles.bottom}>
-                  <div className={styles.desc}>
-                     <div className={styles.name}>
-                        Angeline flora
-                     </div>
-                     <div className={styles.prof}>
-                      Financiar
-                     </div>
-                  </div>
-                  <div className={styles.social}>
-                     <AiFillFacebook size={22}/>
-                     <AiOutlineInstagram size={22}/>
-                     <AiOutlineTwitter size={22}/>
-                  </div>
-               </div>
+              <div className={`${styles.team_img} ${styles._ibg}`}>
+                <img src={angelineImg} alt="Giovanni" />
+              </div>
+              <div className={styles.bottom}>
+                <div className={styles.desc}>
+                  <div className={styles.name}>Angelina Flora</div>
+                  <div className={styles.prof}>Financiar</div>
+                </div>
+                <div className={styles.social}>
+                  <a href="https://www.facebook.com/">
+                    <AiFillFacebook size={22} />
+                  </a>
+                  <a href="https://www.instagram.com/">
+                    <AiOutlineInstagram size={22} />
+                  </a>
+                  <a href="https://twitter.com/">
+                    <AiOutlineTwitter size={22} />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <Newsletter/>
-      <Offer/>
+      <Newsletter />
+      <Offer />
     </>
   );
 };
