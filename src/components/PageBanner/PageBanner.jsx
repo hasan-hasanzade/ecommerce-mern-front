@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './pagebanner.module.scss';
-import bg from '../../assets/img/about-page/about-banner.jpg'
 
-const PageBanner = () => {
+
+const PageBanner = (props) => {
   return (
    <section className={styles.banner}>
-      <div className={styles.title}>About Us</div>
+      <div className={styles.title}>{props.title}</div>
       <div className={`${styles.image} ${styles._ibg}`}>
-         <img src={bg} alt="background" />
+         <img src={props.img} alt="background" />
       </div>
    </section>
   )

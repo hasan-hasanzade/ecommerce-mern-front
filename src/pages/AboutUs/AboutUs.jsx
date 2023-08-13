@@ -13,6 +13,7 @@ import shaneImg from '../../assets/img/about-page/giovani.jpg';
 import mariaImg from '../../assets/img/about-page/maria.jpg';
 import angelineImg from '../../assets/img/about-page/riga.jpg';
 import Newsletter from '../../components/Newsletter/Newsletter';
+import bg from '../../assets/img/about-page/about-banner.jpg'
 import Offer from '../../components/Offer/Offer';
 
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
@@ -21,7 +22,7 @@ import { AiOutlineInstagram, AiOutlineTwitter, AiFillFacebook } from 'react-icon
 const AboutUs = () => {
   return (
     <>
-      <PageBanner />
+      <PageBanner title={'About Us'} img={bg}/>
       <section className={styles.hero}>
         <div className="container">
           <div className={styles.body}>

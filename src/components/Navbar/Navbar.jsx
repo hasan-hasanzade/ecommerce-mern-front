@@ -17,8 +17,8 @@ const Header = () => {
                <li className={styles.list}><a className={styles.item} href="/">Home</a></li>
                <li className={styles.list}><a className={styles.item} href="/about">About</a></li>
                <li className={styles.list}><a className={styles.item} href="/shop">Shop</a></li>
-               <li className={styles.list}><a className={styles.item} href="/services">Services</a></li>
-               <li className={styles.list}><a className={styles.item} href="/blogs">Blogs</a></li>
+               <li className={styles.list}><a className={styles.item} href="/services">Blog</a></li>
+               <li className={styles.list}><a className={styles.item} href="/blogs">Contact us</a></li>
             </ul>
          </nav>
          <div className={styles.bar}>

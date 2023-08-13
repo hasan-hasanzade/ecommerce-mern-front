@@ -1,7 +1,13 @@
 @use '../../scss/global' as *;
 
 .footer {
-   padding: 100px 0 0 0;
+   padding-top: 100px;
+   @media (max-width: $tablet) {
+      padding-top: 80px;
+   }
+   @media (max-width: $mobileSmall) {
+      padding-top: 60px;
+   }
 }
 
 .body {
