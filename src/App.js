@@ -6,8 +6,12 @@ import OurTeam from './pages/OurTeam/OurTeam';
 import RecentBlogs from './pages/RecentBlogs/RecentBlogs';
 import Services from './pages/Services/Services';
 import NotFound from './pages/NotFound/NotFound';
+import FullBlog from './pages/FullBlog/FullBlog';
+import FullProduct from './pages/FullProduct/FullProduct';
 import Footer from './components/Footer/Footer';
 import './scss/app.scss';
+
+
 
 
 
@@ -23,7 +27,9 @@ function App() {
       {/* <OurTeam /> */}
       {/* <RecentBlogs /> */}
       {/* <Services /> */}
-      <NotFound />
+      {/* <NotFound /> */}
+      {/* <FullBlog /> */}
+      <FullProduct />
       <Footer />
     </div>
   );

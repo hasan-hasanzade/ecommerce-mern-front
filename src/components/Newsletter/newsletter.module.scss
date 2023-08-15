@@ -11,11 +11,11 @@
    
 }
 
-.body {
+.body_news {
    position: relative;
 }
 
-.text {
+.text_news {
    font-weight: 800;
    font-size: rem(50);
    line-height: calc(59 / 50 * 100%);
@@ -36,9 +36,10 @@
 
 
 
-.content{
+.content_news{
    display: flex;
    justify-content: space-between;
+   flex-direction: row;
    align-items: center;
    padding: 100px 70px;
    flex-wrap: wrap;
@@ -64,7 +65,7 @@
    }
 }
 
-input {
+.input_news {
    @media (max-width: $tablet) {
       width: 100%;
    }

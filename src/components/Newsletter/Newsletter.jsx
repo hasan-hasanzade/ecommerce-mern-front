@@ -7,13 +7,13 @@ const Newsletter = () => {
   return (
     <section className={styles.newsletter}>
       <div className="container">
-         <div className={styles.body}>
-            <div className={styles.content}>
-               <div className={styles.text}>
+         <div className={styles.body_news}>
+            <div className={styles.content_news}>
+               <div className={styles.text_news}>
                   <p>Subscribe to <br /> our Newsletter</p>
                </div>
                <div className={styles.actions}>
-                  <input placeholder='Your Email Address' type="text" />
+                  <input className={styles.input_news} placeholder='Your Email Address' type="text" />
                   <a href='/loc' className={styles.button}>
                      Subscribe
                   </a>
