@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="wrapper">
       <Navbar />
-      {/* <Home /> */}
+      <Home />
       {/* <AboutUs /> */}
       {/* <ContactUs /> */}
       {/* <OurTeam /> */}
@@ -29,8 +29,8 @@ function App() {
       {/* <Services /> */}
       {/* <NotFound /> */}
       {/* <FullBlog /> */}
-      <FullProduct />
-      <Footer />
+      {/* <FullProduct /> */}
+      {/* <Footer /> */}
     </div>
   );
 }
