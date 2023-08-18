@@ -24,14 +24,14 @@ const Header = () => {
   };
 
   return (
-    <div className={navbar ? styles['header-scroll'] : styles['header']}>
+    <header className={navbar ? styles['header-scroll'] : styles['header']}>
       <div className={styles.body}>
         <div className={styles.logo}>
           <img className={styles.image} src={logo} alt="logo" />
           <div className={styles.text}>Organick</div>
         </div>
-        <nav className={styles.nav}>
-          <ul className={isOpen ? styles['menu-active'] : styles['menu']}>
+        <nav className={isOpen ? styles['nav-active'] : styles['nav']}>
+          <ul className={styles.menu}>
             <li className={styles.list}>
               <a className={styles.item} href="/">
                 Home
@@ -79,10 +79,20 @@ const Header = () => {
               <AiOutlineLogin className={styles.aiout} ai size={24} />
             </button>
           </a>
+          <a href="#" className={styles.login_mob}>
+            <button>
+              <AiOutlineLogin className={styles.ai_mob} ai size={24} />
+            </button>
+          </a>
           <a href="#" className={styles.sign}>
             <button>
               Sign up
               <BsFillPersonFill className={styles.aiout} ai size={24} />
+            </button>
+          </a>
+          <a href="#" className={styles.sign_mob}>
+            <button>
+              <BsFillPersonFill className={styles.ai_mob} ai size={24} />
             </button>
           </a>
           <div className={styles.burger_wrap}>
@@ -94,7 +104,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

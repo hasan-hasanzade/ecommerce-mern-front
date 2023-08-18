@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar/Navbar';
+import Drawer from './components/Drawer/Drawer';
 import Home from './pages/Home/Home';
 import AboutUs from './pages/AboutUs/AboutUs';
 import ContactUs from './pages/ContactUs/ContactUs';
@@ -17,10 +18,12 @@ import './scss/app.scss';
 
 
 
+
 function App() {
   return (
     <div className="wrapper">
       <Navbar />
+      <Drawer />
       <Home />
       {/* <AboutUs /> */}
       {/* <ContactUs /> */}
@@ -30,7 +33,8 @@ function App() {
       {/* <NotFound /> */}
       {/* <FullBlog /> */}
       {/* <FullProduct /> */}
-      {/* <Footer /> */}
+      
+      <Footer />
     </div>
   );
 }

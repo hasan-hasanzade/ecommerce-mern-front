@@ -23,7 +23,6 @@ const Home = () => {
       <Eco />
       <Blogs />
       <Newsletter />
-      <Footer />
     </>
 
   )
