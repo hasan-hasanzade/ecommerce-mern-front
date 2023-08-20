@@ -2,12 +2,15 @@ import React from 'react';
 import logo from '../../assets/img/logo.png';
 import { AiOutlineSearch, AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
+import Drawer from '../Drawer/Drawer';
+import { Link } from 'react-router-dom';
 
 import styles from './navbar.module.scss';
 
-const Header = () => {
+const Navbar = () => {
   const [navbar, setNavbar] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
+  const [cartOpened, setCartOpened] = React.useState(false);
 
   const changeNav = () => {
     if (window.scrollY >= 150) {
@@ -23,39 +26,52 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  
+  const handleCartOpen = () => {
+    setCartOpened(true);
+    document.body.style.overflow = 'hidden';
+  }
+
+  const handleCartClose = () => {
+    setCartOpened(false);
+    document.body.style.overflow = '';
+  }
+
   return (
+    
     <header className={navbar ? styles['header-scroll'] : styles['header']}>
+      {cartOpened ? <Drawer onClose={handleCartClose} /> : null}
       <div className={styles.body}>
-        <div className={styles.logo}>
+        <Link to='/' className={styles.logo}>
           <img className={styles.image} src={logo} alt="logo" />
           <div className={styles.text}>Organick</div>
-        </div>
+        </Link>
         <nav className={isOpen ? styles['nav-active'] : styles['nav']}>
           <ul className={styles.menu}>
             <li className={styles.list}>
-              <a className={styles.item} href="/">
+              <Link className={styles.item} to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className={styles.list}>
-              <a className={styles.item} href="/about">
+              <Link className={styles.item} to="/about">
                 About
-              </a>
+              </Link>
             </li>
             <li className={styles.list}>
-              <a className={styles.item} href="/shop">
+              <Link className={styles.item} to="/shop">
                 Shop
-              </a>
+              </Link>
             </li>
             <li className={styles.list}>
-              <a className={styles.item} href="/services">
+              <Link className={styles.item} to="/blogs">
                 Blog
-              </a>
+              </Link>
             </li>
             <li className={styles.list}>
-              <a className={styles.item} href="/blogs">
+              <Link className={styles.item} to="/contact">
                 Contact us
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -68,33 +84,33 @@ const Header = () => {
                </form> 
             </div> */}
           <div className={styles.cart}>
-            <button className={styles.outcart}>
+            <button onClick={handleCartOpen} className={styles.outcart}>
               <AiOutlineShoppingCart className={styles.shopping} color="white" size={24} />
               <span>0</span>
             </button>
           </div>
-          <a href="#" className={styles.login}>
+          <Link to="login" className={styles.login}>
             <button>
               Log in
               <AiOutlineLogin className={styles.aiout} ai size={24} />
             </button>
-          </a>
-          <a href="#" className={styles.login_mob}>
+          </Link>
+          <Link to="#login" className={styles.login_mob}>
             <button>
               <AiOutlineLogin className={styles.ai_mob} ai size={24} />
             </button>
-          </a>
-          <a href="#" className={styles.sign}>
+          </Link>
+          <Link to="signup" className={styles.sign}>
             <button>
               Sign up
               <BsFillPersonFill className={styles.aiout} ai size={24} />
             </button>
-          </a>
-          <a href="#" className={styles.sign_mob}>
+          </Link>
+          <Link to="signup" className={styles.sign_mob}>
             <button>
               <BsFillPersonFill className={styles.ai_mob} ai size={24} />
             </button>
-          </a>
+          </Link>
           <div className={styles.burger_wrap}>
             <div
               onClick={handleBurger}
@@ -108,4 +124,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

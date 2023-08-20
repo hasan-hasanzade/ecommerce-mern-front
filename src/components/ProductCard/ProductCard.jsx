@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './productcard.module.scss';
 import broc from '../../assets/img/products/broc.png';
+import { Link } from 'react-router-dom';
 
 const ProductCard = (props) => {
 
@@ -10,9 +11,9 @@ const ProductCard = (props) => {
         <div className={styles.category}>
           <span>{props.category}</span>
         </div>
-        <a href="/product" className={`${styles.image} ${styles._ibg}`}>
+        <Link to="/fullproduct" className={`${styles.image} ${styles._ibg}`}>
           <img src={props.imageUrl} alt="" />
-        </a>
+        </Link>
         <div className={styles.bottom}>
           <div className={styles.main}>
             <div className={styles.name}>{props.name}</div>

@@ -4,6 +4,7 @@ import bgAbout from '../../assets/img/about/citrus.png';
 import vegan from '../../assets/img/about/vegan.svg';
 import mailbox from '../../assets/img/about/mailbox.svg';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -43,7 +44,7 @@ const About = () => {
                         </div>
                      </div>
                      <div className={styles.btn}>
-                     <a href="/shop" className={styles.button}>Shop Now <span className={styles.arrow}><BsFillArrowRightCircleFill /></span> </a>
+                     <Link to="/shop" className={styles.button}>Shop Now <span className={styles.arrow}><BsFillArrowRightCircleFill /></span> </Link>
                      </div>
                </div> 
             </div>

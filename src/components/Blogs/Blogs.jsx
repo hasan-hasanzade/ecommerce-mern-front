@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './blogs.module.scss';
 import { BsFillArrowRightCircleFill, BsFillPersonFill } from 'react-icons/bs';
 import salad from '../../assets/img/blogs/salad.png';
-import tomato from '../../assets/img/blogs/tomato.png'
+import tomato from '../../assets/img/blogs/tomato.png';
+import { Link } from 'react-router-dom';
 
 const Blogs = () => {
   return (
@@ -12,7 +13,7 @@ const Blogs = () => {
                <div className={styles.subtitle}>Blogs</div>
                <div className={styles.title}>
                   <h2>Discover weekly content about <br /> organic food, & more</h2>
-                  <a href="/shop" className={styles.button}>More News <span className={styles.arrow}><BsFillArrowRightCircleFill /></span> </a>
+                  <Link to="/blogs" className={styles.button}>More News <span className={styles.arrow}><BsFillArrowRightCircleFill /></span> </Link>
                </div>
          </div>
          <div className={styles.body}>
@@ -31,9 +32,9 @@ const Blogs = () => {
                      <p className={styles.text}>
                         Simply dummy text of the printing and typesetting industry. Lorem Ipsum
                      </p>
-                     <a href="/blogs" className={styles.btn}>
+                     <Link to="/fullblog" className={styles.btn}>
                      Read More <span className={styles.arrow}><BsFillArrowRightCircleFill /></span>
-                     </a>
+                     </Link>
                   </div>
                </div>
             </div>

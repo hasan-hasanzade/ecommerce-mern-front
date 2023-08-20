@@ -5,6 +5,7 @@ import instagram from '../../assets/img/footer/inst.png';
 import facebook from '../../assets/img/footer/fb.png';
 import twitter from '../../assets/img/footer/tw.png';
 import printerest from '../../assets/img/footer/pr.png';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -40,14 +41,14 @@ const Footer = () => {
                   <a href="https.instagram.com">
                      <img src={instagram} alt="instagram" />
                   </a>
-                  <a href="https.instagram.com">
+                  <a href="https.facebook.com">
                      <img src={facebook} alt="facebook" />
                   </a>
-                  <a href="https.instagram.com">
+                  <a href="https.twitter.com">
                      <img src={twitter} alt="twitter" />
                   </a>
-                  <a href="https.instagram.com">
-                     <img src={printerest} alt="instagram" />
+                  <a href="https.printerest.com">
+                     <img src={printerest} alt="printerest" />
                   </a>
                </div>
             </div>
@@ -56,11 +57,11 @@ const Footer = () => {
                   Pages
                </div>
                   <div className={styles.links}>
-                     <a href='/about' className={styles.link}>Style Guide</a>
-                     <a href='/about' className={styles.link}>404 Style Guide</a>
-                     <a href='/about' className={styles.link}>Lapl Style Guide</a>
-                     <a href='/about' className={styles.link}>Guide</a>
-                     <a href='/about' className={styles.link}>Style Guide</a>
+                     <Link to='/team' className={styles.link}>Our Team</Link>
+                     <Link to='/services' className={styles.link}>Services</Link>
+                     <Link to='/about' className={styles.link}>About Us</Link>
+                     <Link to='/blogs' className={styles.link}>Blogs</Link>
+                     <Link to='/contact' className={styles.link}>Contact Us</Link>
                   </div>
             </div>
          </div>

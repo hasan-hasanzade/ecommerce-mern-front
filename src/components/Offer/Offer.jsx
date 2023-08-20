@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './offer.module.scss';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import ProductCard from '../ProductCard/ProductCard';
+import { Link } from 'react-router-dom';
 
 const Offer = () => {
   const arr = [
@@ -42,12 +43,12 @@ const Offer = () => {
           <div className={styles.subtitle}>Offer</div>
           <div className={styles.title}>
             <h2>We Offer Organic For You</h2>
-            <a href="/shop" className={styles.button}>
+            <Link to="/shop" className={styles.button}>
               View All Product{' '}
               <span className={styles.arrow}>
                 <BsFillArrowRightCircleFill />
               </span>{' '}
-            </a>
+            </Link>
           </div>
         </div>
         <div className={styles.body}>
