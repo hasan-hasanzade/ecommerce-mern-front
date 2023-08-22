@@ -18,6 +18,10 @@
 }
 
 
+.item {
+
+}
+
 
 .subtitle {
    font-size: rem(36);
@@ -84,7 +88,9 @@
    font-size: rem(18);
    line-height: calc(30 / 18 * 100%);
    color: $textGray;
-   margin-bottom: 20px;
+   margin-bottom: 50px;
+   width: 40%;
+   margin: 0 auto;
 }
 
 .name {
@@ -171,4 +177,4 @@
    width: 10px;
    text-indent: -9999px;
    overflow:hidden; 
-   }
+}

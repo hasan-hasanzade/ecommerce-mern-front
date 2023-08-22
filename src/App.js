@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound/NotFound';
 import FullBlog from './pages/FullBlog/FullBlog';
 import FullProduct from './pages/FullProduct/FullProduct';
 import Login from './pages/Login/Login';
+import SignUp from './pages/SignUp/SignUp';
 import Footer from './components/Footer/Footer';
 
 import './scss/app.scss';
@@ -29,6 +30,7 @@ function App() {
         <Route path="/fullblog" element={<FullBlog />} />
         <Route path="/fullproduct" element={<FullProduct />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

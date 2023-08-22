@@ -5,7 +5,8 @@ import NewsLetter from '../../components/Newsletter/Newsletter';
 import bg from '../../assets/img/blogs-page/bgblog.jpg';
 import { BsFillArrowRightCircleFill, BsFillPersonFill } from 'react-icons/bs';
 import salad from '../../assets/img/blogs/salad.png';
-import tomato from '../../assets/img/blogs/tomato.png'
+import tomato from '../../assets/img/blogs/tomato.png';
+import { Link } from 'react-router-dom';
 
 const RecentBlogs = () => {
   return (
@@ -29,9 +30,9 @@ const RecentBlogs = () => {
                      <p className={styles.text}>
                         Simply dummy text of the printing and typesetting industry. Lorem Ipsum
                      </p>
-                     <a href="/blogs" className={styles.btn}>
+                     <Link to="/fullblog" className={styles.btn}>
                      Read More <span className={styles.arrow}><BsFillArrowRightCircleFill /></span>
-                     </a>
+                     </Link>
                   </div>
                </div>
             </div>

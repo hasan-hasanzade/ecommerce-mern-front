@@ -1,6 +1,6 @@
 @use '../../scss/global' as *;
 
-.login {
+.sign {
   padding: 500px 0;
 //   background-color: #e5e5e5;
 }
@@ -29,8 +29,13 @@
   right: -30px;
   bottom: -80px;
 }
+
+.user {
+   margin-top: 10px;
+   text-align: center;
+}
 .form {
-  height: 520px;
+  height: 720px;
   width: 400px;
   // background-color: rgba(0, 0, 0, 0.13);
   background-color: rgba(67, 66, 66, .7);

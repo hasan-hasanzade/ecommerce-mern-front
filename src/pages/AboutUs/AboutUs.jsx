@@ -15,6 +15,7 @@ import angelineImg from '../../assets/img/about-page/riga.jpg';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import bg from '../../assets/img/about-page/about-banner.jpg'
 import Offer from '../../components/Offer/Offer';
+import { Link } from 'react-router-dom';
 
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { AiOutlineInstagram, AiOutlineTwitter, AiFillFacebook } from 'react-icons/ai';
@@ -69,12 +70,12 @@ const AboutUs = () => {
                 </div>
               </div>
               <div className={styles.button}>
-                <a href="/shop" className={styles.btn}>
+                <Link to="/shop" className={styles.btn}>
                   Explore More{' '}
                   <span className={styles.arrow}>
                     <BsFillArrowRightCircleFill />
                   </span>{' '}
-                </a>
+                </Link>
               </div>
             </div>
           </div>

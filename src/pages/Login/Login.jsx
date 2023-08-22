@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './login.module.scss';
-import bg from '../../assets/img/loginbg.jpg'
+import bg from '../../assets/img/loginbg.jpg';
+import { AiFillGoogleCircle} from 'react-icons/ai';
+import { BsFacebook} from 'react-icons/bs';
 
 const Login = () => {
   return (
@@ -24,11 +26,11 @@ const Login = () => {
          <button className={styles.button}>Log In</button>
          </div>
         <div className={styles.social}>
-          <div className="go">
-            <i className="fab fa-google"></i> Google
+          <div className={styles.icon}>
+            <AiFillGoogleCircle size={20} /> Google
           </div>
-          <div className="fb">
-            <i className="fab fa-facebook"></i> Facebook
+          <div className={styles.icon}>
+            < BsFacebook size={18}/> Facebook
           </div>
         </div>
       </form>

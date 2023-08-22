@@ -1,11 +1,15 @@
 @use '../../scss/global' as *;
 
 .product {
-  border-top: 1px solid #d4d4d4;
-  padding: 130px 0;
+ 
+  padding: 150px 0;
 }
 
+
+
 .wrap {
+  padding-top: 50px;
+  border-top: 1px solid #d4d4d4;
   display: grid;
   grid-template-columns: percent(611, 1300) 1fr;
   align-items: center;
