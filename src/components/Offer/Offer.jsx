@@ -5,36 +5,18 @@ import ProductCard from '../ProductCard/ProductCard';
 import { Link } from 'react-router-dom';
 
 const Offer = () => {
-  const arr = [
-    {
-      category: 'Vegetable',
-      imageUrl: 'https://source.unsplash.com/q7BJL1qZ1Bw',
-      name: 'Calabrese Broccoli',
-      oldPrice: 15,
-      newPrice: 8.99,
-    },
-    {
-      category: 'Fruit',
-      imageUrl: 'https://source.unsplash.com/yPI38imbQSI',
-      name: 'Papaya',
-      oldPrice: 13,
-      newPrice: 6.99,
-    },
-    {
-      category: 'Fruit',
-      imageUrl: 'https://source.unsplash.com/vbAEHCrvXZ0',
-      name: 'Cherry',
-      oldPrice: 8,
-      newPrice: 3.99,
-    },
-    {
-      category: 'Vegetable',
-      imageUrl: 'https://source.unsplash.com/1G7PGolEJUk',
-      name: 'Corn',
-      oldPrice: 11,
-      newPrice: 7.99,
-    },
-  ];
+
+  const [items, setItems] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("https://64e6f4ecb0fd9648b78f17fa.mockapi.io/item")
+    .then((res) => {
+      return res.json()
+    })
+    .then((json) => {
+      setItems(json)
+    })
+  },[])
 
   return (
     <section className={styles.offer}>
@@ -53,7 +35,7 @@ const Offer = () => {
         </div>
         <div className={styles.body}>
          {
-            arr.map((obj) => (
+            items.slice(4, 8).map((obj) => (
                <ProductCard
                category={obj.category}
                imageUrl={obj.imageUrl}

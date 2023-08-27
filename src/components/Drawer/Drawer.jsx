@@ -3,14 +3,14 @@ import styles from './drawer.module.scss';
 import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus, AiOutlineCloseCircle } from 'react-icons/ai';
 import baa from '../../assets/img/baa.jpeg'
 
-const Drawer = (props) => {
+const Drawer = ({onClose}) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.drawer}>
         <div className={styles.inner}>
           <div className={styles.heading}>
             <div className={styles.head}>Shopping Cart</div>
-            <button onClick={props.onClose} className={styles.close}>
+            <button onClick={onClose} className={styles.close}>
               <AiOutlineClose size={24} />
             </button>
           </div>
