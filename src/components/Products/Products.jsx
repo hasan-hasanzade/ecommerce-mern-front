@@ -1,18 +1,16 @@
 import React from 'react';
 import styles from './products.module.scss';
 import ProductCard from '../ProductCard/ProductCard';
+import axios from 'axios'
 
 const Products = () => {
   const [items, setItems] = React.useState([]);
   const [drawerItems, setDrawerItems] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("https://64e6f4ecb0fd9648b78f17fa.mockapi.io/item")
+    axios.get("https://64e6f4ecb0fd9648b78f17fa.mockapi.io/item")
     .then((res) => {
-      return res.json()
-    })
-    .then((json) => {
-      setItems(json)
+      setItems(res.data)
     })
   },[])
 

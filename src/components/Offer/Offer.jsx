@@ -3,18 +3,16 @@ import styles from './offer.module.scss';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import ProductCard from '../ProductCard/ProductCard';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Offer = () => {
 
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("https://64e6f4ecb0fd9648b78f17fa.mockapi.io/item")
+    axios.get("https://64e6f4ecb0fd9648b78f17fa.mockapi.io/item")
     .then((res) => {
-      return res.json()
-    })
-    .then((json) => {
-      setItems(json)
+      setItems(res.data)
     })
   },[])
 
