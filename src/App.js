@@ -10,6 +10,7 @@ import Services from './pages/Services/Services';
 import NotFound from './pages/NotFound/NotFound';
 import FullBlog from './pages/FullBlog/FullBlog';
 import FullProduct from './pages/FullProduct/FullProduct';
+import Shop from './pages/Shop/Shop';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 import Footer from './components/Footer/Footer';
@@ -29,6 +30,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/fullblog" element={<FullBlog />} />
         <Route path="/fullproduct" element={<FullProduct />} />
+        <Route path="/shop" element={<Shop />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
