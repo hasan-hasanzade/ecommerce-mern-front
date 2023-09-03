@@ -117,9 +117,16 @@
 
 .values {
    margin: 30px 0;
-   color: $primaryYellow;
+   color: $textBlue;
    font-weight: 700;
    font-size: 18px;
+}
+
+.appBtn {
+   padding: 12px 20px;
+   background-color: $primaryYellow;
+   color: $textBlue;
+   border-radius: 30px;
 }
 
 .small {
@@ -134,11 +141,4 @@
    background-color: $primaryYellow;
 }
 
-.thumb {
-   width: 23px;
-   height: 23px;
-   background-color: #fff;
-   border-radius: 50%;
- 
-}
 

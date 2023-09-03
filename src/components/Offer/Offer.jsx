@@ -6,15 +6,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Offer = () => {
-
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get("https://64e6f4ecb0fd9648b78f17fa.mockapi.io/item")
-    .then((res) => {
-      setItems(res.data)
-    })
-  },[])
+    axios.get('https://64160022c42f59a203ace67c.mockapi.io/items').then((res) => {
+      setItems(res.data);
+    });
+  }, []);
 
   return (
     <section className={styles.offer}>
@@ -32,17 +30,18 @@ const Offer = () => {
           </div>
         </div>
         <div className={styles.body}>
-         {
-            items.slice(4, 8).map((obj) => (
-               <ProductCard
-               category={obj.category}
-               imageUrl={obj.imageUrl}
-               name={obj.name}
-               oldPrice={obj.oldPrice}
-               newPrice={obj.newPrice}
-             />
-            ))
-         }
+          {items.slice(4, 8).map((obj) => (
+            <ProductCard
+              key={obj.id}
+              rating={obj.rating}
+              id={obj.id}
+              category={obj.category}
+              imageUrl={obj.imageUrl}
+              title={obj.title}
+              oldPrice={obj.oldPrice}
+              newPrice={obj.newPrice}
+            />
+          ))}
         </div>
       </div>
     </section>

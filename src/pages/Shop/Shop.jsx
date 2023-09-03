@@ -11,7 +11,7 @@ const Shop = () => {
   const [drawerItems, setDrawerItems] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get('https://64e6f4ecb0fd9648b78f17fa.mockapi.io/item').then((res) => {
+    axios.get('https://64160022c42f59a203ace67c.mockapi.io/items').then((res) => {
       setItems(res.data);
     });
   }, []);
@@ -25,9 +25,12 @@ const Shop = () => {
             <div className={styles.body}>
               {items.map((obj) => (
                 <ProductCard
+                  key={obj.id}
+                  rating={obj.rating}
+                  id={obj.id}
                   category={obj.category}
                   imageUrl={obj.imageUrl}
-                  name={obj.name}
+                  title={obj.title}
                   oldPrice={obj.oldPrice}
                   newPrice={obj.newPrice}
                 />

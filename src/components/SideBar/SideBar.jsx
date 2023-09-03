@@ -64,6 +64,7 @@ const SideBar = () => {
               <div>
                 <div className={styles.values}>${values[0]} - ${values[1]}</div>
               </div>
+              <button className={styles.appBtn}>Apply</button>
             </div>
           </div>
         </div>

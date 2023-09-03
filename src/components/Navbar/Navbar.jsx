@@ -1,9 +1,10 @@
 import React from 'react';
 import logo from '../../assets/img/logo.png';
-import { AiOutlineSearch, AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';
+import { AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
-import Drawer from '../Drawer/Drawer';
+import Cart from '../Cart/Cart';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import styles from './navbar.module.scss';
 
@@ -11,6 +12,10 @@ const Navbar = () => {
   const [navbar, setNavbar] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const [cartOpened, setCartOpened] = React.useState(false);
+
+  const {items, totalPrice} = useSelector(state => state.cart);
+
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0)
 
   const changeNav = () => {
     if (window.scrollY >= 150) {
@@ -40,7 +45,7 @@ const Navbar = () => {
   return (
     
     <header className={navbar ? styles['header-scroll'] : styles['header']}>
-      {cartOpened ? <Drawer onClose={handleCartClose} /> : null}
+      {cartOpened ? <Cart items={items} totalPrice={totalPrice} onClose={handleCartClose} /> : null}
       <div className={styles.body}>
         <Link to='/' className={styles.logo}>
           <img className={styles.image} src={logo} alt="logo" />
@@ -86,7 +91,7 @@ const Navbar = () => {
           <div className={styles.cart}>
             <button onClick={handleCartOpen} className={styles.outcart}>
               <AiOutlineShoppingCart className={styles.shopping} color="white" size={24} />
-              <span>0</span>
+              <span>{totalCount}</span>
             </button>
           </div>
           <Link to="login" className={styles.login}>

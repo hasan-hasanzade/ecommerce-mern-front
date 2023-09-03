@@ -1,18 +1,25 @@
 import React from 'react';
 import styles from './products.module.scss';
 import ProductCard from '../ProductCard/ProductCard';
-import axios from 'axios'
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setItems } from '../../redux/slices/productSlice';
 
 const Products = () => {
-  const [items, setItems] = React.useState([]);
+  // const [items, setItems] = React.useState([]);
   const [drawerItems, setDrawerItems] = React.useState([]);
 
+  const items = useSelector((state) => state.products.items);
+
+  const dispatch = useDispatch();
+
   React.useEffect(() => {
-    axios.get("https://64e6f4ecb0fd9648b78f17fa.mockapi.io/item")
+    axios.get("https://64160022c42f59a203ace67c.mockapi.io/items")
     .then((res) => {
-      setItems(res.data)
+      dispatch(setItems(res.data));
     })
   },[])
+
 
 
 
@@ -23,14 +30,18 @@ const Products = () => {
         <div className={styles.subtitle}>Our Products</div>
         <div className={styles.body}>
           {items.map((obj) => (
-            <ProductCard 
+            <ProductCard
+            key={obj.id}
+            rating={obj.rating}
+            id={obj.id} 
             category={obj.category} 
             imageUrl={obj.imageUrl}
-            name={obj.name}
+            title={obj.title}
             oldPrice={obj.oldPrice}
             newPrice={obj.newPrice}
             />
           ))}
+          {console.log(items)}
         </div>
       </div>
     </section>
