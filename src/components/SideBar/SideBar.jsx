@@ -1,8 +1,14 @@
 import React from 'react';
 import styles from './sidebar.module.scss';
 import { AiOutlineSearch } from 'react-icons/ai';
+import Slider from 'react-slider'
+
+const MIN = 1;
+const MAX = 100;
 
 const SideBar = () => {
+  const [values, setValues] = React.useState([MIN, MAX])
+
   return (
     <div className={styles.content}>
       <h3 className={styles.title}>Shop The Latest</h3>
@@ -43,8 +49,21 @@ const SideBar = () => {
             </div>
             <div className={styles.price}>
             <h5 className={styles.heading}>Price</h5>
-              <div className={styles.range}>Price Range</div>
-              <input type="range" multiple min="0" step="1" max="10" data-values="1 9" />
+              {/* <div className={styles.range}>Price Range</div> */}
+              
+              {/* <small className={styles.small}>
+                Current Range : ${values[1] - values[0]}
+              </small> */}
+              <Slider 
+              className={styles.slider}
+              onChange={setValues} 
+              value={values} 
+              min={MIN} 
+              max={MAX} 
+              />
+              <div>
+                <div className={styles.values}>${values[0]} - ${values[1]}</div>
+              </div>
             </div>
           </div>
         </div>
