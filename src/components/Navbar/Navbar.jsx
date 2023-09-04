@@ -12,10 +12,21 @@ const Navbar = () => {
   const [navbar, setNavbar] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const [cartOpened, setCartOpened] = React.useState(false);
+  const [isRed, setIsRed] = React.useState(false);
+
+ 
 
   const {items, totalPrice} = useSelector(state => state.cart);
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+
+  React.useEffect(() => {
+    if (totalCount) {   
+      setIsRed(true);
+    } else {
+      setIsRed(false);
+    }
+  }, [totalCount]);
 
   const changeNav = () => {
     if (window.scrollY >= 150) {
@@ -45,7 +56,7 @@ const Navbar = () => {
   return (
     
     <header className={navbar ? styles['header-scroll'] : styles['header']}>
-      {cartOpened ? <Cart items={items} totalPrice={totalPrice} onClose={handleCartClose} /> : null}
+     <Cart items={items} totalPrice={totalPrice} onClose={handleCartClose} opened={cartOpened}/>
       <div className={styles.body}>
         <Link to='/' className={styles.logo}>
           <img className={styles.image} src={logo} alt="logo" />
@@ -91,7 +102,7 @@ const Navbar = () => {
           <div className={styles.cart}>
             <button onClick={handleCartOpen} className={styles.outcart}>
               <AiOutlineShoppingCart className={styles.shopping} color="white" size={24} />
-              <span>{totalCount}</span>
+              <span className={isRed && styles.red}>{totalCount}</span>
             </button>
           </div>
           <Link to="login" className={styles.login}>

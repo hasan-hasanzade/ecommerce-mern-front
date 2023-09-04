@@ -6,9 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setItems } from '../../redux/slices/productSlice';
 
 const Products = () => {
-  // const [items, setItems] = React.useState([]);
-  const [drawerItems, setDrawerItems] = React.useState([]);
-
+ 
   const items = useSelector((state) => state.products.items);
 
   const dispatch = useDispatch();
@@ -18,8 +16,7 @@ const Products = () => {
     .then((res) => {
       dispatch(setItems(res.data));
     })
-  },[])
-
+  },[dispatch])
 
 
 
@@ -41,7 +38,6 @@ const Products = () => {
             newPrice={obj.newPrice}
             />
           ))}
-          {console.log(items)}
         </div>
       </div>
     </section>

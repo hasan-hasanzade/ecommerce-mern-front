@@ -8,7 +8,6 @@ import axios from 'axios';
 
 const Shop = () => {
   const [items, setItems] = React.useState([]);
-  const [drawerItems, setDrawerItems] = React.useState([]);
 
   React.useEffect(() => {
     axios.get('https://64160022c42f59a203ace67c.mockapi.io/items').then((res) => {

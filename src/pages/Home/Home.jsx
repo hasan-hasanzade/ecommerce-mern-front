@@ -7,7 +7,6 @@ import Offer from '../../components/Offer/Offer';
 import Eco from '../../components/Eco/Eco';
 import Blogs from '../../components/Blogs/Blogs';
 import Newsletter from '../../components/Newsletter/Newsletter';
-import Footer from '../../components/Footer/Footer';
 import Banner from '../../components/Banner/Banner';
 
 

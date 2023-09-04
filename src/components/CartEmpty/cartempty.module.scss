@@ -1,0 +1,26 @@
+@use '../../scss/global' as *;
+
+.content {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.image {
+   width: 200px;
+   height: 200px;
+}
+
+.text {
+   font-size: 25px;
+   text-align: center;
+}
+
+.btn {
+   padding: 12px 20px;
+   background-color: $primaryYellow;
+   border-radius: 30px;
+   margin-top: 30px;
+}

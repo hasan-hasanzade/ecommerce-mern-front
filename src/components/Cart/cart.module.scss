@@ -8,6 +8,19 @@
    height: 100vh;
    background-color: rgba(0, 0, 0, .5);
    z-index: 999;
+   visibility: hidden;
+   opacity: 0;
+   transition: opacity .3s ease, visibility .3s ease;
+}
+
+
+.overlayVisible {
+   visibility: visible;
+   opacity: 1;
+
+   .drawer {
+      transform: translateX(0);
+   }
 }
 
 .drawer {
@@ -20,6 +33,8 @@
    @media (max-width:500px) {
       width: 100%;
    }
+   transform: translateX(100%);
+   transition: transform .3s ease;
 }
 
 .inner {

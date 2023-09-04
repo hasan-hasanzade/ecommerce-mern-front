@@ -24,6 +24,8 @@ const CartItem = ({id, title, newPrice, imageUrl, count}) => {
       }
    }
 
+   
+
   return (
    <div className={styles.item}>
    <div className={styles.image}>
@@ -34,7 +36,7 @@ const CartItem = ({id, title, newPrice, imageUrl, count}) => {
        <div className={styles.title}>{title}</div>
        <div className={styles.actions}>
           <button onClick={onClickDecrease} className={styles.minus}><AiOutlineMinus /></button>
-          <div type='number' className={styles.input}>{count}</div>
+          <div type='number' className={styles.input}>{count > 0 ? count : onClickRemove()}</div>
           <button onClick={onClickIncrease} className={styles.plus}><AiOutlinePlus /></button>
        </div>
      </div>

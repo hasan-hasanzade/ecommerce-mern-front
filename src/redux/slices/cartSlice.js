@@ -33,10 +33,15 @@ export const cartSlice = createSlice({
 
       if (findItem) {
         findItem.count--;
+        state.totalPrice -= findItem.newPrice;
       }
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter((obj) => obj.id !== action.payload)
+      const findItem = state.items.find((obj) => obj.id === action.payload);
+         if (findItem) {
+            state.totalPrice -= findItem.newPrice * findItem.count;
+         }
+         state.items = state.items.filter((obj) => obj.id !== action.payload);
     }
   },
 });
