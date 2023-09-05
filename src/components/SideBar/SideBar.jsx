@@ -6,8 +6,11 @@ import Slider from 'react-slider'
 const MIN = 1;
 const MAX = 100;
 
-const SideBar = () => {
+const SideBar = ({searchValue, setSearchValue}) => {
   const [values, setValues] = React.useState([MIN, MAX])
+  // const onClickSearch = (e) => {
+
+  // }
 
   return (
     <div className={styles.content}>
@@ -15,7 +18,12 @@ const SideBar = () => {
       <div className={styles.inner}>
         <div className={styles.body}>
           <div className={styles.search}>
-            <input className={styles.input} type="text" placeholder="Search..." />
+            <input 
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            className={styles.input} 
+            type="text" 
+            placeholder="Search..." />
             <button className={styles.btn}>
               <AiOutlineSearch className={styles.icon} color="white" size={24} />
             </button>
@@ -49,11 +57,6 @@ const SideBar = () => {
             </div>
             <div className={styles.price}>
             <h5 className={styles.heading}>Price</h5>
-              {/* <div className={styles.range}>Price Range</div> */}
-              
-              {/* <small className={styles.small}>
-                Current Range : ${values[1] - values[0]}
-              </small> */}
               <Slider 
               className={styles.slider}
               onChange={setValues} 
