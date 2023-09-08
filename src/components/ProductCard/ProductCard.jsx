@@ -7,7 +7,7 @@ import Rating from '@mui/material/Rating';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../redux/slices/cartSlice';
 
-const ProductCard = ({id, category, imageUrl, title, oldPrice, newPrice, rating}) => {
+const ProductCard = ({_id, category, imageUrl, title, oldPrice, newPrice, rating}) => {
 
   const[isAdded, setIsAdded] = React.useState(false);
   
@@ -20,7 +20,7 @@ const ProductCard = ({id, category, imageUrl, title, oldPrice, newPrice, rating}
 
   const onClickAdd = () => {
     const item = {
-      id,
+      _id,
       imageUrl,
       title,
       newPrice
@@ -34,7 +34,7 @@ const ProductCard = ({id, category, imageUrl, title, oldPrice, newPrice, rating}
         <div className={styles.category}>
           <span>{category}</span>
         </div>
-        <Link to="/fullproduct" className={`${styles.image} ${styles._ibg}`}>
+        <Link to={`/items/${_id}`} className={`${styles.image} ${styles._ibg}`}>
           <img src={imageUrl} alt="" />
         </Link>
         <div className={styles.bottom}>

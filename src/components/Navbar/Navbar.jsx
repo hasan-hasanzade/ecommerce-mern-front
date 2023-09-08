@@ -60,7 +60,7 @@ const Navbar = () => {
       <div className={styles.body}>
         <Link to='/' className={styles.logo}>
           <img className={styles.image} src={logo} alt="logo" />
-          <div className={styles.text}>Organick</div>
+          <div className={styles.text}>Organic</div>
         </Link>
         <nav className={isOpen ? styles['nav-active'] : styles['nav']}>
           <ul className={styles.menu}>
@@ -92,13 +92,6 @@ const Navbar = () => {
           </ul>
         </nav>
         <div className={styles.bar}>
-          {/* <div className={styles.search}>
-            <button className={styles.search_icon}><AiOutlineSearch className={styles.aiout} color="white" size={24} /></button>  
-               <form className={styles.form}>
-                  <input className={styles.input} type="text" />
-                  <button className={styles.button}><AiOutlineSearch className={styles.aiout} color="white" size={24} /></button>  
-               </form> 
-            </div> */}
           <div className={styles.cart}>
             <button onClick={handleCartOpen} className={styles.outcart}>
               <AiOutlineShoppingCart className={styles.shopping} color="white" size={24} />

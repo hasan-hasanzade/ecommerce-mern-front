@@ -34,7 +34,7 @@ const SideBar = ({searchValue, setSearchValue}) => {
               <ul className={styles.list}>
                 <li className={styles.item}>Vegetables</li>
                 <li className={styles.item}>Fruits</li>
-                <li className={styles.item}>Seeds</li>
+                <li className={styles.item}>Nuts</li>
                 <li className={styles.item}>Berries</li>
               </ul>
             </div>

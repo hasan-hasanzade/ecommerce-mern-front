@@ -29,7 +29,7 @@ function App() {
         <Route path="/blogs" element={<RecentBlogs />} />
         <Route path="/services" element={<Services />} />
         <Route path="/fullblog" element={<FullBlog />} />
-        <Route path="/fullproduct" element={<FullProduct />} />
+        <Route path="/items/:id" element={<FullProduct />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

@@ -20,7 +20,7 @@ const Cart = ({ onClose, items, totalPrice, opened }) => {
             {!totalPrice ? (
               <CartEmpty onClose={onClose} />
             ) : (
-              items.map((item) => <CartItem totalPrice={totalPrice} key={item.id} {...item} />)
+              items.map((item) => <CartItem totalPrice={totalPrice} key={item._id} {...item} />)
             )}
           </div>
           <div className={styles.bottom}>

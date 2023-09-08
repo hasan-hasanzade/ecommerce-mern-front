@@ -13,7 +13,7 @@ const Shop = () => {
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    axios.get('https://64160022c42f59a203ace67c.mockapi.io/items').then((res) => {
+    axios.get('http://localhost:3333/items').then((res) => {
       setItems(res.data);
       setIsLoading(false);
     });
@@ -29,7 +29,7 @@ const Shop = () => {
               {
                 isLoading 
                   ? [...new Array(8)].map((_, index) => <Skeleton key={index} />) 
-                  : items.map((obj) => <ProductCard key={obj.id} {...obj} />)
+                  : items.map((obj) => <ProductCard key={obj._id} {...obj} />)
               }
             </div>
           </div>

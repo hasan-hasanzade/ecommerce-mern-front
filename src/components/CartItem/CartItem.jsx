@@ -5,22 +5,22 @@ import { useDispatch } from 'react-redux';
 import { addItem, decreaseItem, removeItem } from '../../redux/slices/cartSlice';
 
 
-const CartItem = ({id, title, newPrice, imageUrl, count}) => {
+const CartItem = ({_id, title, newPrice, imageUrl, count}) => {
    const dispatch = useDispatch();
 
    const onClickIncrease = () => {
       dispatch(addItem({
-         id,
+         _id,
       }))
    }
 
    const onClickDecrease = () => {
-      dispatch((decreaseItem(id)))
+      dispatch((decreaseItem(_id)))
    }
 
    const onClickRemove = () => {
       if(window.confirm('Are you sure you want to remove item?')) {
-         dispatch((removeItem(id)))
+         dispatch((removeItem(_id)))
       }
    }
 

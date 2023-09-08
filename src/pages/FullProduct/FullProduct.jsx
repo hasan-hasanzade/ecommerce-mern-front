@@ -2,9 +2,30 @@ import React from 'react';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import styles from './fullproduct.module.scss';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
-import broc from '../../assets/img/full-product/broc.jpg';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import Rating from '@mui/material/Rating';
 
 const FullProduct = () => {
+  const [data, setData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState();
+
+  const { id } = useParams();
+
+  React.useEffect(() => {
+    axios
+      .get(`http://localhost:3333/items/${id}`)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.warn(err);
+        alert('cannot get an item');
+      });
+  }, [id]);
+
+  console.log(data);
+
   return (
     <>
       <section className={styles.product}>
@@ -12,18 +33,25 @@ const FullProduct = () => {
           <div className={styles.wrap}>
             <div className={styles.body}>
               <div className={styles.image}>
-                <img src={broc} alt="" />
+                <img src={data.imageUrl} alt="" />
                 <div className={styles.category}>
-                  <span>Vegetable</span>
+                  <span>{data.category}</span>
                 </div>
               </div>
             </div>
             <div className={styles.content}>
-              <div className={styles.title}>Calabrese Broccoli</div>
-              <div className={styles.rating}>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div className={styles.title}>{data.title}</div>
+              <div className={styles.rating}>
+                <Rating
+                  name="half-rating-read"
+                  value={data.rating ?? " "}
+                  precision={0.5}
+                  readOnly
+                />
+              </div>
               <div className={styles.prices}>
-                <span className={styles.old}>25.00$</span>
-                <span className={styles.new}>15.00$</span>
+                <span className={styles.old}>${data.oldPrice}</span>
+                <span className={styles.new}>${data.newPrice}</span>
               </div>
               <p className={styles.desc}>
                 Calabrese is an old-fashioned variety of broccoli renowned for its bluish-green
@@ -47,7 +75,7 @@ const FullProduct = () => {
       <section className={styles.additional}>
         <div className="container">
           <div className={styles.buttons}>
-            <button className={` ${styles.active_btn} ${styles.btn}`}>Product Description</button>
+            <button className={`${styles.active_btn} ${styles.btn}`}>Product Description</button>
             <button className={styles.btn}>Additional Info</button>
           </div>
           <p className={styles.text}>
