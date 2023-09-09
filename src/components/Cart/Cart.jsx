@@ -6,6 +6,7 @@ import CartEmpty from '../CartEmpty/CartEmpty';
 import CartItem from '../CartItem/CartItem';
 
 const Cart = ({ onClose, items, totalPrice, opened }) => {
+
   return (
     <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
       <div className={styles.drawer}>
@@ -20,7 +21,7 @@ const Cart = ({ onClose, items, totalPrice, opened }) => {
             {!totalPrice ? (
               <CartEmpty onClose={onClose} />
             ) : (
-              items.map((item) => <CartItem totalPrice={totalPrice} key={item._id} {...item} />)
+              items.map((item) => <CartItem key={item._id} {...item} />)
             )}
           </div>
           <div className={styles.bottom}>

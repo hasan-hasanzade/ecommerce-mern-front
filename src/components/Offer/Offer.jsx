@@ -9,7 +9,7 @@ const Offer = () => {
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get('https://64160022c42f59a203ace67c.mockapi.io/items').then((res) => {
+    axios.get('http://localhost:3333/items').then((res) => {
       setItems(res.data);
     });
   }, []);
@@ -32,9 +32,9 @@ const Offer = () => {
         <div className={styles.body}>
           {items.slice(4, 8).map((obj) => (
             <ProductCard
-              key={obj.id}
+              key={obj._id}
               rating={obj.rating}
-              id={obj.id}
+              _id={obj._id}
               category={obj.category}
               imageUrl={obj.imageUrl}
               title={obj.title}

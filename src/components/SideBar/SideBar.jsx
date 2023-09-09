@@ -13,7 +13,7 @@ const SideBar = ({searchValue, setSearchValue}) => {
   // }
 
   return (
-    <div className={styles.content}>
+    <aside className={styles.content}>
       <h3 className={styles.title}>Shop The Latest</h3>
       <div className={styles.inner}>
         <div className={styles.body}>
@@ -72,7 +72,7 @@ const SideBar = ({searchValue, setSearchValue}) => {
           </div>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

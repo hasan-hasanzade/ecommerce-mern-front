@@ -94,29 +94,18 @@
 .action {
   display: flex;
   align-items: center;
-  text-align: center;
   margin-top: 30px;
-  input {
-    width: 130px;
-    height: 80px;
-    color: #274c5b;
-    text-align: center;
-    border: 2px solid $textBlue;
-    border-radius: 16px;
-    margin-top: 10px;
-    font-family: Roboto, sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-  }
-  button {
-    margin-left: 20px;
+}
+
+.add {
+  margin-left: 20px;
     border-radius: 16px;
     color: $primaryWhite;
     background-color: $textBlue;
     min-height: 48px;
     justify-content: center;
     align-items: center;
-    padding: 26px 36px;
+    padding: 16px 26px;
     letter-spacing: 0.2;
     line-height: 150%;
     text-align: center;
@@ -126,9 +115,7 @@
       padding: 12px 20px;
       font-size: rem(15);
     }
-    margin-top: 8px;
   }
-}
 
 .quan {
   color: #274c5b;
@@ -177,4 +164,86 @@
     font-size: 20px;
     font-weight: 400;
     line-height: 1.8;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.textShow {
+  text-align: center;
+  color: #525c60;
+   margin-bottom: 15px;
+   font-family: Open Sans, sans-serif;
+   font-size: 20px;
+   font-weight: 400;
+   line-height: 1.8;
+   display: block;
+   opacity: 1;
+    visibility: visible;
+}
+
+.minus {
+  border-right: 2px solid $textBlue;
+  width: 57px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width:$mobileSmall) {
+     width: 27px;
+  height: 23px;
+  }
+}
+
+.disabled {
+  border-right: 2px solid $textBlue;
+  width: 57px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: not-allowed;
+  @media (max-width:$mobileSmall) {
+     width: 27px;
+  height: 23px;
+  }
+}
+
+.plus {
+  border-left: 2px solid $textBlue;
+  width: 57px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width:$mobileSmall) {
+     width: 27px;
+  height: 23px;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $textBlue;
+  border-radius: 10px;
+}
+
+.input {
+  // border: 2px solid $textBlue;
+  // border-bottom: 2px solid $textBlue;
+  width: 55px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  padding: 8px;
+  @media (max-width:$mobileSmall) {
+     width: 30px;
+  height: 23px;
+  }
+  border-radius: 10px;
 }

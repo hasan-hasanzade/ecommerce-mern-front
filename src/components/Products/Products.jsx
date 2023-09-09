@@ -12,7 +12,7 @@ const Products = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    axios.get("https://64160022c42f59a203ace67c.mockapi.io/items")
+    axios.get("http://localhost:3333/items")
     .then((res) => {
       dispatch(setItems(res.data));
     })
@@ -26,11 +26,11 @@ const Products = () => {
         <h3 className={styles.title}>Categories</h3>
         <div className={styles.subtitle}>Our Products</div>
         <div className={styles.body}>
-          {items.map((obj) => (
+          {items.slice(8, 16).map((obj) => (
             <ProductCard
-            key={obj.id}
+            key={obj._id}
             rating={obj.rating}
-            id={obj.id} 
+            _id={obj._id} 
             category={obj.category} 
             imageUrl={obj.imageUrl}
             title={obj.title}
