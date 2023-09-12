@@ -4,8 +4,16 @@ import { AiOutlineClose } from 'react-icons/ai';
 import CartEmpty from '../CartEmpty/CartEmpty';
 
 import CartItem from '../CartItem/CartItem';
+import { clearCart } from '../../redux/slices/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const Cart = ({ onClose, items, totalPrice, opened }) => {
+
+  const dispatch = useDispatch();
+
+  const onClickClear = () => {
+    dispatch(clearCart())
+  }
 
   return (
     <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
@@ -29,7 +37,7 @@ const Cart = ({ onClose, items, totalPrice, opened }) => {
               <div className={styles.text}>Subtotal:</div>
               <div className={styles.number}>${totalPrice}</div>
             </div>
-            <button className={styles.button}>View Cart</button>
+            <button onClick={onClickClear} className={styles.button}>Clear Cart</button>
             <button className={styles.btn}>Checkout</button>
           </div>
         </div>

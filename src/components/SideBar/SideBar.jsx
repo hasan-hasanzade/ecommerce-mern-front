@@ -8,9 +8,6 @@ const MAX = 100;
 
 const SideBar = ({searchValue, setSearchValue}) => {
   const [values, setValues] = React.useState([MIN, MAX])
-  // const onClickSearch = (e) => {
-
-  // }
 
   return (
     <aside className={styles.content}>

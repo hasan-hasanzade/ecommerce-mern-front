@@ -225,7 +225,7 @@
     }
 }
 
-.input {
+.inputItem {
    width: 48%;
    @media (max-width: $mobile) {
       width: 100%;
@@ -235,35 +235,50 @@
    label {
       margin-bottom: 20px;
    }
-   input {
-      height: 80px;
-      border: 1px solid #7eb693;
-      &:focus {
-         border: 1px solid $textBlue;
-      }
-      font-style: italic;
-   }
+   
    margin-bottom: 40px;
 }
 
-.area {
-   width: 100%;
-   textarea {
-      border-radius: 16px;
-      resize: none;
-      width: inherit;
-      border: 1px solid #7eb693;
-      padding: 30px 12px 8px 30px;
-      height: 180px;
-      font-style: italic;
-      &:focus {
-         border: 1px solid $textBlue;
-      }
+.input {
+   height: 80px;
+   border: 1px solid #7eb693;
+   border-radius: 15px;
+   padding-left: 25px;
+   &:focus {
+      border: 1px solid $textBlue;
    }
+   font-style: italic;
+   &::placeholder {
+      color: #7f8081;
+      font-weight: 500;
+   }
+}
+
+
+.areaItem {
+   width: 100%;
+   
    margin-bottom: 50px;
 }
 
-.btn {
+.area {
+   border-radius: 16px;
+   resize: none;
+   width: inherit;
+   border: 1px solid #7eb693;
+   padding: 30px 12px 8px 30px;
+   height: 180px;
+   font-style: italic;
+   &:focus {
+      border: 1px solid $textBlue;
+   }
+   &::placeholder {
+      color: #7f8081;
+      font-weight: 500;
+   }
+}
+
+.button {
    border-radius: 16px;
    background-color: $textBlue;
    min-height: 48px;

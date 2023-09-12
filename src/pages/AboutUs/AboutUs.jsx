@@ -69,8 +69,8 @@ const AboutUs = () => {
                   </h5>
                 </div>
               </div>
-              <div className={styles.button}>
-                <Link to="/shop" className={styles.btn}>
+              <div className={styles.action}>
+                <Link to="/shop" className={styles.button}>
                   Explore More{' '}
                   <span className={styles.arrow}>
                     <BsFillArrowRightCircleFill />

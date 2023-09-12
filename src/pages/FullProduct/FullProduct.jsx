@@ -15,10 +15,12 @@ const FullProduct = () => {
   const [tab, setTab] = React.useState(1);
   const { items } = useSelector((state) => state.cart);
 
-  const count = items.reduce((sum, item) => sum + item.count, 0);
+  
 
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  
 
   React.useEffect(() => {
     axios
@@ -34,6 +36,9 @@ const FullProduct = () => {
 
   const { _id, imageUrl, title, newPrice, oldPrice, category, rating } = data;
 
+  const selectedItem = items.find((item) => item._id === _id);
+  const count = selectedItem ? selectedItem.count : 0;
+
   const onClickAdd = () => {
     const item = {
       _id,
@@ -48,11 +53,13 @@ const FullProduct = () => {
     dispatch(decreaseItem(_id));
   };
   const onClickIncrease = () => {
-    dispatch(
-      addItem({
-        _id,
-      }),
-    );
+    const item = {
+      _id,
+      imageUrl,
+      title,
+      newPrice,
+    };
+    dispatch(addItem(item));
   };
 
   const onClickTab = (id) => {

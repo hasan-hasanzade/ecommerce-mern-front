@@ -121,36 +121,36 @@ const ContactUs = () => {
         <div className="container">
           <form className={styles.form}>
             <div className={styles.inputs}>
-              <div className={styles.input}>
+              <div className={styles.inputItem}>
                 <label htmlFor="full-name">Full Name*</label>
-                <input type="text" maxLength={256} name="name" placeholder="Enter your name" />
+                <input className={styles.input} type="text" maxLength={256} name="name" placeholder="Enter your name" />
               </div>
-              <div className={styles.input}>
+              <div className={styles.inputItem}>
                 <label htmlFor="full-name">Full Adress*</label>
-                <input type="text" maxLength={256} name="name" placeholder="Enter your email" />
+                <input className={styles.input} type="text" maxLength={256} name="name" placeholder="Enter your email" />
               </div>
             </div>
             <div className={styles.inputs}>
-              <div className={styles.input}>
+              <div className={styles.inputItem}>
                 <label htmlFor="full-name">Company*</label>
-                <input type="text" maxLength={256} name="name" placeholder="Enter Company Name" />
+                <input className={styles.input} type="text" maxLength={256} name="name" placeholder="Enter Company Name" />
               </div>
-              <div className={styles.input}>
+              <div className={styles.inputItem}>
                 <label htmlFor="full-name">Subject</label>
-                <input type="text" maxLength={256} name="name" placeholder="How We Can Help You" />
+                <input className={styles.input} type="text" maxLength={256} name="name" placeholder="How We Can Help You" />
               </div>
             </div>
-            <div className={styles.area}>
-              <textarea placeholder="Hello there, I would like to..."></textarea>
+            <div className={styles.areaItem}>
+              <textarea className={styles.area} placeholder="Hello there, I would like to..."></textarea>
             </div>
-            <button className={styles.button}>
-                <a href="/shop" className={styles.btn}>
+            <div className={styles.action}>
+                <a href="/shop" className={styles.button}>
                   Send Message{' '}
                   <span className={styles.arrow}>
                     <BsFillArrowRightCircleFill />
                   </span>{' '}
                 </a>
-              </button>
+              </div>
           </form>
         </div>
       </section>

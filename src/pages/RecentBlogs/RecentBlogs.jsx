@@ -30,7 +30,7 @@ const RecentBlogs = () => {
                      <p className={styles.text}>
                         Simply dummy text of the printing and typesetting industry. Lorem Ipsum
                      </p>
-                     <Link to="/fullblog" className={styles.btn}>
+                     <Link to="/fullblog" className={styles.button}>
                      Read More <span className={styles.arrow}><BsFillArrowRightCircleFill /></span>
                      </Link>
                   </div>
@@ -51,7 +51,7 @@ const RecentBlogs = () => {
                      <p className={styles.text}>
                         Simply dummy text of the printing and typesetting industry. Lorem Ipsum
                      </p>
-                     <a href="/blogs" className={styles.btn}>
+                     <a href="/blogs" className={styles.button}>
                      Read More <span className={styles.arrow}><BsFillArrowRightCircleFill /></span>
                      </a>
                   </div>
@@ -72,7 +72,7 @@ const RecentBlogs = () => {
                      <p className={styles.text}>
                         Simply dummy text of the printing and typesetting industry. Lorem Ipsum
                      </p>
-                     <a href="/blogs" className={styles.btn}>
+                     <a href="/blogs" className={styles.button}>
                      Read More <span className={styles.arrow}><BsFillArrowRightCircleFill /></span>
                      </a>
                   </div>
@@ -93,7 +93,7 @@ const RecentBlogs = () => {
                      <p className={styles.text}>
                         Simply dummy text of the printing and typesetting industry. Lorem Ipsum
                      </p>
-                     <a href="/blogs" className={styles.btn}>
+                     <a href="/blogs" className={styles.button}>
                      Read More <span className={styles.arrow}><BsFillArrowRightCircleFill /></span>
                      </a>
                   </div>

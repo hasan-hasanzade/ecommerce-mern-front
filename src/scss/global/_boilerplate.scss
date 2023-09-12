@@ -101,3 +101,24 @@ body {
 	}
    
 }
+
+.arrow svg {
+	transform: translateX(0px);
+	transition: transform .3s ease;
+}
+
+.button {
+	transition: all .3s ease;
+	border: 1px solid transparent;
+}
+
+@media (any-hover: hover) {
+	.button:hover {
+	  border: 1px solid $textBlue;
+	  color: $textBlue;
+	  background-color: #fff;
+	  .arrow svg {
+		transform: translateX(5px);
+	  }
+	}
+ }
