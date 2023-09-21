@@ -32,7 +32,7 @@ const ProductCard = ({_id, category, imageUrl, title, oldPrice, newPrice, rating
     <div className={styles.content}>
       <article className={styles.item}>
         <div className={styles.category}>
-          <span>{category}</span>
+          <span className={styles.categoryTitle}>{category}</span>
         </div>
         <Link to={`/items/${_id}`} className={`${styles.image} ${styles._ibg}`}>
           <img src={imageUrl} alt="" />

@@ -5,24 +5,48 @@
   @media (max-width: $tablet) {
     padding: 60px 0;
   }
-  @media (max-width: $mobileSmall) {
-    padding: 40px 0;
+  @media (max-width: 800px) {
+    padding: 0;
   }
+  
   text-align: center;
 }
 
 .content {
-   display: flex;
-   width: 100%;
+  display: flex;
+  @media (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .inner {
-   flex: 1 1 auto;
+  flex: 1 1 auto;
+  
 }
 
 .body {
-   padding: 0 50px;
+  padding: 0 50px;
   display: grid;
-  gap: 32px;
-  grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  gap: 40px;
+
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 1060px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 730px) {
+    
+  }
+  @media (max-width: 800px) {
+    padding: 0 20px;
+    margin-top: 50px;
+    grid-template-columns: repeat(2, 50%);
+    align-items: center;
+        justify-content: center;
+  }
+  
 }
