@@ -1,13 +1,31 @@
 import React from 'react';
 import styles from './sidebar.module.scss';
 import { AiOutlineSearch } from 'react-icons/ai';
-import Slider from 'react-slider'
+import Slider from 'react-slider';
 
 const MIN = 1;
 const MAX = 100;
 
-const SideBar = ({searchValue, setSearchValue}) => {
-  const [values, setValues] = React.useState([MIN, MAX])
+const SideBar = ({
+  searchValue,
+  setSearchValue,
+  handleSearch,
+  setCategoryName,
+  handleCategory,
+}) => {
+  const [values, setValues] = React.useState([MIN, MAX]);
+
+  const categories = ['All', 'Fruits', 'Vegetables', 'Nuts', 'Berries'];
+  const sort = ['Popular', 'Price', 'Alphabet', 'New'];
+
+  const onClickCategory = (categoryName) => {
+    setCategoryName(categoryName === 'All' ? '' : categoryName);
+    handleCategory();
+  };
+
+  const onClickSort = (sortName) => {
+    console.log(sortName)
+  }
 
   return (
     <aside className={styles.content}>
@@ -15,13 +33,14 @@ const SideBar = ({searchValue, setSearchValue}) => {
       <div className={styles.inner}>
         <div className={styles.body}>
           <div className={styles.search}>
-            <input 
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            className={styles.input} 
-            type="text" 
-            placeholder="Search..." />
-            <button className={styles.btn}>
+            <input
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className={styles.input}
+              type="text"
+              placeholder="Search..."
+            />
+            <button onClick={handleSearch} className={styles.btn}>
               <AiOutlineSearch className={styles.icon} color="white" size={24} />
             </button>
           </div>
@@ -29,40 +48,36 @@ const SideBar = ({searchValue, setSearchValue}) => {
             <div className={styles.category}>
               <h5 className={styles.heading}>Categories :</h5>
               <ul className={styles.list}>
-                <li className={styles.item}>Vegetables</li>
-                <li className={styles.item}>Fruits</li>
-                <li className={styles.item}>Nuts</li>
-                <li className={styles.item}>Berries</li>
+                {categories.map((categoryName, i) => (
+                  <li key={i} onClick={() => onClickCategory(categoryName)} className={styles.item}>
+                    {categoryName}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className={styles.sort}>
-            <h5 className={styles.heading}>Sort by :</h5>
+              <h5 className={styles.heading}>Sort by :</h5>
               <ul className={styles.sortList}>
-               <li className={styles.sortItem}>
-                  <span className={styles.text}>Popular</span>
-               </li>
-               <li className={styles.sortItem}>
-                  <span className={styles.text}>Price</span>
-               </li>
-               <li className={styles.sortItem}>
-                  <span className={styles.text}>Alphabet</span>
-               </li>
-               <li className={styles.sortItem}>
-                  <span className={styles.text}>New</span>
-               </li>
+                {sort.map((sortName, i) => (
+                  <li key={i} className={styles.sortItem}>
+                    <span onClick={() => onClickSort(sortName)} className={styles.text}>{sortName}</span>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className={styles.price}>
-            <h5 className={styles.heading}>Price</h5>
-              <Slider 
-              className={styles.slider}
-              onChange={setValues} 
-              value={values} 
-              min={MIN} 
-              max={MAX} 
+              <h5 className={styles.heading}>Price</h5>
+              <Slider
+                className={styles.slider}
+                onChange={setValues}
+                value={values}
+                min={MIN}
+                max={MAX}
               />
               <div>
-                <div className={styles.values}>${values[0]} - ${values[1]}</div>
+                <div className={styles.values}>
+                  ${values[0]} - ${values[1]}
+                </div>
               </div>
               <button className={styles.appBtn}>Apply</button>
             </div>
