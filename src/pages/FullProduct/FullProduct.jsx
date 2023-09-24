@@ -34,7 +34,7 @@ const FullProduct = () => {
       });
   }, [id]);
 
-  const { _id, imageUrl, title, newPrice, oldPrice, category, rating } = data;
+  const { _id, imageUrl, title, price, category, rating } = data;
 
   const selectedItem = items.find((item) => item._id === _id);
   const count = selectedItem ? selectedItem.count : 0;
@@ -44,7 +44,7 @@ const FullProduct = () => {
       _id,
       imageUrl,
       title,
-      newPrice,
+      price,
     };
     dispatch(addItem(item));
   };
@@ -57,7 +57,7 @@ const FullProduct = () => {
       _id,
       imageUrl,
       title,
-      newPrice,
+      price,
     };
     dispatch(addItem(item));
   };
@@ -85,8 +85,8 @@ const FullProduct = () => {
                 <Rating name="half-rating-read" value={rating ?? ' '} precision={0.5} readOnly />
               </div>
               <div className={styles.prices}>
-                <span className={styles.old}>${oldPrice}</span>
-                <span className={styles.new}>${newPrice}</span>
+                {/* <span className={styles.old}>${oldPrice}</span> */}
+                <span className={styles.new}>${price}</span>
               </div>
               <p className={styles.desc}>
                 Calabrese is an old-fashioned variety of broccoli renowned for its bluish-green

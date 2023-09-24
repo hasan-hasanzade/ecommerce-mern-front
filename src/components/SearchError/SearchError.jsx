@@ -1,13 +1,20 @@
 import React from 'react';
 import styles from './searcherror.module.scss';
 import search from '../../assets/img/search-err/search.png';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setSearchValue } from '../../redux/slices/filterSlice';
 
-const SearchError = ({setErrorMessage}) => {
+const SearchError = ({ setErrorMessage, getFilteredItems }) => {
 
-   const handleBack = () => {
-      setErrorMessage(false);
-   }
+  const dispatch = useDispatch();
+
+
+  const handleBack = () => {
+    setErrorMessage(false);
+    dispatch(setSearchValue(''))
+    getFilteredItems();
+
+  };
 
   return (
     <div className={styles.wrapper}>

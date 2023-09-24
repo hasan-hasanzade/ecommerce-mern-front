@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addItem, decreaseItem, removeItem } from '../../redux/slices/cartSlice';
 
 
-const CartItem = ({_id, title, newPrice, imageUrl, count}) => {
+const CartItem = ({_id, title, price, imageUrl, count}) => {
    const dispatch = useDispatch();
 
    const onClickIncrease = () => {
@@ -42,7 +42,7 @@ const CartItem = ({_id, title, newPrice, imageUrl, count}) => {
      </div>
      <div className={styles.rightside}>
        <button onClick={onClickRemove} className={styles.circle}><AiOutlineCloseCircle size={24}/></button>
-       <div className={styles.price}>${newPrice * count}</div>
+       <div className={styles.price}>${price * count}</div>
      </div>
    </div>
  </div>

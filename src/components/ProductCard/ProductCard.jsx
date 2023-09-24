@@ -7,7 +7,7 @@ import Rating from '@mui/material/Rating';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../redux/slices/cartSlice';
 
-const ProductCard = ({_id, category, imageUrl, title, oldPrice, newPrice, rating}) => {
+const ProductCard = ({_id, category, imageUrl, title, price, rating}) => {
 
   const[isAdded, setIsAdded] = React.useState(false);
   
@@ -23,7 +23,7 @@ const ProductCard = ({_id, category, imageUrl, title, oldPrice, newPrice, rating
       _id,
       imageUrl,
       title,
-      newPrice
+      price
     }
     dispatch(addItem(item))
   }
@@ -44,8 +44,8 @@ const ProductCard = ({_id, category, imageUrl, title, oldPrice, newPrice, rating
           </div>
           <div className={styles.pricing}>
             <div className={styles.price}>
-              <div className={styles.old}>${oldPrice}</div>
-              <div className={styles.new}>${newPrice}</div>
+              {/* <div className={styles.old}>${oldPrice}</div> */}
+              <div className={styles.new}>${price}</div>
             </div>
             <div className={styles.rating}><Rating name="half-rating-read" defaultValue={rating > 5 ? rating - 4 : rating} precision={0.5} readOnly /></div>
           </div>

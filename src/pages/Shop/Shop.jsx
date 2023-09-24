@@ -8,97 +8,93 @@ import axios from 'axios';
 import Skeleton from '../../components/ProductCard/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchError from '../../components/SearchError/SearchError';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPageCount } from '../../redux/slices/filterSlice';
 
 const Shop = () => {
   const [items, setItems] = React.useState([]);
   const [originalItems, setOriginalItems] = React.useState([]);
-  const [searchValue, setSearchValue] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(true);
   const [errorMessage, setErrorMessage] = React.useState(false);
-  const [pageCount, setPageCount] = React.useState(1);
-  const [categoryName, setCategoryName] = React.useState('all');
   const currentPage = React.useRef();
   const limit = 8;
 
-  React.useEffect(() => {
-    currentPage.current = 1;
-    getPages();
-  }, []);
+  const { searchValue, pageCount, categoryName, sortBy, priceRange } = useSelector(
+    (state) => state.filter,
+  );
+
+  const dispatch = useDispatch();
+
+  // React.useEffect(() => {
+  //   currentPage.current = 1;
+  //   handleSearch();
+  // }, [sortBy, categoryName]);
 
   const handlePageClick = (e) => {
     currentPage.current = e.selected + 1;
-    getPages();
+    getFilteredItems();
+  };
+
+  const handlePriceFilter = () => {
+    getFilteredItems();
   };
 
   React.useEffect(() => {
-    handleCategory();
-  }, [categoryName]);
+    currentPage.current = 1;
+    getFilteredItems();
+  }, [categoryName, sortBy]);
 
-  const getPages = () => {
+  const getFilteredItems = () => {
+    setIsLoading(true);
+
     axios
-      .get(`http://localhost:3333/paginatedItems?page=${currentPage.current}&limit=${limit}`)
+      .get(
+        `http://localhost:3333/getFilteredItems?q=${searchValue}&c=${categoryName}&sort=${sortBy}&page=${currentPage.current}&limit=${limit}&minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`,
+      )
       .then((res) => {
-        setItems(res.data.result);
-        setOriginalItems(res.data.result);
+        setItems(res.data.items);
         setIsLoading(false);
-        setPageCount(res.data.pageCount);
+        dispatch(setPageCount(res.data.pageCount));
+        setErrorMessage(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setErrorMessage(true);
+        setIsLoading(false);
       });
   };
 
   const handleSearch = () => {
     const searchTerm = searchValue.toLowerCase();
 
-    if (searchTerm === '' || searchTerm.length === 1) {
+    const filteredItems = originalItems.filter(obj =>
+      obj.name.toLowerCase().includes(searchTerm)
+    );
+
+    if (searchTerm === '' || searchTerm.length === 1 ||  filteredItems.length === 0) {
       setErrorMessage(true);
       setItems([]);
-      setPageCount(0);
+      dispatch(setPageCount(0));
     } else {
-      axios
-        .get(`http://localhost:3333/search?q=${searchTerm}`)
-        .then((res) => {
-          const foundItems = res.data.items;
-          setItems(foundItems);
-          const totalCount = res.data.totalCount;
-          const calculatedPageCount = Math.ceil(totalCount / limit);
-          setPageCount(calculatedPageCount);
-          if (foundItems.length === 0) {
-            setErrorMessage(true);
-          } else {
-            setErrorMessage(false);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-          setErrorMessage(true);
-        });
+      getFilteredItems();
     }
   };
 
   const handleCategory = () => {
-    if (categoryName !== 'all') {
-      axios
-        .get(`http://localhost:3333/category?c=${categoryName}`)
-        .then((res) => {
-          const foundItems = res.data.items;
-          setItems(foundItems);
-          const totalCount = res.data.totalCount;
-          const calculatedPageCount = Math.ceil(totalCount / limit);
-          setPageCount(calculatedPageCount);
-          setErrorMessage(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          setErrorMessage(true);
-        });
-    } else {
+    currentPage.current = 1;
+    if (categoryName === 'all') {
       setItems(originalItems);
-      const totalCount = originalItems.length;
-      const calculatedPageCount = Math.ceil(totalCount / limit);
-      setPageCount(calculatedPageCount);
     }
   };
 
-  
+  const handleSort = () => {
+    currentPage.current = 1;
+    getFilteredItems();
+  };
+
+  // React.useEffect(() => {
+  //   getFilteredItems();
+  // }, [categoryName]);
 
   return (
     <>
@@ -106,21 +102,18 @@ const Shop = () => {
       <section className={styles.shop}>
         <div className={styles.content}>
           <SideBar
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
             handleSearch={handleSearch}
-            setCategoryName={setCategoryName}
             handleCategory={handleCategory}
+            handleSort={handleSort}
+            handlePriceFilter={handlePriceFilter}
+            getFilteredItems={getFilteredItems}
           />
           <div className={styles.inner}>
             <div className={styles.body}>
-              {errorMessage ? (
-                <SearchError setErrorMessage={setErrorMessage} />
-              ) : isLoading ? (
-                [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-              ) : (
-                items.map((obj) => <ProductCard key={obj._id} {...obj} />)
-              )}
+              {errorMessage && !isLoading && <SearchError getFilteredItems={getFilteredItems} setErrorMessage={setErrorMessage} />}
+              {isLoading
+                ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
+                : items.map((obj) => <ProductCard key={obj._id} {...obj} />)}
             </div>
             <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
           </div>

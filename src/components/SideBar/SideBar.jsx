@@ -1,31 +1,44 @@
 import React from 'react';
 import styles from './sidebar.module.scss';
-import { AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineCloseCircle } from 'react-icons/ai';
 import Slider from 'react-slider';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setSearchValue,
+  setCategoryName,
+  setSortBy,
+  setPriceRange
+} from '../../redux/slices/filterSlice';
 
 const MIN = 1;
-const MAX = 100;
+const MAX = 50;
 
-const SideBar = ({
-  searchValue,
-  setSearchValue,
-  handleSearch,
-  setCategoryName,
-  handleCategory,
-}) => {
-  const [values, setValues] = React.useState([MIN, MAX]);
-
+const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, getFilteredItems }) => {
   const categories = ['All', 'Fruits', 'Vegetables', 'Nuts', 'Berries'];
-  const sort = ['Popular', 'Price', 'Alphabet', 'New'];
+  const sort = ['popular', 'price', 'Alphabet', 'New'];
+
+  const { priceRange, searchValue } = useSelector((state) => state.filter);
+
+  const dispatch = useDispatch();
 
   const onClickCategory = (categoryName) => {
-    setCategoryName(categoryName === 'All' ? '' : categoryName);
+    dispatch(setCategoryName(categoryName === 'All' ? '' : categoryName));
     handleCategory();
   };
 
   const onClickSort = (sortName) => {
-    console.log(sortName)
-  }
+    dispatch(setSortBy(sortName));
+    handleSort();
+  };
+
+  const clearSearch = () => {
+    dispatch(setSearchValue(''));
+    // getFilteredItems();
+  };
+
+  const handlePriceRangeChange = (newPriceRange) => {
+    dispatch(setPriceRange(newPriceRange));
+  };
 
   return (
     <aside className={styles.content}>
@@ -35,11 +48,21 @@ const SideBar = ({
           <div className={styles.search}>
             <input
               value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={(e) => dispatch(setSearchValue(e.target.value))}
               className={styles.input}
               type="text"
               placeholder="Search..."
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSearch();
+                }
+              }}
             />
+            {searchValue && (
+              <span onClick={clearSearch} className={styles.clearIcon}>
+                <AiOutlineCloseCircle />
+              </span>
+            )}
             <button onClick={handleSearch} className={styles.btn}>
               <AiOutlineSearch className={styles.icon} color="white" size={24} />
             </button>
@@ -60,7 +83,9 @@ const SideBar = ({
               <ul className={styles.sortList}>
                 {sort.map((sortName, i) => (
                   <li key={i} className={styles.sortItem}>
-                    <span onClick={() => onClickSort(sortName)} className={styles.text}>{sortName}</span>
+                    <span onClick={() => onClickSort(sortName)} className={styles.text}>
+                      {sortName}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -69,17 +94,19 @@ const SideBar = ({
               <h5 className={styles.heading}>Price</h5>
               <Slider
                 className={styles.slider}
-                onChange={setValues}
-                value={values}
+                onChange={handlePriceRangeChange}
+                value={priceRange}
                 min={MIN}
                 max={MAX}
               />
               <div>
                 <div className={styles.values}>
-                  ${values[0]} - ${values[1]}
+                  ${priceRange[0]} - ${priceRange[1]}
                 </div>
               </div>
-              <button className={styles.appBtn}>Apply</button>
+              <button onClick={handlePriceFilter} className={styles.appBtn}>
+                Apply
+              </button>
             </div>
           </div>
         </div>
