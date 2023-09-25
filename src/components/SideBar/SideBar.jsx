@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './sidebar.module.scss';
-import { AiOutlineSearch, AiOutlineCloseCircle } from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineCloseSquare } from 'react-icons/ai';
 import Slider from 'react-slider';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,8 +14,9 @@ const MIN = 1;
 const MAX = 50;
 
 const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, getFilteredItems }) => {
+  const [selectedSort, setSelectedSort] = React.useState('popular ( high to low )');
   const categories = ['All', 'Fruits', 'Vegetables', 'Nuts', 'Berries'];
-  const sort = ['popular', 'price', 'Alphabet', 'New'];
+  const sort = ['popular ( high to low )', 'popular ( low to high )', 'price ( high to low )', 'price ( low to high )'];
 
   const { priceRange, searchValue } = useSelector((state) => state.filter);
 
@@ -29,11 +30,12 @@ const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, 
   const onClickSort = (sortName) => {
     dispatch(setSortBy(sortName));
     handleSort();
+    setSelectedSort(sortName);
   };
 
   const clearSearch = () => {
     dispatch(setSearchValue(''));
-    // getFilteredItems();
+    getFilteredItems();
   };
 
   const handlePriceRangeChange = (newPriceRange) => {
@@ -60,7 +62,7 @@ const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, 
             />
             {searchValue && (
               <span onClick={clearSearch} className={styles.clearIcon}>
-                <AiOutlineCloseCircle />
+                <AiOutlineCloseSquare size={18} color='#b8b8b8' />
               </span>
             )}
             <button onClick={handleSearch} className={styles.btn}>
@@ -83,7 +85,7 @@ const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, 
               <ul className={styles.sortList}>
                 {sort.map((sortName, i) => (
                   <li key={i} className={styles.sortItem}>
-                    <span onClick={() => onClickSort(sortName)} className={styles.text}>
+                    <span onClick={() => onClickSort(sortName)}  className={`${styles.text} ${sortName === selectedSort ? styles.active : ''}`}>
                       {sortName}
                     </span>
                   </li>

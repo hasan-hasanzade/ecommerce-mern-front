@@ -7,7 +7,7 @@ const initialState = {
    searchValue: '',
    pageCount: 1,
    categoryName: 'all',
-   sortBy: '',
+   sortBy: 'popular ( high to low )',
    priceRange: [MIN, MAX]
 }
 

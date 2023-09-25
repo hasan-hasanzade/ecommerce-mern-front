@@ -67,11 +67,11 @@ const Shop = () => {
   const handleSearch = () => {
     const searchTerm = searchValue.toLowerCase();
 
-    const filteredItems = originalItems.filter(obj =>
-      obj.name.toLowerCase().includes(searchTerm)
-    );
+    // const filteredItems = originalItems.filter(obj =>
+    //   obj.name.toLowerCase().includes(searchTerm)
+    // );
 
-    if (searchTerm === '' || searchTerm.length === 1 ||  filteredItems.length === 0) {
+    if (searchTerm === '' || searchTerm.length === 1) {
       setErrorMessage(true);
       setItems([]);
       dispatch(setPageCount(0));
