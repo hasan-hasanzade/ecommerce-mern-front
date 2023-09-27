@@ -14,10 +14,21 @@ import Shop from './pages/Shop/Shop';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 import Footer from './components/Footer/Footer';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './scss/app.scss';
+import { fetchAuthMe, selectIsAuth } from './redux/slices/authSlice';
 
 function App() {
+
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth)
+
+  React.useEffect(() => {
+    dispatch(fetchAuthMe());
+  }, [])
+  
+
   return (
     <div className="wrapper">
       <Navbar />

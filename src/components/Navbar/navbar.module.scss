@@ -295,6 +295,22 @@
   background-color: $primaryYellow;
 }
 
+.signOut {
+  padding: 10px;
+  border-radius: 30px;
+  font-weight: 900;
+  font-size: rem(18);
+  color: $textBlue;
+  text-transform: uppercase;
+  @media (max-width: 1260px) {
+    font-size: rem(17);
+  }
+  @media (max-width: 1080px) {
+    padding-left: 10px;
+  }
+  background-color: $primaryYellow;
+}
+
 button {
   display: flex;
   align-items: center;

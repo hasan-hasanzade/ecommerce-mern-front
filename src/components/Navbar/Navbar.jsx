@@ -2,11 +2,14 @@ import React from 'react';
 import logo from '../../assets/img/logo.png';
 import { AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
+import { CgProfile } from 'react-icons/cg';
+import { BiLogOut } from 'react-icons/bi';
 import Cart from '../Cart/Cart';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './navbar.module.scss';
+import { logOut, selectIsAuth } from '../../redux/slices/authSlice';
 
 const Navbar = () => {
   const [navbar, setNavbar] = React.useState(false);
@@ -14,14 +17,16 @@ const Navbar = () => {
   const [cartOpened, setCartOpened] = React.useState(false);
   const [isRed, setIsRed] = React.useState(false);
 
- 
+  const isAuth = useSelector(selectIsAuth);
 
-  const {items, totalPrice} = useSelector(state => state.cart);
+  const dispatch = useDispatch();
 
-  const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+  const { items, totalPrice } = useSelector((state) => state.cart);
+
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 
   React.useEffect(() => {
-    if (totalCount) {   
+    if (totalCount) {
       setIsRed(true);
     } else {
       setIsRed(false);
@@ -42,23 +47,28 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  
   const handleCartOpen = () => {
     setCartOpened(true);
     document.body.style.overflow = 'hidden';
-  }
+  };
 
   const handleCartClose = () => {
     setCartOpened(false);
     document.body.style.overflow = '';
-  }
+  };
+
+  const onClickLogOut = () => {
+    if (window.confirm('Are you sure you want to log out?')) {
+      dispatch(logOut())
+      window.localStorage.removeItem('token')
+    }
+  };
 
   return (
-    
     <header className={navbar ? styles['header-scroll'] : styles['header']}>
-     <Cart items={items} totalPrice={totalPrice} onClose={handleCartClose} opened={cartOpened}/>
+      <Cart items={items} totalPrice={totalPrice} onClose={handleCartClose} opened={cartOpened} />
       <div className={styles.body}>
-        <Link to='/' className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           <img className={styles.image} src={logo} alt="logo" />
           <div className={styles.text}>Organic</div>
         </Link>
@@ -98,28 +108,57 @@ const Navbar = () => {
               <span className={isRed && styles.red}>{totalCount}</span>
             </button>
           </div>
-          <Link to="login" className={styles.login}>
-            <button>
-              Log in
-              <AiOutlineLogin className={styles.aiout} ai size={24} />
-            </button>
-          </Link>
-          <Link to="#login" className={styles.login_mob}>
-            <button>
-              <AiOutlineLogin className={styles.ai_mob} ai size={24} />
-            </button>
-          </Link>
-          <Link to="signup" className={styles.sign}>
-            <button>
-              Sign up
-              <BsFillPersonFill className={styles.aiout} ai size={24} />
-            </button>
-          </Link>
-          <Link to="signup" className={styles.sign_mob}>
-            <button>
-              <BsFillPersonFill className={styles.ai_mob} ai size={24} />
-            </button>
-          </Link>
+          {isAuth ? (
+            <>
+              <Link to="login" className={styles.login}>
+                <button>
+                  My Profile
+                  <CgProfile className={styles.aiout} ai size={24} />
+                </button>
+              </Link>
+              <Link to="#login" className={styles.login_mob}>
+                <button>
+                  <CgProfile className={styles.ai_mob} ai size={24} />
+                </button>
+              </Link>
+              <div className={styles.sign}>
+                <button onClick={onClickLogOut}>
+                  Sign out
+                  <BiLogOut className={styles.aiout} ai size={24} />
+                </button>
+              </div>
+              <div className={styles.sign_mob}>
+                <button onClick={onClickLogOut}>
+                  <BiLogOut className={styles.ai_mob} ai size={24} />
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to="login" className={styles.login}>
+                <button>
+                  Log in
+                  <AiOutlineLogin className={styles.aiout} ai size={24} />
+                </button>
+              </Link>
+              <Link to="#login" className={styles.login_mob}>
+                <button>
+                  <AiOutlineLogin className={styles.ai_mob} ai size={24} />
+                </button>
+              </Link>
+              <Link to="signup" className={styles.sign}>
+                <button>
+                  Sign up
+                  <BsFillPersonFill className={styles.aiout} ai size={24} />
+                </button>
+              </Link>
+              <Link to="signup" className={styles.sign_mob}>
+                <button>
+                  <BsFillPersonFill className={styles.ai_mob} ai size={24} />
+                </button>
+              </Link>
+            </>
+          )}
           <div className={styles.burger_wrap}>
             <div
               onClick={handleBurger}

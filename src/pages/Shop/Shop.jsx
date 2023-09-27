@@ -4,7 +4,7 @@ import PageBanner from '../../components/PageBanner/PageBanner';
 import bg from '../../assets/img/shop/shop.jpg';
 import SideBar from '../../components/SideBar/SideBar';
 import ProductCard from '../../components/ProductCard/ProductCard';
-import axios from 'axios';
+import axios from '../../axios';
 import Skeleton from '../../components/ProductCard/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchError from '../../components/SearchError/SearchError';
@@ -49,7 +49,7 @@ const Shop = () => {
 
     axios
       .get(
-        `http://localhost:3333/getFilteredItems?q=${searchValue}&c=${categoryName}&sort=${sortBy}&page=${currentPage.current}&limit=${limit}&minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`,
+        `/getFilteredItems?q=${searchValue}&c=${categoryName}&sort=${sortBy}&page=${currentPage.current}&limit=${limit}&minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`,
       )
       .then((res) => {
         setItems(res.data.items);
