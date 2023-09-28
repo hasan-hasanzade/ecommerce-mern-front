@@ -7,9 +7,12 @@ import { BsFacebook } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
-import { fetchLogin, selectIsAuth } from '../../redux/slices/authSlice';
+import { fetchRegister, selectIsAuth } from '../../redux/slices/authSlice';
+import axios from '../../axios';
 
 const SignUp = () => {
+  const [imageUrl, setImageUrl] = React.useState('');
+  const inputFileRef = React.useRef(null);
   const dispatch = useDispatch();
 
   const isAuth = useSelector(selectIsAuth);
@@ -17,7 +20,6 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
@@ -29,15 +31,33 @@ const SignUp = () => {
   });
 
   const onSubmit = async (values) => {
-    const data = await dispatch(fetchLogin(values));
-    console.log('Data after login:', data);
+    const data = await dispatch(fetchRegister(values));
 
     if (!data.payload) {
-      alert('Cannot Log in');
+      alert('Cannot Register');
     }
 
     if ('token' in data.payload) {
       window.localStorage.setItem('token', data.payload.token);
+    }
+  };
+
+  if (isAuth) {
+    return <Navigate to="/" />;
+  }
+
+  const handleChangeFile = async (event) => {
+    try {
+      const formData = new FormData();
+      const file = event.target.files[0];
+      formData.append('image', file);
+
+      const { data } = await axios.post('/upload', formData);
+
+      setImageUrl(data.url);
+    } catch (err) {
+      console.warn(err);
+      alert('Failed to upload file');
     }
   };
 
@@ -54,7 +74,23 @@ const SignUp = () => {
         <h3>Sign Up</h3>
 
         <div className={styles.user}>
-          <img src={user} alt="" />
+          {imageUrl ? (
+            <>
+              {/* <Button variant="contained" color="error" onClick={onClickRemoveImage}>
+                Delete
+              </Button> */}
+              <img
+                className={styles.userImage}
+                src={`http://localhost:3333${imageUrl}`}
+                alt="Uploaded"
+              />
+            </>
+          ) : (
+            <>
+              <img onClick={() => inputFileRef.current.click()} src={user} alt="" />
+              <input ref={inputFileRef} onChange={handleChangeFile} type="file" hidden />
+            </>
+          )}
         </div>
 
         <input
@@ -62,14 +98,23 @@ const SignUp = () => {
           type="text"
           {...register('fullName', { required: 'Enter your full name' })}
         />
-        <input  className={`${styles.input} ${errors.email ? styles['errorBorder'] : ''}`}
-          type="text"
-          {...register('email', { required: 'Enter your Email' })} />
-        <input className={`${styles.input} ${errors.password ? styles['errorBorder'] : ''}`}
-          type="text"
-          {...register('password', { required: 'Enter your password' })} />
+        {errors.fullName?.message && <p className={styles.error}>Name is required.</p>}
+        <input
+          className={`${styles.input} ${errors.email ? styles['errorBorder'] : ''}`}
+          type="email"
+          {...register('email', { required: 'Enter your Email' })}
+        />
+        {errors.email?.message && <p className={styles.error}>Email is required.</p>}
+        <input
+          className={`${styles.input} ${errors.password ? styles['errorBorder'] : ''}`}
+          type="password"
+          {...register('password', { required: 'Enter your password' })}
+        />
+        {errors.password?.message && <p className={styles.error}>Password is required.</p>}
         <div className={styles.btn}>
-          <button type='submit' className={styles.button}>Sign In</button>
+          <button disabled={!isValid} type="submit" className={styles.button}>
+            Sign In
+          </button>
         </div>
         <div className={styles.social}>
           <div className={styles.icon}>
