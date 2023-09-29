@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './navbar.module.scss';
-import { logOut, selectIsAuth } from '../../redux/slices/authSlice';
+import { authData, logOut, selectIsAuth } from '../../redux/slices/authSlice';
 
 const Navbar = () => {
   const [navbar, setNavbar] = React.useState(false);
@@ -18,6 +18,12 @@ const Navbar = () => {
   const [isRed, setIsRed] = React.useState(false);
 
   const isAuth = useSelector(selectIsAuth);
+  const isAuthData = useSelector(authData)
+
+
+  const avatarUrl = isAuthData?.avatarUrl;
+  const userName = isAuthData?.fullName;
+
 
   const dispatch = useDispatch();
 
@@ -112,8 +118,8 @@ const Navbar = () => {
             <>
               <Link to="login" className={styles.login}>
                 <button>
-                  My Profile
-                  <CgProfile className={styles.aiout} ai size={24} />
+                  <p className={styles.userName}>{userName}</p>
+                  <img className={styles.userImage} src={`http://localhost:3333${avatarUrl}`} alt="" />
                 </button>
               </Link>
               <Link to="#login" className={styles.login_mob}>

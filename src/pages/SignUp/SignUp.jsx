@@ -7,15 +7,17 @@ import { BsFacebook } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
-import { fetchRegister, selectIsAuth } from '../../redux/slices/authSlice';
+import { fetchRegister, selectIsAuth, setUserImageUrl } from '../../redux/slices/authSlice';
 import axios from '../../axios';
 
 const SignUp = () => {
-  const [imageUrl, setImageUrl] = React.useState('');
+  // const [imageUrl, setImageUrl] = React.useState('');
   const inputFileRef = React.useRef(null);
   const dispatch = useDispatch();
 
   const isAuth = useSelector(selectIsAuth);
+
+  const userImageUrl = useSelector((state) => state.auth.userImageUrl)
 
   const {
     register,
@@ -25,13 +27,19 @@ const SignUp = () => {
     defaultValues: {
       fullName: 'Abrams',
       email: 'abrams@test.ru',
-      password: '1234',
+      password: '123456',
     },
     mode: 'onChange',
   });
 
   const onSubmit = async (values) => {
-    const data = await dispatch(fetchRegister(values));
+
+    const dataToSend = {
+      ...values,
+      userImageUrl: userImageUrl,
+    };
+
+      const data = await dispatch(fetchRegister(dataToSend));
 
     if (!data.payload) {
       alert('Cannot Register');
@@ -54,7 +62,7 @@ const SignUp = () => {
 
       const { data } = await axios.post('/upload', formData);
 
-      setImageUrl(data.url);
+      dispatch(setUserImageUrl(data.url));
     } catch (err) {
       console.warn(err);
       alert('Failed to upload file');
@@ -74,15 +82,15 @@ const SignUp = () => {
         <h3>Sign Up</h3>
 
         <div className={styles.user}>
-          {imageUrl ? (
+          {userImageUrl ? (
             <>
               {/* <Button variant="contained" color="error" onClick={onClickRemoveImage}>
                 Delete
               </Button> */}
               <img
                 className={styles.userImage}
-                src={`http://localhost:3333${imageUrl}`}
-                alt="Uploaded"
+                src={`http://localhost:3333${userImageUrl}`}
+                alt="uploaded"
               />
             </>
           ) : (
