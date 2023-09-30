@@ -15,12 +15,8 @@ const FullProduct = () => {
   const [tab, setTab] = React.useState(1);
   const { items } = useSelector((state) => state.cart);
 
-  
-
   const { id } = useParams();
   const dispatch = useDispatch();
-
-  
 
   React.useEffect(() => {
     axios

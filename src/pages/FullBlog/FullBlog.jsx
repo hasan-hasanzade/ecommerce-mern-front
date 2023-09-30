@@ -3,13 +3,34 @@ import Newsletter from '../../components/Newsletter/Newsletter';
 import styles from './fullblog.module.scss';
 import bg from '../../assets/img/full-blog/bgfullblog.jpg';
 import CommentsBlock from '../../components/CommentsBlock/CommentsBlock';
+import axios from '../../axios';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const FullBlog = () => {
+  const [data, setData] = React.useState([]);
+
+  const { id } = useParams();
+
+  React.useEffect(() => {
+    axios
+      .get(`http://localhost:3333/blogs/${id}`)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.warn(err);
+        alert('cannot get blog');
+      });
+  }, [id]);
+
+  const { title, imageUrl, author, text, date, month, mainText } = data;
+
   return (
     <>
       <section className={styles.image}>
         <div className={styles.img}>
-          <img src={bg} alt="" />
+          <img src={imageUrl} alt="" />
         </div>
       </section>
       <section className={styles.content}>
@@ -17,39 +38,23 @@ const FullBlog = () => {
           <div className={styles.heading}>
             <div className={styles.body}>
               <div className={styles.top}>
-                <span className={styles.top_text}>Posted On:</span>
-                <span className={styles.top_date}>February 14, 2023</span>
+                <div className={styles.posted}>
+                  <span className={styles.top_text}>Posted On:</span>
+                  <span className={styles.top_date}>
+                    {month} {date}, 2023
+                  </span>
+                </div>
+                <div className={styles.author}>
+                  <span>by</span>
+                  {author}
+                </div>
               </div>
-              <h2>Work Process Of Organic Farming</h2>
-              <p>
-                Podcasting on low-hanging fruit to identify a ballpark value added activity to beta
-                test override matrix economically the digital. Efficiently on low-hanging fruit to
-                identify a ballpark value added activity to beta test matrix economically override
-                the digital. Objectively on low-hanging fruit to identify a ballpark value added
-                activity to beta matrix economically.
-              </p>
+              <h2>{title}</h2>
+              <p>{text}</p>
             </div>
           </div>
           <div className={styles.texts}>
-            <p>
-              Uniquely matrix economically sound value through cooperative technology. Competently
-              parallel task fully researched data and enterprise process improvements.
-              Collaboratively expedite quality manufactured products via client-focused results
-              quickly communicate enabled technology and turnkey leadership skills. Uniquely enable
-              accurate supply chains rather than friction technology.
-            </p>
-            <h3>Organic product for all peoples</h3>
-            <p>
-              Appropriately empower dynamic leadership skills after business portals. Globally my
-              coordinate interactive supply chains with distinctive quality vectors global sources
-              services. Uniquely matrix economically sound value through cooperative technology.
-              Competently parallel task fully researched data and enterprise process improvements.
-            </p>
-            <ul>
-              <li>Dynamically target high-payoff intellectual capital for customized</li>
-              <li>Interactively procrastinate high-payoff content</li>
-              <li>Credibly reinter mediate backend ideas for cross-platform models</li>
-            </ul>
+            <p>{mainText}</p>
             <blockquote>
               “The first rule of any organic used in a business is that nature applied to an
               efficient operation will magnify the efficiency. The second is that organic applied to
@@ -68,7 +73,7 @@ const FullBlog = () => {
               <li>Delivers the tools you need to save time Improve field performance always</li>
             </ol>
           </div>
-          <CommentsBlock/>
+          <CommentsBlock />
         </div>
       </section>
       <Newsletter />

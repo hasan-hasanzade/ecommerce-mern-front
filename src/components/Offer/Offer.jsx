@@ -38,8 +38,7 @@ const Offer = () => {
               category={obj.category}
               imageUrl={obj.imageUrl}
               title={obj.title}
-              oldPrice={obj.oldPrice}
-              newPrice={obj.newPrice}
+              price={obj.price}
             />
           ))}
         </div>

@@ -3,7 +3,7 @@ import productReducer from './slices/productSlice';
 import cartReducer from './slices/cartSlice';
 import filterReducer from './slices/filterSlice';
 import authReducer from './slices/authSlice';
-import thunk from 'redux-thunk';
+import blogReducer from './slices/blogSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +11,6 @@ export const store = configureStore({
     cart: cartReducer,
     filter: filterReducer,
     auth: authReducer,
+    blogs: blogReducer,
   },
-  middleware: [thunk],
 });
