@@ -141,24 +141,24 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to="login" className={styles.login}>
+              <Link to="/login" className={styles.login}>
                 <button>
                   Log in
                   <AiOutlineLogin className={styles.aiout} ai size={24} />
                 </button>
               </Link>
-              <Link to="#login" className={styles.login_mob}>
+              <Link to="/login" className={styles.login_mob}>
                 <button>
                   <AiOutlineLogin className={styles.ai_mob} ai size={24} />
                 </button>
               </Link>
-              <Link to="signup" className={styles.sign}>
+              <Link to="/register" className={styles.sign}>
                 <button>
                   Sign up
                   <BsFillPersonFill className={styles.aiout} ai size={24} />
                 </button>
               </Link>
-              <Link to="signup" className={styles.sign_mob}>
+              <Link to="/register" className={styles.sign_mob}>
                 <button>
                   <BsFillPersonFill className={styles.ai_mob} ai size={24} />
                 </button>

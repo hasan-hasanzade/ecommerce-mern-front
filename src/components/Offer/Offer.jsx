@@ -4,13 +4,18 @@ import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import ProductCard from '../ProductCard/ProductCard';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setItems } from '../../redux/slices/productSlice';
 
 const Offer = () => {
-  const [items, setItems] = React.useState([]);
+  const items = useSelector((state) => state.products.items);
+
+  const dispatch = useDispatch();
+
 
   React.useEffect(() => {
     axios.get('http://localhost:3333/items').then((res) => {
-      setItems(res.data);
+      dispatch(setItems(res.data));
     });
   }, []);
 

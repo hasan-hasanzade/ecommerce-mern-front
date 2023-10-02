@@ -9,7 +9,8 @@ import Skeleton from '../../components/ProductCard/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchError from '../../components/SearchError/SearchError';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPageCount } from '../../redux/slices/filterSlice';
+import { setPageCount, setCategoryFilter, setCategoryName } from '../../redux/slices/filterSlice';
+import { useLocation } from 'react-router-dom';
 
 const Shop = () => {
   const [items, setItems] = React.useState([]);
@@ -18,6 +19,9 @@ const Shop = () => {
   const [errorMessage, setErrorMessage] = React.useState(false);
   const currentPage = React.useRef();
   const limit = 8;
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const categoryFilter = queryParams.get('category');
 
   const { searchValue, pageCount, categoryName, sortBy, priceRange } = useSelector(
     (state) => state.filter,
@@ -29,6 +33,17 @@ const Shop = () => {
   //   currentPage.current = 1;
   //   handleSearch();
   // }, [sortBy, categoryName]);
+
+  React.useEffect(() => {
+    if (categoryFilter) {
+
+      dispatch(setCategoryFilter(categoryFilter));
+    }
+    // if (!categoryFilter && categoryName !== 'all') {
+    //   dispatch(setCategoryName('all'));
+    // }
+
+  }, [categoryFilter, categoryName, dispatch]);
 
   const handlePageClick = (e) => {
     currentPage.current = e.selected + 1;
@@ -110,7 +125,12 @@ const Shop = () => {
           />
           <div className={styles.inner}>
             <div className={styles.body}>
-              {errorMessage && !isLoading && <SearchError getFilteredItems={getFilteredItems} setErrorMessage={setErrorMessage} />}
+              {errorMessage && !isLoading && (
+                <SearchError
+                  getFilteredItems={getFilteredItems}
+                  setErrorMessage={setErrorMessage}
+                />
+              )}
               {isLoading
                 ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
                 : items.map((obj) => <ProductCard key={obj._id} {...obj} />)}

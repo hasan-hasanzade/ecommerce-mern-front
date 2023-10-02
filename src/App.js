@@ -12,7 +12,7 @@ import FullBlog from './pages/FullBlog/FullBlog';
 import FullProduct from './pages/FullProduct/FullProduct';
 import Shop from './pages/Shop/Shop';
 import Login from './pages/Login/Login';
-import SignUp from './pages/SignUp/SignUp';
+import Register from './pages/Register/Register';
 import Footer from './components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -43,7 +43,7 @@ function App() {
         <Route path="/items/:id" element={<FullProduct />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

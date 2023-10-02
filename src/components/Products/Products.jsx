@@ -6,19 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setItems } from '../../redux/slices/productSlice';
 
 const Products = () => {
- 
   const items = useSelector((state) => state.products.items);
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    axios.get("http://localhost:3333/items")
-    .then((res) => {
+    axios.get('http://localhost:3333/items').then((res) => {
       dispatch(setItems(res.data));
-    })
-  },[dispatch])
-
-
+    });
+  }, [dispatch]);
 
   return (
     <section className={styles.products}>
@@ -28,14 +24,13 @@ const Products = () => {
         <div className={styles.body}>
           {items.slice(8, 16).map((obj) => (
             <ProductCard
-            key={obj._id}
-            rating={obj.rating}
-            _id={obj._id} 
-            category={obj.category} 
-            imageUrl={obj.imageUrl}
-            title={obj.title}
-            oldPrice={obj.oldPrice}
-            newPrice={obj.newPrice}
+              key={obj._id}
+              rating={obj.rating}
+              _id={obj._id}
+              category={obj.category}
+              imageUrl={obj.imageUrl}
+              title={obj.title}
+              price={obj.price}
             />
           ))}
         </div>
