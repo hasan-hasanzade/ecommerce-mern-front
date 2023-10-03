@@ -3,7 +3,7 @@ import { BsFillArrowRightCircleFill, BsFillPersonFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import styles from './blog.module.scss';
 
-const Blog = ({title, imageUrl, author, text, date, month, _id}) => {
+const Blog = ({ title, imageUrl, author, text, date, month, _id }) => {
   return (
     <div className={styles.card}>
       <div className={styles.picture}>
@@ -20,9 +20,7 @@ const Blog = ({title, imageUrl, author, text, date, month, _id}) => {
             <BsFillPersonFill color="#EFD372" /> {author}
           </div>
           <h4 className={styles.blogname}>{title}</h4>
-          <p className={styles.text}>
-            {text}
-          </p>
+          <p className={styles.text}>{text}</p>
           <Link to={`/blogs/${_id}`} className={styles.button}>
             Read More{' '}
             <span className={styles.arrow}>

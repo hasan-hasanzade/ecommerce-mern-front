@@ -1,14 +1,14 @@
 @use '../../scss/global' as *;
 
 .blogs {
-   padding: 130px 0;
-   @media (max-width: $tablet) {
-      padding: 80px 0;
-   }
-   @media (max-width: $mobileSmall) {
-      padding: 60px 0;
-   }
-   text-align: center;
+  padding: 130px 0;
+  @media (max-width: $tablet) {
+    padding: 80px 0;
+  }
+  @media (max-width: $mobileSmall) {
+    padding: 60px 0;
+  }
+  text-align: center;
 }
 
 .body {
@@ -16,9 +16,13 @@
   gap: 102px;
   grid-template-columns: repeat(auto-fit, minmax(385px, 1fr));
   @media (max-width: $tablet) {
-   gap: 52px;
-  grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
-}
+    gap: 52px;
+    grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+  }
 }
 
-
+.blogCard {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+ }

@@ -6,18 +6,15 @@ import bg from '../../assets/img/blogs-page/bgblog.jpg';
 import axios from '../../axios';
 import Blog from '../../components/Blog/Blog';
 import { setBlogItems } from '../../redux/slices/blogSlice';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Skeleton from './BlogSkeleton';
 
 const RecentBlogs = () => {
-   const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
 
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-   const blogs = useSelector((state) => state.blogs.blogItems)
-   
-   
-
+  const blogs = useSelector((state) => state.blogs.blogItems);
 
   React.useEffect(() => {
     axios.get('http://localhost:3333/blogs').then((res) => {
@@ -32,9 +29,13 @@ const RecentBlogs = () => {
       <section className={styles.blogs}>
         <div className="container">
           <div className={styles.body}>
-          {isLoading
-                ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-                : blogs.map((obj) => <Blog key={obj._id} {...obj} />)}
+            {isLoading
+              ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+              : blogs.map((obj) => (
+                  <div className={styles.blogCard} key={obj._id}>
+                    <Blog {...obj} />
+                  </div>
+                ))}
           </div>
         </div>
       </section>

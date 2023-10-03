@@ -82,7 +82,7 @@ const FullProduct = () => {
               </div>
               <div className={styles.prices}>
                 {/* <span className={styles.old}>${oldPrice}</span> */}
-                <span className={styles.new}>${price}</span>
+                <span className={styles.price}>${price}</span>
               </div>
               <p className={styles.desc}>
                 Calabrese is an old-fashioned variety of broccoli renowned for its bluish-green
@@ -121,25 +121,29 @@ const FullProduct = () => {
       <section className={styles.additional}>
         <div className="container">
           <div className={styles.buttons}>
-            <button onClick={() => onClickTab(1)} className={`${styles.active_btn} ${styles.btn}`}>
+            <button
+              onClick={() => onClickTab(1)}
+              className={`${styles.btn} ${tab === 1 ? styles.active_btn : ''}`}>
               Product Description
             </button>
-            <button onClick={() => onClickTab(2)} className={styles.btn}>
+            <button
+              onClick={() => onClickTab(2)}
+              className={`${styles.btn} ${tab === 2 ? styles.active_btn : ''}`}>
               Additional Info
             </button>
           </div>
           <p className={tab === 1 ? styles.text : styles.textShow}>
-            It contains a high concentration of nitrates, which have a blood pressure-lowering
-            effect. This may lead to a reduced risk of heart attacks, heart failure, and stroke also
-            rich in Vitamin C which helps in clearing blemishes and evens out your skin tone while
-            giving it a natural glow lowering blood pressure and increasing exercise performance.
-          </p>
-          <p className={tab === 2 ? styles.text : styles.textShow}>
             Welcome to the world of natural and organic. Here you can discover the bounty of nature.
             We have grown on the principles of health, ecology, and care. We aim to give our
             customers a healthy chemical-free meal for perfect nutrition. It offers about 8–10%
             carbs. Simple sugars — such as glucose and fructose — make up 70% and 80% of the carbs
             in raw.
+          </p>
+          <p className={tab === 2 ? styles.text : styles.textShow}>
+            It contains a high concentration of nitrates, which have a blood pressure-lowering
+            effect. This may lead to a reduced risk of heart attacks, heart failure, and stroke also
+            rich in Vitamin C which helps in clearing blemishes and evens out your skin tone while
+            giving it a natural glow lowering blood pressure and increasing exercise performance.
           </p>
         </div>
       </section>

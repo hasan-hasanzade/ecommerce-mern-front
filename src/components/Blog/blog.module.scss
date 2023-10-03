@@ -1,9 +1,15 @@
 @use '../../scss/global' as *;
 
-
 .picture {
   position: relative;
   width: 100%;
+  flex: 1;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .cardimg {
@@ -11,7 +17,6 @@
   border-top-right-radius: 30px;
 
   max-width: 100%;
-  // padding: 0px 0px 501px/285px * 100% 0px;
 }
 
 .circle {
@@ -58,11 +63,9 @@
 }
 
 .bottom {
-  flex: 1 1 auto;
-
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
-
+  flex: 1;
   background-color: rgb(255, 255, 255);
   // width: 620px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -130,3 +133,5 @@
 //   overflow: hidden; /* Hide the overflow of the text */
 //   // text-overflow: ellipsis;
 // }
+
+

@@ -39,16 +39,16 @@ const Footer = () => {
               dummy text of the printing
             </p>
             <div className={styles.social}>
-              <a href="https.instagram.com">
+              <a href="https://www.instagram.com/">
                 <img src={instagram} alt="instagram" />
               </a>
-              <a href="https.facebook.com">
+              <a href="https://www.facebook.com/">
                 <img src={facebook} alt="facebook" />
               </a>
-              <a href="https.twitter.com">
+              <a href="https://twitter.com/">
                 <img src={twitter} alt="twitter" />
               </a>
-              <a href="https.printerest.com">
+              <a href="https://www.pinterest.com/">
                 <img src={printerest} alt="printerest" />
               </a>
             </div>
@@ -76,7 +76,16 @@ const Footer = () => {
         </div>
       </div>
       <div className={styles.copy}>
-         <p>Copyright &#169; Organick | Designed by <a className={styles.btn} href="">VictorFlow</a> - Powered by <a className={styles.btn} href="">Hasan Hasanzade</a></p>
+        <p>
+          Copyright &#169; Organic | Designed by{' '}
+          <a href="/#" className={styles.btn}>
+            VictorFlow
+          </a>{' '}
+          - Powered by{' '}
+          <a className={styles.btn} href="https://hasanzade.net/">
+            Hasan Hasanzade
+          </a>
+        </p>
       </div>
     </footer>
   );

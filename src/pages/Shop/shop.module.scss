@@ -8,7 +8,7 @@
   @media (max-width: 800px) {
     padding: 0;
   }
-  
+
   text-align: center;
 }
 
@@ -22,7 +22,6 @@
 
 .inner {
   flex: 1 1 auto;
-  
 }
 
 .body {
@@ -38,15 +37,15 @@
   @media (max-width: 1060px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (max-width: 730px) {
-    
-  }
+  
   @media (max-width: 800px) {
     padding: 0 20px;
     margin-top: 50px;
     grid-template-columns: repeat(2, 50%);
     align-items: center;
-        justify-content: center;
+    justify-content: center;
   }
-  
+  @media (max-width: $mobileSmall) {
+    gap: 15px;
+  }
 }

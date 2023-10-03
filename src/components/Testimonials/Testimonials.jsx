@@ -1,6 +1,7 @@
 import React from 'react';
 import sara from '../../assets/img/testimonial/sara.png';
 import chris from '../../assets/img/testimonial/chris.jpg';
+import jenny from '../../assets/img/testimonial/jenny.jpg';
 import Rating from '@mui/material/Rating';
 import Slider from 'react-slick';
 import CountUp from 'react-countup';
@@ -9,18 +10,53 @@ import bg from '../../assets/img/testimonial/bgtest.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './testimonials.module.scss';
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 const Testimonials = () => {
+  let slidesToShow = 1;
+  const PreviousBtn = (props) => {
+    console.log(props);
+    const { className, onClick } = props;
+    return (
+      <>
+        <div className={className} onClick={onClick}>
+          <AiOutlineLeft style={{ color: '#274C5B', fontSize: '50px' }} />
+        </div>
+      </>
+    );
+  };
+  const NextBtn = (props) => {
+    const { className, onClick } = props;
+    console.log(props);
+    return (
+      <>
+        <div className={className} onClick={onClick}>
+          <AiOutlineRight style={{ color: '#274C5B', fontSize: '50px' }} />
+        </div>
+      </>
+    );
+  };
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 1500,
-    slidesToShow: 1,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     cssEase: 'linear',
     arrows: true,
+    prevArrow: <PreviousBtn />,
+    nextArrow: <NextBtn />,
+    responsive: [
+      {
+        breakpoint: 664,
+        settings: {
+          arrows: false,
+        },
+      },
+    ],
   };
 
   return (
@@ -62,7 +98,7 @@ const Testimonials = () => {
               </div>
               <div className={styles.item}>
                 <div className={styles.user}>
-                  <img src={sara} alt="consumer" />
+                  <img src={jenny} alt="consumer" />
                 </div>
                 <div className={styles.rating}>
                   <Rating name="read-only" defaultValue={5} precision={0.5} readOnly />
@@ -71,7 +107,7 @@ const Testimonials = () => {
                   Simply dummy text of the printing and typesetting industry. Lorem Ipsum simply
                   dummy text of the printing and typesetting industry. Lorem Ipsum has been.
                 </p>
-                <div className={styles.name}>Sarah Taylor</div>
+                <div className={styles.name}>Jenny Larson</div>
                 <div className={styles.role}>Consumer</div>
               </div>
             </Slider>

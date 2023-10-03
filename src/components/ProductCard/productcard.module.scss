@@ -114,27 +114,6 @@ img {
   display: flex;
 }
 
-.old {
-  color: #b8b8b8;
-  font-size: rem(15);
-  font-weight: 600;
-  line-height: calc(21 / 15 * 100%);
-  position: relative;
-  text-decoration: line-through;
-  @media (max-width: $mobileSmall) {
-   font-size: rem(14);
-  }
-}
-
-.new {
-  margin-left: 10px;
-  font-size: rem(18);
-  font-weight: 700;
-  line-height: calc(20 / 18 * 100%);
-  @media (max-width: $mobileSmall) {
-   font-size: rem(16);
-  }
-}
 
 .rating {
    margin-top: 5px;

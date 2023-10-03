@@ -1,7 +1,7 @@
 @use '../../scss/global' as *;
 
 .blogs {
-  padding: 100px 0 170px 0;
+  padding: 100px 0;
   @media (max-width: $mobileSmall) {
     padding: 50px 0;
   }
