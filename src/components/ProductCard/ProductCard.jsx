@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import {AiOutlinePlusCircle} from 'react-icons/ai';
 import {MdDoneOutline} from 'react-icons/md';
 import Rating from '@mui/material/Rating';
-import { useDispatch } from 'react-redux';
-import { addItem } from '../../redux/slices/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, removeItem } from '../../redux/slices/cartSlice';
 
 const ProductCard = ({_id, category, imageUrl, title, price, rating}) => {
 
@@ -13,20 +13,29 @@ const ProductCard = ({_id, category, imageUrl, title, price, rating}) => {
   
   const dispatch = useDispatch()
 
-  const handleAddItem = () => {
-    onClickAdd()
-    setIsAdded(!isAdded);
-  }
+  const cartItems = useSelector((state) => state.cart.items);
 
-  const onClickAdd = () => {
+  React.useEffect(() => {
+    const existingItem = cartItems.find((item) => item._id === _id);
+    setIsAdded(!!existingItem); 
+  }, [cartItems, _id]);
+
+  const handleAddItem = () => {
     const item = {
       _id,
       imageUrl,
       title,
-      price
+      price,
+    };
+
+    const existingItem = cartItems.find((cartItem) => cartItem._id === item._id);
+
+    if (!existingItem) {
+      dispatch(addItem(item));
+    } else {
+      dispatch(removeItem(item._id));
     }
-    dispatch(addItem(item))
-  }
+  };
 
   return (
     <div className={styles.content}>
@@ -44,7 +53,6 @@ const ProductCard = ({_id, category, imageUrl, title, price, rating}) => {
           </div>
           <div className={styles.pricing}>
             <div className={styles.price}>
-              {/* <div className={styles.old}>${oldPrice}</div> */}
               <div className={styles.new}>${price}</div>
             </div>
             <div className={styles.rating}><Rating name="half-rating-read" defaultValue={rating > 5 ? rating - 4 : rating} precision={0.5} readOnly /></div>

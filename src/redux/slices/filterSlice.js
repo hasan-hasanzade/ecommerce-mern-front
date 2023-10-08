@@ -30,9 +30,6 @@ export const filterSlice = createSlice({
       setPriceRange(state, action) {
          state.priceRange = action.payload;
       },
-      setCategoryFilter(state, action) {
-         state.categoryName = action.payload;
-      },
    }
 })
 

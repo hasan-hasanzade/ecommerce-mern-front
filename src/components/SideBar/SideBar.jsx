@@ -29,13 +29,11 @@ const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, 
 
   const onClickSort = (sortName) => {
     dispatch(setSortBy(sortName));
-    handleSort();
     setSelectedSort(sortName);
   };
 
   const clearSearch = () => {
     dispatch(setSearchValue(''));
-    getFilteredItems();
   };
 
   const handlePriceRangeChange = (newPriceRange) => {

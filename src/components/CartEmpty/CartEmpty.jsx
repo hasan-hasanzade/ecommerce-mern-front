@@ -7,7 +7,7 @@ const CartEmpty = ({onClose}) => {
     <div className={styles.content}>
       <img className={styles.image} src={cart} alt="" />
       <div className={styles.text}>
-        You have no items in your shopping cart. <br /> Let's go buy something!
+        You have no items in your cart. <br /> Let's go buy something!
       </div>
       <button onClick={onClose} className={styles.btn}>Back</button>
     </div>

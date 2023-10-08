@@ -9,41 +9,40 @@ import Skeleton from '../../components/ProductCard/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchError from '../../components/SearchError/SearchError';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPageCount, setCategoryFilter, setCategoryName } from '../../redux/slices/filterSlice';
+import { setPageCount, setCategoryName } from '../../redux/slices/filterSlice';
+import { setItems } from '../../redux/slices/productSlice';
 import { useLocation } from 'react-router-dom';
 
 const Shop = () => {
-  const [items, setItems] = React.useState([]);
   const [originalItems, setOriginalItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [errorMessage, setErrorMessage] = React.useState(false);
   const currentPage = React.useRef();
   const limit = 8;
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const categoryFilter = queryParams.get('category');
 
   const { searchValue, pageCount, categoryName, sortBy, priceRange } = useSelector(
     (state) => state.filter,
   );
 
+  const items = useSelector((state) => state.products.items);
+
   const dispatch = useDispatch();
 
-  // React.useEffect(() => {
-  //   currentPage.current = 1;
-  //   handleSearch();
-  // }, [sortBy, categoryName]);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const categoryParam = searchParams.get('category');
 
   React.useEffect(() => {
-    if (categoryFilter) {
-
-      dispatch(setCategoryFilter(categoryFilter));
+    if (categoryName !== 'all') {
+      getFilteredItems();
     }
-    // if (!categoryFilter && categoryName !== 'all') {
-    //   dispatch(setCategoryName('all'));
-    // }
+  }, [categoryName]);
 
-  }, [categoryFilter, categoryName, dispatch]);
+  React.useEffect(() => {
+    if (categoryParam) {
+      dispatch(setCategoryName(categoryParam));
+    }
+  }, [categoryParam, dispatch]);
 
   const handlePageClick = (e) => {
     currentPage.current = e.selected + 1;
@@ -53,6 +52,7 @@ const Shop = () => {
   const handlePriceFilter = () => {
     getFilteredItems();
   };
+
 
   React.useEffect(() => {
     currentPage.current = 1;
@@ -67,7 +67,7 @@ const Shop = () => {
         `/getFilteredItems?q=${searchValue}&c=${categoryName}&sort=${sortBy}&page=${currentPage.current}&limit=${limit}&minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`,
       )
       .then((res) => {
-        setItems(res.data.items);
+        dispatch(setItems(res.data.items));
         setIsLoading(false);
         dispatch(setPageCount(res.data.pageCount));
         setErrorMessage(false);
@@ -82,13 +82,9 @@ const Shop = () => {
   const handleSearch = () => {
     const searchTerm = searchValue.toLowerCase();
 
-    // const filteredItems = originalItems.filter(obj =>
-    //   obj.name.toLowerCase().includes(searchTerm)
-    // );
-
-    if (searchTerm === '' || searchTerm.length === 1) {
+    if (searchTerm === '' || searchTerm.length === 1 || items.length === 0) {
       setErrorMessage(true);
-      setItems([]);
+      dispatch(setItems([]));
       dispatch(setPageCount(0));
     } else {
       getFilteredItems();
@@ -98,18 +94,13 @@ const Shop = () => {
   const handleCategory = () => {
     currentPage.current = 1;
     if (categoryName === 'all') {
-      setItems(originalItems);
+      dispatch(setItems(originalItems));
     }
   };
 
   const handleSort = () => {
     currentPage.current = 1;
-    getFilteredItems();
   };
-
-  // React.useEffect(() => {
-  //   getFilteredItems();
-  // }, [categoryName]);
 
   return (
     <>
