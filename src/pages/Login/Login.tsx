@@ -3,19 +3,20 @@ import styles from './login.module.scss';
 import bg from '../../assets/img/login.jpg';
 import { AiFillGoogleSquare, AiFillFacebook } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
 import { fetchLogin, selectIsAuth } from '../../redux/slices/authSlice';
 import { Navigate } from 'react-router-dom';
 
-const Login = () => {
-  const dispatch = useDispatch();
+const Login: React.FC = () => {
+  const dispatch = useAppDispatch();
 
   const isAuth = useSelector(selectIsAuth);
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       email: '',
@@ -24,16 +25,18 @@ const Login = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: Record<string, string>) => {
     const data = await dispatch(fetchLogin(values));
-    console.log('Data after login:', data);
 
     if (!data.payload) {
       alert('Cannot Log in');
     }
 
-    if ('token' in data.payload) {
-      window.localStorage.setItem('token', data.payload.token);
+    if (fetchLogin.fulfilled.match(data)) {
+      const token = data.payload.token;
+      window.localStorage.setItem('token', token);
+    } else if (fetchLogin.rejected.match(data)) {
+      alert('Cannot Log in');
     }
   };
 
@@ -51,7 +54,6 @@ const Login = () => {
             type="text"
             placeholder="Email"
             {...register('email', { required: 'Enter your Email' })}
-            error={Boolean(errors.email?.message)}
           />
           {errors.email?.message && <p className={styles.error}>Email is required.</p>}
           <input
@@ -59,7 +61,6 @@ const Login = () => {
             type="password"
             placeholder="Password"
             {...register('password', { required: 'Enter your Password' })}
-            error={Boolean(errors.email?.message)}
           />
           {errors.email?.message && <p className={styles.error}>Password is required.</p>}
           <div className={styles.btn}>

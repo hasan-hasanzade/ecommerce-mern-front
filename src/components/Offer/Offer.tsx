@@ -3,21 +3,22 @@ import styles from './offer.module.scss';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import ProductCard from '../ProductCard/ProductCard';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { setItems } from '../../redux/slices/productSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
+import { productSelector, fetchProducts } from '../../redux/slices/productSlice';
 
-const Offer = () => {
-  const items = useSelector((state) => state.products.items);
+const Offer: React.FC = () => {
+  const { items } = useSelector(productSelector);
 
-  const dispatch = useDispatch();
-
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    axios.get('http://localhost:3333/items').then((res) => {
-      dispatch(setItems(res.data));
-    });
-  }, []);
+    try {
+      dispatch(fetchProducts());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch]);
 
   return (
     <section className={styles.offer}>

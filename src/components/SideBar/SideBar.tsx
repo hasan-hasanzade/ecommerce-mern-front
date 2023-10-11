@@ -3,31 +3,45 @@ import styles from './sidebar.module.scss';
 import { AiOutlineSearch, AiOutlineCloseSquare } from 'react-icons/ai';
 import Slider from 'react-slider';
 import { useDispatch, useSelector } from 'react-redux';
+import { filterSelector } from '../../redux/slices/filterSlice';
 import {
   setSearchValue,
   setCategoryName,
   setSortBy,
-  setPriceRange
+  setPriceRange,
 } from '../../redux/slices/filterSlice';
 
 const MIN = 1;
 const MAX = 50;
 
-const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, getFilteredItems }) => {
-  const [selectedSort, setSelectedSort] = React.useState('popular ( high to low )');
-  const categories = ['All', 'Fruits', 'Vegetables', 'Nuts', 'Berries'];
-  const sort = ['popular ( high to low )', 'popular ( low to high )', 'price ( high to low )', 'price ( low to high )'];
+type SideBarProps = {
+  handleSearch: () => void;
+  handleCategory: () => void;
+  handlePriceFilter: () => void;
+};
 
-  const { priceRange, searchValue } = useSelector((state) => state.filter);
+const categories = ['All', 'Fruits', 'Vegetables', 'Nuts', 'Berries'];
+
+const sort = [
+  'popular ( high to low )',
+  'popular ( low to high )',
+  'price ( high to low )',
+  'price ( low to high )',
+];
+
+const SideBar: React.FC<SideBarProps> = ({ handleSearch, handleCategory, handlePriceFilter }) => {
+  const [selectedSort, setSelectedSort] = React.useState('popular ( high to low )');
+
+  const { priceRange, searchValue } = useSelector(filterSelector);
 
   const dispatch = useDispatch();
 
-  const onClickCategory = (categoryName) => {
+  const onClickCategory = (categoryName: string) => {
     dispatch(setCategoryName(categoryName === 'All' ? '' : categoryName));
     handleCategory();
   };
 
-  const onClickSort = (sortName) => {
+  const onClickSort = (sortName: string) => {
     dispatch(setSortBy(sortName));
     setSelectedSort(sortName);
   };
@@ -36,7 +50,7 @@ const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, 
     dispatch(setSearchValue(''));
   };
 
-  const handlePriceRangeChange = (newPriceRange) => {
+  const handlePriceRangeChange = (newPriceRange: [number, number]) => {
     dispatch(setPriceRange(newPriceRange));
   };
 
@@ -60,7 +74,7 @@ const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, 
             />
             {searchValue && (
               <span onClick={clearSearch} className={styles.clearIcon}>
-                <AiOutlineCloseSquare size={18} color='#b8b8b8' />
+                <AiOutlineCloseSquare size={18} color="#b8b8b8" />
               </span>
             )}
             <button onClick={handleSearch} className={styles.btn}>
@@ -83,7 +97,11 @@ const SideBar = ({ handleSearch, handleCategory, handleSort, handlePriceFilter, 
               <ul className={styles.sortList}>
                 {sort.map((sortName, i) => (
                   <li key={i} className={styles.sortItem}>
-                    <span onClick={() => onClickSort(sortName)}  className={`${styles.text} ${sortName === selectedSort ? styles.active : ''}`}>
+                    <span
+                      onClick={() => onClickSort(sortName)}
+                      className={`${styles.text} ${
+                        sortName === selectedSort ? styles.active : ''
+                      }`}>
                       {sortName}
                     </span>
                   </li>

@@ -3,17 +3,20 @@ import styles from './products.module.scss';
 import ProductCard from '../ProductCard/ProductCard';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setItems } from '../../redux/slices/productSlice';
+import { useAppDispatch } from '../../redux/store';
+import { productSelector, fetchProducts } from '../../redux/slices/productSlice';
 
-const Products = () => {
-  const items = useSelector((state) => state.products.items);
+const Products: React.FC = () => {
+  const { items } = useSelector(productSelector);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    axios.get('http://localhost:3333/items').then((res) => {
-      dispatch(setItems(res.data));
-    });
+    try {
+      dispatch(fetchProducts());
+    } catch (err) {
+      console.log(err);
+    }
   }, [dispatch]);
 
   return (

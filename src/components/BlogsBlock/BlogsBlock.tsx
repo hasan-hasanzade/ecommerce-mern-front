@@ -1,22 +1,23 @@
 import React from 'react';
 import styles from './blogs.module.scss';
 import { BsFillArrowRightCircleFill, BsFillPersonFill } from 'react-icons/bs';
-import salad from '../../assets/img/blogs/salad.png';
 import { Link } from 'react-router-dom';
 import Blog from '../Blog/Blog';
-import { useDispatch, useSelector } from 'react-redux';
-import axios from '../../axios';
-import { setBlogItems } from '../../redux/slices/blogSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
+import { blogSelector, fetchBlogs } from '../../redux/slices/blogSlice';
 
-const BlogsBlock = () => {
-  const blogs = useSelector((state) => state.blogs.blogItems);
+const BlogsBlock: React.FC = () => {
+  const { blogItems } = useSelector(blogSelector);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    axios.get('http://localhost:3333/blogs').then((res) => {
-      dispatch(setBlogItems(res.data));
-    });
+    try {
+      dispatch(fetchBlogs());
+    } catch (err) {
+      console.log(err);
+    }
   }, [dispatch]);
 
   return (
@@ -37,7 +38,7 @@ const BlogsBlock = () => {
           </div>
         </div>
         <div className={styles.body}>
-          {blogs.slice(2, 4).map((obj) => (
+          {blogItems.slice(2, 4).map((obj) => (
             <Blog key={obj._id} {...obj} />
           ))}
         </div>

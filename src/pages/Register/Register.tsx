@@ -4,19 +4,22 @@ import bg from '../../assets/img/bgsign.jpg';
 import user from '../../assets/img/userg.png';
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { BsFacebook } from 'react-icons/bs';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
-import { fetchRegister, selectIsAuth, setUserImageUrl } from '../../redux/slices/authSlice';
+import { useAppDispatch } from '../../redux/store';
+import { fetchRegister, selectIsAuth, setUserImageUrl, selectorUserImg } from '../../redux/slices/authSlice';
 import axios from '../../axios';
 
-const Register = () => {
-  const inputFileRef = React.useRef(null);
-  const dispatch = useDispatch();
+
+
+const Register: React.FC = () => {
+  const inputFileRef = React.useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
 
   const isAuth = useSelector(selectIsAuth);
 
-  const userImageUrl = useSelector((state) => state.auth.userImageUrl);
+  const { userImageUrl } = useSelector(selectorUserImg);
 
   const {
     register,
@@ -31,7 +34,7 @@ const Register = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: Record<string, string>) => {
     const dataToSend = {
       ...values,
       userImageUrl: userImageUrl,
@@ -43,8 +46,11 @@ const Register = () => {
       alert('Cannot Register');
     }
 
-    if ('token' in data.payload) {
-      window.localStorage.setItem('token', data.payload.token);
+    if (fetchRegister.fulfilled.match(data)) {
+      const token = data.payload.token;
+      window.localStorage.setItem('token', token);
+    } else if (fetchRegister.rejected.match(data)) {
+      alert('Cannot Register');
     }
   };
 
@@ -52,15 +58,19 @@ const Register = () => {
     return <Navigate to="/" />;
   }
 
-  const handleChangeFile = async (event) => {
+  const handleChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       const formData = new FormData();
-      const file = event.target.files[0];
-      formData.append('image', file);
+      const file = e.target.files?.[0];
+      if (file !== undefined) {
+        formData.append('image', file);
 
-      const { data } = await axios.post('/upload', formData);
+        const { data } = await axios.post('/upload', formData);
 
-      dispatch(setUserImageUrl(data.url));
+        dispatch(setUserImageUrl(data.url));
+      } else {
+        alert('No file selected');
+      }
     } catch (err) {
       console.warn(err);
       alert('Failed to upload file');
@@ -93,7 +103,7 @@ const Register = () => {
             </>
           ) : (
             <>
-              <img onClick={() => inputFileRef.current.click()} src={user} alt="" />
+              <img onClick={() => inputFileRef.current?.click()} src={user} alt="" />
               <input ref={inputFileRef} onChange={handleChangeFile} type="file" hidden />
             </>
           )}

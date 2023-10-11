@@ -7,27 +7,25 @@ import { BiLogOut } from 'react-icons/bi';
 import Cart from '../Cart/Cart';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { cartSelector } from '../../redux/slices/cartSlice';
 import styles from './navbar.module.scss';
 import { authData, logOut, selectIsAuth } from '../../redux/slices/authSlice';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [navbar, setNavbar] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const [cartOpened, setCartOpened] = React.useState(false);
   const [isRed, setIsRed] = React.useState(false);
 
   const isAuth = useSelector(selectIsAuth);
-  const isAuthData = useSelector(authData)
-
+  const isAuthData = useSelector(authData);
 
   const avatarUrl = isAuthData?.avatarUrl;
   const userName = isAuthData?.fullName;
 
-
   const dispatch = useDispatch();
 
-  const { items, totalPrice } = useSelector((state) => state.cart);
+  const { items, totalPrice } = useSelector(cartSelector);
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 
@@ -65,8 +63,8 @@ const Navbar = () => {
 
   const onClickLogOut = () => {
     if (window.confirm('Are you sure you want to log out?')) {
-      dispatch(logOut())
-      window.localStorage.removeItem('token')
+      dispatch(logOut());
+      window.localStorage.removeItem('token');
     }
   };
 
@@ -119,23 +117,27 @@ const Navbar = () => {
               <Link to="login" className={styles.login}>
                 <button>
                   <p className={styles.userName}>{userName}</p>
-                  <img className={styles.userImage} src={`http://localhost:3333${avatarUrl}`} alt="" />
+                  <img
+                    className={styles.userImage}
+                    src={`http://localhost:3333${avatarUrl}`}
+                    alt=""
+                  />
                 </button>
               </Link>
               <Link to="#login" className={styles.login_mob}>
                 <button>
-                  <CgProfile className={styles.ai_mob} ai size={24} />
+                  <CgProfile className={styles.ai_mob} size={24} />
                 </button>
               </Link>
               <div className={styles.sign}>
                 <button onClick={onClickLogOut}>
                   Sign out
-                  <BiLogOut className={styles.aiout} ai size={24} />
+                  <BiLogOut className={styles.aiout} size={24} />
                 </button>
               </div>
               <div className={styles.sign_mob}>
                 <button onClick={onClickLogOut}>
-                  <BiLogOut className={styles.ai_mob} ai size={24} />
+                  <BiLogOut className={styles.ai_mob} size={24} />
                 </button>
               </div>
             </>
@@ -144,23 +146,23 @@ const Navbar = () => {
               <Link to="/login" className={styles.login}>
                 <button>
                   Log in
-                  <AiOutlineLogin className={styles.aiout} ai size={24} />
+                  <AiOutlineLogin className={styles.aiout} size={24} />
                 </button>
               </Link>
               <Link to="/login" className={styles.login_mob}>
                 <button>
-                  <AiOutlineLogin className={styles.ai_mob} ai size={24} />
+                  <AiOutlineLogin className={styles.ai_mob} size={24} />
                 </button>
               </Link>
               <Link to="/register" className={styles.sign}>
                 <button>
                   Sign up
-                  <BsFillPersonFill className={styles.aiout} ai size={24} />
+                  <BsFillPersonFill className={styles.aiout} size={24} />
                 </button>
               </Link>
               <Link to="/register" className={styles.sign_mob}>
                 <button>
-                  <BsFillPersonFill className={styles.ai_mob} ai size={24} />
+                  <BsFillPersonFill className={styles.ai_mob} size={24} />
                 </button>
               </Link>
             </>

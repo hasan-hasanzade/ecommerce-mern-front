@@ -14,20 +14,19 @@ import Shop from './pages/Shop/Shop';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Footer from './components/Footer/Footer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from './redux/store';
 
 import './scss/app.scss';
 import { fetchAuthMe, selectIsAuth } from './redux/slices/authSlice';
 
 function App() {
-
-  const dispatch = useDispatch();
-  const isAuth = useSelector(selectIsAuth)
+  const dispatch = useAppDispatch();
+  const isAuth = useSelector(selectIsAuth);
 
   React.useEffect(() => {
     dispatch(fetchAuthMe());
-  }, [])
-  
+  }, []);
 
   return (
     <div className="wrapper">
