@@ -1,30 +1,28 @@
 import React from 'react';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import styles from './fullblog.module.scss';
-import bg from '../../assets/img/full-blog/bgfullblog.jpg';
 import CommentsBlock from '../../components/CommentsBlock/CommentsBlock';
-import axios from '../../axios';
+import { useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
+import { blogItemSelector, fetchSingleBlog } from '../../redux/slices/blogSlice';
 import { useParams } from 'react-router-dom';
 
-const FullBlog = () => {
-  const [data, setData] = React.useState([]);
-
+const FullBlog: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const data = useSelector(blogItemSelector);
   const { id } = useParams();
 
   React.useEffect(() => {
-    axios
-      .get(`http://localhost:3333/blogs/${id}`)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.warn(err);
-        alert('cannot get blog');
-      });
+    if (id) {
+      dispatch(fetchSingleBlog(id));
+    }
   }, [id]);
 
-  const { title, imageUrl, author, text, date, month, mainText } = data;
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+  const { imageUrl, month, date, title, text, mainText, author } = data;
 
   return (
     <>

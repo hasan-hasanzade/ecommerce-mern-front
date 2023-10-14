@@ -1,19 +1,21 @@
 import React from 'react';
 import styles from './searcherror.module.scss';
 import search from '../../assets/img/search-err/search.png';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../redux/store'; 
 import { setSearchValue } from '../../redux/slices/filterSlice';
 
-const SearchError = ({ setErrorMessage, getFilteredItems }) => {
+type SearchErrorProps = {
+  setErrorMessage: (error: boolean) => void;
+  getFilteredItems: () => void;
+};
 
-  const dispatch = useDispatch();
-
+const SearchError: React.FC<SearchErrorProps> = ({ setErrorMessage, getFilteredItems }) => {
+  const dispatch = useAppDispatch();
 
   const handleBack = () => {
     setErrorMessage(false);
-    dispatch(setSearchValue(''))
+    dispatch(setSearchValue(''));
     getFilteredItems();
-
   };
 
   return (

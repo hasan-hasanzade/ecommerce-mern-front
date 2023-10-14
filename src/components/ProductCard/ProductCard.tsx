@@ -1,23 +1,39 @@
 import React from 'react';
 import styles from './productcard.module.scss';
 import { Link } from 'react-router-dom';
-import {AiOutlinePlusCircle} from 'react-icons/ai';
-import {MdDoneOutline} from 'react-icons/md';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
+import { MdDoneOutline } from 'react-icons/md';
 import Rating from '@mui/material/Rating';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem, removeItem } from '../../redux/slices/cartSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
+import { addItem, removeItem, cartSelector, CartItem } from '../../redux/slices/cartSlice';
 
-const ProductCard = ({_id, category, imageUrl, title, price, rating}) => {
+type ProductCardProps = {
+  _id: string;
+  category: string;
+  imageUrl: string;
+  title: string;
+  price: number;
+  rating: number;
+};
 
-  const[isAdded, setIsAdded] = React.useState(false);
-  
-  const dispatch = useDispatch()
+const ProductCard: React.FC<ProductCardProps> = ({
+  _id,
+  category,
+  imageUrl,
+  title,
+  price,
+  rating,
+}) => {
+  const [isAdded, setIsAdded] = React.useState(false);
 
-  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useAppDispatch();
+
+  const cartItems = useSelector(cartSelector);
 
   React.useEffect(() => {
     const existingItem = cartItems.find((item) => item._id === _id);
-    setIsAdded(!!existingItem); 
+    setIsAdded(!!existingItem);
   }, [cartItems, _id]);
 
   const handleAddItem = () => {
@@ -26,7 +42,7 @@ const ProductCard = ({_id, category, imageUrl, title, price, rating}) => {
       imageUrl,
       title,
       price,
-    };
+    } as CartItem;
 
     const existingItem = cartItems.find((cartItem) => cartItem._id === item._id);
 
@@ -49,13 +65,26 @@ const ProductCard = ({_id, category, imageUrl, title, price, rating}) => {
         <div className={styles.bottom}>
           <div className={styles.main}>
             <div className={styles.name}>{title}</div>
-            <button onClick={handleAddItem} className={styles.add}>{isAdded ? <MdDoneOutline size={30} color='#7eb693'/> : <AiOutlinePlusCircle size={30}/>}</button>
+            <button onClick={handleAddItem} className={styles.add}>
+              {isAdded ? (
+                <MdDoneOutline size={30} color="#7eb693" />
+              ) : (
+                <AiOutlinePlusCircle size={30} />
+              )}
+            </button>
           </div>
           <div className={styles.pricing}>
             <div className={styles.price}>
               <div className={styles.new}>${price}</div>
             </div>
-            <div className={styles.rating}><Rating name="half-rating-read" defaultValue={rating > 5 ? rating - 4 : rating} precision={0.5} readOnly /></div>
+            <div className={styles.rating}>
+              <Rating
+                name="half-rating-read"
+                defaultValue={rating > 5 ? rating - 4 : rating}
+                precision={0.5}
+                readOnly
+              />
+            </div>
           </div>
         </div>
       </article>

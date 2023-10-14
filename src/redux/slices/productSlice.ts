@@ -7,6 +7,11 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async ()
   return data as Product[];
 });
 
+export const fetchSingleProduct = createAsyncThunk('blogs/fetchSingleBlog', async (id: string) => {
+  const { data } = await axios.get(`/items/${id}`);
+  return data as Product;
+});
+
 type Product = {
   _id: string;
   imageUrl: string;
@@ -25,11 +30,13 @@ export enum Status {
 
 interface productSliceState {
   items: Product[];
+  singleItem: Product | null;
   status: Status;
 }
 
 const initialState: productSliceState = {
   items: [],
+  singleItem: null,
   status: Status.LOADING,
 };
 
@@ -54,11 +61,25 @@ export const productSlice = createSlice({
       .addCase(fetchProducts.rejected, (state) => {
         state.status = Status.ERROR;
         state.items = [];
+      })
+      .addCase(fetchSingleProduct.pending, (state) => {
+        state.status = Status.LOADING;
+        state.singleItem = null;
+      })
+      .addCase(fetchSingleProduct.fulfilled, (state, action) => {
+        state.status = Status.SUCCESS;
+        state.singleItem = action.payload;
+      })
+      .addCase(fetchSingleProduct.rejected, (state) => {
+        state.status = Status.ERROR;
+        state.singleItem = null;
       });
   },
 });
 
-export const productSelector = (state: RootState) => state.products;
+export const productSelector = (state: RootState) => state.products.items;
+
+export const singleProductSelector = (state: RootState) => state.products.singleItem;
 
 export const { setItems } = productSlice.actions;
 

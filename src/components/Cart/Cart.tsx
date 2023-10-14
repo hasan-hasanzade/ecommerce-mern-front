@@ -2,12 +2,18 @@ import React from 'react';
 import styles from './cart.module.scss';
 import { AiOutlineClose } from 'react-icons/ai';
 import CartEmpty from '../CartEmpty/CartEmpty';
-
 import CartItem from '../CartItem/CartItem';
 import { clearCart } from '../../redux/slices/cartSlice';
 import { useDispatch } from 'react-redux';
 
-const Cart = ({ onClose, items, totalPrice, opened }) => {
+type CartProps = {
+  onClose: () => void;
+  items: any;
+  totalPrice: number;
+  opened: boolean;
+};
+
+const Cart: React.FC<CartProps> = ({ onClose, items, totalPrice, opened }) => {
   const dispatch = useDispatch();
 
   const onClickClear = () => {
@@ -28,7 +34,7 @@ const Cart = ({ onClose, items, totalPrice, opened }) => {
             {!totalPrice ? (
               <CartEmpty onClose={onClose} />
             ) : (
-              items.map((item) => <CartItem key={item._id} {...item} />)
+              items.map((item: any) => <CartItem key={item._id} {...item} />)
             )}
           </div>
           <div className={styles.bottom}>

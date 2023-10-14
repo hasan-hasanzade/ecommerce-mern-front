@@ -12,7 +12,7 @@ import radish from '../../assets/img/services/Radish.png';
 import bgForVideo from '../../assets/img/services/bgvideo.jpg';
 import play from '../../assets/img/services/play.svg';
 
-const Services = () => {
+const Services: React.FC = () => {
   return (
     <>
       <PageBanner title={'Services'} img={bg} />

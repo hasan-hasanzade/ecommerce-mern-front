@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../redux/store';
 import { blogSelector, fetchBlogs } from '../../redux/slices/blogSlice';
 
 const BlogsBlock: React.FC = () => {
-  const { blogItems } = useSelector(blogSelector);
+  const  blogItems  = useSelector(blogSelector);
 
   const dispatch = useAppDispatch();
 

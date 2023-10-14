@@ -4,7 +4,7 @@ import bg from '../../assets/img/hero/bg.png';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
   return (
     <>
       <section className={styles.hero}>

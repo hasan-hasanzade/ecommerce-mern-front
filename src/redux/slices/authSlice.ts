@@ -3,15 +3,21 @@ import axios from '../../axios';
 import { RootState } from '../store';
 import { Status } from './productSlice';
 
-export const fetchLogin = createAsyncThunk('auth/fetchLogin', async (params: Record <string, string>) => {
-  const { data } = await axios.post('/auth/login', params);
-  return data as Data;
-});
+export const fetchLogin = createAsyncThunk(
+  'auth/fetchLogin',
+  async (params: Record<string, string>) => {
+    const { data } = await axios.post('/auth/login', params);
+    return data as Data;
+  },
+);
 
-export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (params: Record <string, string>) => {
-  const { data } = await axios.post('/auth/register', params);
-  return data as Data;
-});
+export const fetchRegister = createAsyncThunk(
+  'auth/fetchRegister',
+  async (params: Record<string, string>) => {
+    const { data } = await axios.post('/auth/register', params);
+    return data as Data;
+  },
+);
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
   const { data } = await axios.get('/auth/me');
@@ -22,7 +28,7 @@ type Data = {
   token: string;
   avatarUrl: string;
   fullName: string;
-}
+};
 
 interface AuthSliceState {
   data: null | Data;

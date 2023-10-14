@@ -13,7 +13,7 @@ import phone from '../../assets/img/contact-page/icon2.svg';
 import location from '../../assets/img/contact-page/icon3.svg';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 
-const ContactUs = () => {
+const ContactUs: React.FC = () => {
   return (
     <>
       <PageBanner title={'Contact Us'} img={bg} />

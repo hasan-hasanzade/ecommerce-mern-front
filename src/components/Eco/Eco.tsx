@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './eco.module.scss';
 import bg from '../../assets/img/eco/bgeco.jpg';
 
-const Eco = () => {
+const Eco: React.FC = () => {
   return (
     <section className={styles.eco}>
       <div className={styles.wrapper}>

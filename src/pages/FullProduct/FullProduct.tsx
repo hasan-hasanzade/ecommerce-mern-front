@@ -3,32 +3,31 @@ import Newsletter from '../../components/Newsletter/Newsletter';
 import styles from './fullproduct.module.scss';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem, decreaseItem } from '../../redux/slices/cartSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
+import { addItem, decreaseItem, cartSelector, CartItem } from '../../redux/slices/cartSlice';
+import { fetchSingleProduct, singleProductSelector } from '../../redux/slices/productSlice';
 
-const FullProduct = () => {
-  const [data, setData] = React.useState([]);
-  // const [isLoading, setIsLoading] = React.useState();
+const FullProduct: React.FC = () => {
+  // const [isLoading, setIsLoading] = React.useState(true);
   const [tab, setTab] = React.useState(1);
-  const { items } = useSelector((state) => state.cart);
+  const items = useSelector(cartSelector);
+  const data = useSelector(singleProductSelector);
 
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    axios
-      .get(`http://localhost:3333/items/${id}`)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.warn(err);
-        alert('cannot get an item');
-      });
+    if (id) {
+      dispatch(fetchSingleProduct(id));
+    }
   }, [id]);
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
   const { _id, imageUrl, title, price, category, rating } = data;
 
@@ -41,7 +40,7 @@ const FullProduct = () => {
       imageUrl,
       title,
       price,
-    };
+    } as CartItem;
     dispatch(addItem(item));
   };
 
@@ -54,11 +53,11 @@ const FullProduct = () => {
       imageUrl,
       title,
       price,
-    };
+    } as CartItem;
     dispatch(addItem(item));
   };
 
-  const onClickTab = (id) => {
+  const onClickTab = (id: number) => {
     setTab(id);
   };
 
@@ -100,9 +99,7 @@ const FullProduct = () => {
                       <AiOutlineMinus size={26} />
                     </button>
                   )}
-                  <div type="number" className={styles.input}>
-                    {count}
-                  </div>
+                  <div className={styles.input}>{count}</div>
                   <button onClick={onClickIncrease} className={styles.plus}>
                     <AiOutlinePlus size={26} />
                   </button>

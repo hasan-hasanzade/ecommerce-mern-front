@@ -11,7 +11,7 @@ import scottImg from '../../assets/img/team-page/scott.jpg';
 import karenImg from '../../assets/img/team-page/karen.jpg';
 import Newsletter from '../../components/Newsletter/Newsletter';
 
-const OurTeam = () => {
+const OurTeam: React.FC = () => {
   return (
     <>
       <PageBanner title={'Our Team'} img={bg} />

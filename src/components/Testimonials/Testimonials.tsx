@@ -12,10 +12,40 @@ import 'slick-carousel/slick/slick-theme.css';
 import styles from './testimonials.module.scss';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
-const Testimonials = () => {
+const Testimonials: React.FC = () => {
+  const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
+
+  const testimonials = [
+    {
+      name: 'Sarah Taylor',
+      role: 'Consumer',
+      text: 'The quality of organic produce is extremely high...',
+    },
+    {
+      name: 'Chris Jordan',
+      role: 'Store Owner',
+      text: 'I have been using the Organic Grocer for over a year now...',
+    },
+    {
+      name: 'Jenny Larson',
+      role: 'Consumer',
+      text: 'Simply dummy text of the printing and typesetting industry...',
+    },
+  ];
+
+  // Handle previous button click
+  const handlePreviousClick = () => {
+    setCurrentTestimonial(
+      (prevIndex: number) => (prevIndex - 1 + testimonials.length) % testimonials.length,
+    );
+  };
+
+  const handleNextClick = () => {
+    setCurrentTestimonial((prevIndex: number) => (prevIndex + 1) % testimonials.length);
+  };
+
   let slidesToShow = 1;
-  const PreviousBtn = (props) => {
-    console.log(props);
+  const PreviousBtn = (props: { className: string; onClick: () => void }) => {
     const { className, onClick } = props;
     return (
       <>
@@ -25,9 +55,8 @@ const Testimonials = () => {
       </>
     );
   };
-  const NextBtn = (props) => {
+  const NextBtn = (props: { className: string; onClick: () => void }) => {
     const { className, onClick } = props;
-    console.log(props);
     return (
       <>
         <div className={className} onClick={onClick}>
@@ -47,8 +76,8 @@ const Testimonials = () => {
     autoplaySpeed: 3000,
     cssEase: 'linear',
     arrows: true,
-    prevArrow: <PreviousBtn />,
-    nextArrow: <NextBtn />,
+    prevArrow: <PreviousBtn className="yourClassName" onClick={handlePreviousClick} />,
+    nextArrow: <NextBtn className="yourClassName" onClick={handleNextClick} />,
     responsive: [
       {
         breakpoint: 664,

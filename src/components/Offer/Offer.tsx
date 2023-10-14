@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../redux/store';
 import { productSelector, fetchProducts } from '../../redux/slices/productSlice';
 
 const Offer: React.FC = () => {
-  const { items } = useSelector(productSelector);
+  const items = useSelector(productSelector);
 
   const dispatch = useAppDispatch();
 

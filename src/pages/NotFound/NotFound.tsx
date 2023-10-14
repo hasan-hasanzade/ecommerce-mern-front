@@ -4,7 +4,7 @@ import bg from '../../assets/img/notfound-page/error.jpg';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-const NotFound = () => {
+const NotFound: React.FC = () => {
   return (
     <section className={styles.notfound}>
       <div className={`${styles.image} ${styles._ibg}`}>

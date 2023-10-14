@@ -3,7 +3,17 @@ import { BsFillArrowRightCircleFill, BsFillPersonFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import styles from './blog.module.scss';
 
-const Blog = ({ title, imageUrl, author, text, date, month, _id }) => {
+type BlogProps = {
+  title: string;
+  imageUrl: string;
+  author: string;
+  text: string;
+  date: number;
+  month: string;
+  _id: string;
+};
+
+const Blog: React.FC<BlogProps> = ({ title, imageUrl, author, text, date, month, _id }) => {
   return (
     <div className={styles.card}>
       <div className={styles.picture}>

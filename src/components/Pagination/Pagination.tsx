@@ -1,17 +1,18 @@
 import React from 'react';
 import styles from './pagination.module.scss';
 import ReactPaginate from 'react-paginate';
-import { GrNext } from 'react-icons/gr';
-import axios from 'axios';
 
-const Pagination = ({handlePageClick, pageCount}) => {
-   
+type PaginationProps = {
+  handlePageClick: () => void;
+  pageCount: number;
+};
 
+const Pagination: React.FC<PaginationProps> = ({ handlePageClick, pageCount }) => {
   return (
     <div className={styles.wrapper}>
       <ReactPaginate
         breakLabel="..."
-        nextLabel={">"}
+        nextLabel={'>'}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}

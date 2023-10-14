@@ -7,7 +7,7 @@ import twitter from '../../assets/img/footer/tw.png';
 import printerest from '../../assets/img/footer/pr.png';
 import { Link } from 'react-router-dom';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className="container">

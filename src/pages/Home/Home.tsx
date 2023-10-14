@@ -10,7 +10,7 @@ import Banner from '../../components/Banner/Banner';
 import BlogsBlock from '../../components/BlogsBlock/BlogsBlock';
 
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
       <HeroSection /> 

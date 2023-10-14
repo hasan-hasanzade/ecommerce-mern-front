@@ -5,6 +5,7 @@ import cartReducer from './slices/cartSlice';
 import filterReducer from './slices/filterSlice';
 import authReducer from './slices/authSlice';
 import blogReducer from './slices/blogSlice';
+import commentReducer from './slices/commentSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     filter: filterReducer,
     auth: authReducer,
     blogs: blogReducer,
+    comments: commentReducer,
   },
 });
 

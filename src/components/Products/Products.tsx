@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './products.module.scss';
 import ProductCard from '../ProductCard/ProductCard';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import { productSelector, fetchProducts } from '../../redux/slices/productSlice';
 
 const Products: React.FC = () => {
-  const { items } = useSelector(productSelector);
+  const  items  = useSelector(productSelector);
 
   const dispatch = useAppDispatch();
 

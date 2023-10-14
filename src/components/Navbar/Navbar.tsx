@@ -25,9 +25,10 @@ const Navbar: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const { items, totalPrice } = useSelector(cartSelector);
+  const items = useSelector(cartSelector);
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const totalPrice = items.reduce((sum, item) => sum + item.price * item.count, 0);
 
   React.useEffect(() => {
     if (totalCount) {

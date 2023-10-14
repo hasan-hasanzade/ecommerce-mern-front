@@ -1,7 +1,6 @@
-import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-const BlogSkeleton = (props) => {
+const BlogSkeleton: React.FC = (props: any) => {
   return (
     <ContentLoader
       speed={2}

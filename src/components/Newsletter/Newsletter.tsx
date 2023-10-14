@@ -3,7 +3,7 @@ import styles from './newsletter.module.scss';
 import bg from '../../assets/img/news/bgnews.png';
 
 
-const Newsletter = () => {
+const Newsletter: React.FC = () => {
   return (
     <section className={styles.newsletter}>
       <div className="container">
