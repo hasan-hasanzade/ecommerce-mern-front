@@ -1,18 +1,17 @@
 @use '../../scss/global' as *;
 
 .banner {
-   position: relative;
-   padding: 240px 0 140px 0;
-   @media (max-width: $tablet) {
-      padding: 80px 0;
-      margin-top: 120px;
-   }
-   @media (max-width: $mobile) {
-      
-   }
-   @media (max-width: $mobileSmall) {
-      padding: 60px 0;
-   }
+  position: relative;
+  padding: 240px 0 140px 0;
+  @media (max-width: $tablet) {
+    padding: 80px 0;
+    margin-top: 120px;
+  }
+  @media (max-width: $mobile) {
+  }
+  @media (max-width: $mobileSmall) {
+    padding: 60px 0;
+  }
 }
 
 .title {
@@ -21,32 +20,31 @@
   font-weight: 700;
   line-height: 1.3;
   @media (max-width: $tablet) {
-   font-size: 40px;
-   }
-   @media (max-width: $mobile) {
-      font-size: 35px;
-   }
-   @media (max-width: $mobileSmall) {
-      font-size: 27px;
-   }
+    font-size: 40px;
+  }
+  @media (max-width: $mobile) {
+    font-size: 35px;
+  }
+  @media (max-width: $mobileSmall) {
+    font-size: 27px;
+  }
 }
 
 .image {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   top: 0;
-   left: 0;
-   object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
 }
 
-
 ._ibg img {
-   z-index: -1;
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   left: 0;
-   top: 0;
-   object-fit: cover;
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  object-fit: cover;
 }

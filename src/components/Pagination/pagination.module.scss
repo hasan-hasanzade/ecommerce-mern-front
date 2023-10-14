@@ -16,16 +16,16 @@
   height: 40px;
   justify-content: center;
   width: 40px;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   //   border: 2px solid $textBlue;
   background-color: $textBlue;
   border-radius: 40px;
-  a{
-   height: 40px;
-   width: 40px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+  a {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   @media (any-hover: hover) {
     &:hover {
@@ -35,8 +35,6 @@
     }
   }
 }
-
-
 
 // .disabledPage {
 //    background-color: #fff;
@@ -62,7 +60,6 @@
   width: 40px;
   transition: all 0.4s ease;
   font-weight: 400;
-  
 }
 
 .pagination {

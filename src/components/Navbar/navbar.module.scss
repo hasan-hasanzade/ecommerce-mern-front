@@ -10,14 +10,13 @@
   background-color: #ffffff;
   @media (max-width: 1500px) {
     padding: 0 70px;
-    
   }
   @media (max-width: 1260px) {
     padding: 0 30px;
   }
   @media (max-width: $tablet) {
-   min-height: 100px;
- }
+    min-height: 100px;
+  }
   min-height: 150px;
   display: flex;
   align-items: center;
@@ -87,7 +86,6 @@
   @media (max-width: 1080px) {
     padding-left: 25px;
   }
-  
 }
 
 .menu {
@@ -221,29 +219,32 @@
 }
 
 .red {
-  animation: shake 1s cubic-bezier(.36,.07,.19,.97) both;
+  animation: shake 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 .blue {
- 
-    animation: shake 3s cubic-bezier(.36,.07,.19,.97) both;
-  
+  animation: shake 3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0);
   }
-  
-  20%, 80% {
+
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
 
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0);
   }
 
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(4px, 0, 0);
   }
 }
@@ -336,7 +337,7 @@ button {
       height: 2px;
       left: 0;
       top: 0;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
     }
     &::after {
       content: '';
@@ -346,7 +347,7 @@ button {
       height: 2px;
       left: 0;
       bottom: 0;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
     }
     span {
       position: absolute;
@@ -355,14 +356,14 @@ button {
       height: 2px;
       left: 0;
       top: 6px;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
     }
   }
   .nav {
     // position: fixed;
     // top: -100px;
     // left: 0;
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
     // width: 100%;
     // height: 50%;
     opacity: 0;
@@ -372,12 +373,12 @@ button {
     // flex-wrap: wrap;
     // z-index: 1;
     display: none; /* По умолчанию меню скрыто */
-  position: relative; /* Устанавливаем позиционирование как относительное */
-  top: 100%; /* Отступ сверху на 100% от родительского контейнера */
-  transition: opacity .3s ease;
+    position: relative; /* Устанавливаем позиционирование как относительное */
+    top: 100%; /* Отступ сверху на 100% от родительского контейнера */
+    transition: opacity 0.3s ease;
   }
 
-  .menu{
+  .menu {
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
@@ -399,65 +400,64 @@ button {
     // display: block;
   }
   .item {
-   font-size: 25px;
-   
+    font-size: 25px;
   }
   .burger_wrap {
-   padding: 14px;
-   border-radius: 50%;
-   background-color: $textBlue;
+    padding: 14px;
+    border-radius: 50%;
+    background-color: $textBlue;
   }
   .burger-open {
-   display: block;
-   position: relative;
-   width: 20px;
-   height: 14px;
-   &::before {
-     content: '';
-     background-color: #fff;
-     position: absolute;
-     width: 100%;
-     height: 2px;
-     left: 0;
-     top: 0;
-     transition: all .3s ease;
-   }
-   &::after {
-     content: '';
-     background-color: #fff;
-     position: absolute;
-     width: 100%;
-     height: 2px;
-     left: 0;
-     bottom: 0;
-     transition: all .3s ease;
-   }
-   span {
-     position: absolute;
-     background-color: #fff;
-     width: 100%;
-     height: 2px;
-     left: 0;
-     top: 9px;
-     transition: all .3s ease;
-   }
- }
+    display: block;
+    position: relative;
+    width: 20px;
+    height: 14px;
+    &::before {
+      content: '';
+      background-color: #fff;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      left: 0;
+      top: 0;
+      transition: all 0.3s ease;
+    }
+    &::after {
+      content: '';
+      background-color: #fff;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      transition: all 0.3s ease;
+    }
+    span {
+      position: absolute;
+      background-color: #fff;
+      width: 100%;
+      height: 2px;
+      left: 0;
+      top: 9px;
+      transition: all 0.3s ease;
+    }
+  }
 }
 
 .burger-open span {
-   transform: scale(0);
+  transform: scale(0);
 }
 
 .burger-open::before {
-   transform: rotate(45deg);
-   top: 6px;
+  transform: rotate(45deg);
+  top: 6px;
 }
 .burger-open::after {
-   transform: rotate(-45deg);
-   bottom: 6px;
+  transform: rotate(-45deg);
+  bottom: 6px;
 }
 
-@media (max-width:619px) {
+@media (max-width: 619px) {
   .body {
     display: flex;
     flex-direction: column;
@@ -493,8 +493,7 @@ button {
   display: none;
 }
 
-
-@media (max-width:404px) {
+@media (max-width: 404px) {
   .sign {
     display: none;
   }

@@ -110,9 +110,7 @@ const Shop = () => {
           <SideBar
             handleSearch={handleSearch}
             handleCategory={handleCategory}
-            handleSort={handleSort}
             handlePriceFilter={handlePriceFilter}
-            getFilteredItems={getFilteredItems}
           />
           <div className={styles.inner}>
             <div className={styles.body}>
