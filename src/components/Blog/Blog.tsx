@@ -2,6 +2,7 @@ import React from 'react';
 import { BsFillArrowRightCircleFill, BsFillPersonFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import styles from './blog.module.scss';
+import img from '../../assets/img/skel.jpg'
 
 type BlogProps = {
   title: string;
@@ -14,10 +15,27 @@ type BlogProps = {
 };
 
 const Blog: React.FC<BlogProps> = ({ title, imageUrl, author, text, date, month, _id }) => {
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    const img = new Image();
+    img.src = imageUrl;
+    img.onload = () => {
+      setImageLoaded(true);
+    };
+  }, [imageUrl]);
   return (
     <div className={styles.card}>
       <div className={styles.picture}>
-        <img className={styles.cardimg} src={imageUrl} alt="" />
+      {imageLoaded ? (
+          <img
+            className={styles.cardimg}
+            src={imageUrl}
+            alt=""
+          />
+        ) : (
+          <img className={styles.cardimg} src={img} alt="" />
+        )}
         <div className={styles.circle}>
           <span>{date}</span>
           <span className={styles.month}>{month}</span>

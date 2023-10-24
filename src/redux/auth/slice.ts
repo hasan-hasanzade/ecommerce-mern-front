@@ -1,40 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from '../../axios';
-import { RootState } from '../store';
-import { Status } from './productSlice';
-
-export const fetchLogin = createAsyncThunk(
-  'auth/fetchLogin',
-  async (params: Record<string, string>) => {
-    const { data } = await axios.post('/auth/login', params);
-    return data as Data;
-  },
-);
-
-export const fetchRegister = createAsyncThunk(
-  'auth/fetchRegister',
-  async (params: Record<string, string>) => {
-    const { data } = await axios.post('/auth/register', params);
-    return data as Data;
-  },
-);
-
-export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
-  const { data } = await axios.get('/auth/me');
-  return data as Data;
-});
-
-type Data = {
-  token: string;
-  avatarUrl: string;
-  fullName: string;
-};
-
-interface AuthSliceState {
-  data: null | Data;
-  status: Status;
-  userImageUrl: string;
-}
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Status } from '../types/statusEnum';
+import { AuthSliceState } from '../auth/types';
+import { fetchRegister, fetchLogin, fetchAuthMe } from '../auth/asyncActions';
 
 const initialState: AuthSliceState = {
   data: null,
@@ -94,10 +61,7 @@ const authSlice = createSlice({
   },
 });
 
-export const selectorUserImg = (state: RootState) => state.auth;
 
-export const selectIsAuth = (state: RootState) => Boolean(state.auth.data);
-export const authData = (state: RootState) => state.auth.data;
 
 export const { logOut, setUserImageUrl } = authSlice.actions;
 

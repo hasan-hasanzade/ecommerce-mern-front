@@ -1,34 +1,8 @@
-import { Status } from './productSlice';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from '../store';
-import axios from '../../axios';
+import { Status } from '../types/statusEnum';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchBlogs, fetchSingleBlog } from './asyncActions';
+import { BlogSliceState } from './types';
 
-export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async () => {
-  const { data } = await axios.get<Blog[]>('/blogs');
-  return data as Blog[];
-});
-
-export const fetchSingleBlog = createAsyncThunk('blogs/fetchSingleBlog', async (id: string) => {
-  const { data } = await axios.get(`/blogs/${id}`);
-  return data as Blog;
-});
-
-type Blog = {
-  _id: string;
-  imageUrl: string;
-  title: string;
-  date: number;
-  month: string;
-  author: string;
-  text: string;
-  mainText: string;
-};
-
-interface BlogSliceState {
-  blogItems: Blog[];
-  blogItem: Blog | null;
-  status: Status;
-}
 
 const initialState: BlogSliceState = {
   blogItems: [],
@@ -69,8 +43,6 @@ export const blogSlice = createSlice({
   },
 });
 
-export const blogSelector = (state: RootState) => state.blogs.blogItems;
 
-export const blogItemSelector = (state: RootState) => state.blogs.blogItem;
 
 export default blogSlice.reducer;

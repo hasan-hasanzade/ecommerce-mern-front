@@ -1,0 +1,15 @@
+@use '../../scss/global' as *;
+.checkout {
+   padding: 150px 0;
+}
+.wrap {
+   
+   display: flex;
+   padding-top: 50px;
+   justify-content: space-around;
+   align-items: center;
+  
+   @media (max-width: $tablet) {
+      flex-wrap: wrap-reverse;
+   }
+}

@@ -3,7 +3,6 @@
 .picture {
   position: relative;
   width: 100%;
-  flex: 1;
 }
 
 .card {
@@ -16,6 +15,12 @@
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
 
+  max-width: 100%;
+}
+
+.cardImgLoad {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   max-width: 100%;
 }
 

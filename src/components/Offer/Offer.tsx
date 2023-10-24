@@ -5,7 +5,8 @@ import ProductCard from '../ProductCard/ProductCard';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import { productSelector, fetchProducts } from '../../redux/slices/productSlice';
+import { productSelector } from '../../redux/product/selectors';
+import { fetchProducts } from '../../redux/product/asyncActions';
 
 const Offer: React.FC = () => {
   const items = useSelector(productSelector);

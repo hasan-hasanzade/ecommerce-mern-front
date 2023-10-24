@@ -14,11 +14,14 @@ import Shop from './pages/Shop/Shop';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Footer from './components/Footer/Footer';
+import Checkout from './pages/CheckOut/CheckOut';
+import CheckoutSuccess from './pages/CheckoutSuccess/CheckoutSuccess';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from './redux/store';
-
 import './scss/app.scss';
-import { fetchAuthMe, selectIsAuth } from './redux/slices/authSlice';
+import { selectIsAuth } from './redux/auth/selectors';
+import { fetchAuthMe } from './redux/auth/asyncActions';
+
 
 function App() {
   const dispatch = useAppDispatch();
@@ -43,6 +46,8 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

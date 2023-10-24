@@ -33,7 +33,6 @@ const Testimonials: React.FC = () => {
     },
   ];
 
-  // Handle previous button click
   const handlePreviousClick = () => {
     setCurrentTestimonial(
       (prevIndex: number) => (prevIndex - 1 + testimonials.length) % testimonials.length,
@@ -76,8 +75,8 @@ const Testimonials: React.FC = () => {
     autoplaySpeed: 3000,
     cssEase: 'linear',
     arrows: true,
-    prevArrow: <PreviousBtn className="yourClassName" onClick={handlePreviousClick} />,
-    nextArrow: <NextBtn className="yourClassName" onClick={handleNextClick} />,
+    prevArrow: <PreviousBtn className={styles.wer} onClick={handlePreviousClick} />,
+    nextArrow: <NextBtn className={styles.wer} onClick={handleNextClick} />,
     responsive: [
       {
         breakpoint: 664,

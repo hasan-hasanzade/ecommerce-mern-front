@@ -4,7 +4,8 @@ import styles from './fullblog.module.scss';
 import CommentsBlock from '../../components/CommentsBlock/CommentsBlock';
 import { useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
-import { blogItemSelector, fetchSingleBlog } from '../../redux/slices/blogSlice';
+import { blogItemSelector } from '../../redux/blog/selectors';
+import { fetchSingleBlog } from '../../redux/blog/asyncActions';
 import { useParams } from 'react-router-dom';
 
 const FullBlog: React.FC = () => {

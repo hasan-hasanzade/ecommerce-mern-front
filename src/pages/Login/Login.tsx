@@ -5,7 +5,8 @@ import { AiFillGoogleSquare, AiFillFacebook } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import { fetchLogin, selectIsAuth } from '../../redux/slices/authSlice';
+import { selectIsAuth } from '../../redux/auth/selectors';
+import { fetchLogin } from '../../redux/auth/asyncActions';
 import { Navigate } from 'react-router-dom';
 
 const Login: React.FC = () => {

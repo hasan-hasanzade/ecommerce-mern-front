@@ -7,8 +7,11 @@ import { useParams } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import { addItem, decreaseItem, cartSelector, CartItem } from '../../redux/slices/cartSlice';
-import { fetchSingleProduct, singleProductSelector } from '../../redux/slices/productSlice';
+import { addItem, decreaseItem } from '../../redux/cart/slice';
+import { cartSelector } from '../../redux/cart/selectors';
+import { CartItem } from '../../redux/cart/types';
+import { singleProductSelector } from '../../redux/product/selectors';
+import { fetchSingleProduct } from '../../redux/product/asyncActions';
 
 const FullProduct: React.FC = () => {
   // const [isLoading, setIsLoading] = React.useState(true);

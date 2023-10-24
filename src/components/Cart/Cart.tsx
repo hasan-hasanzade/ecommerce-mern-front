@@ -3,8 +3,11 @@ import styles from './cart.module.scss';
 import { AiOutlineClose } from 'react-icons/ai';
 import CartEmpty from '../CartEmpty/CartEmpty';
 import CartItem from '../CartItem/CartItem';
-import { clearCart } from '../../redux/slices/cartSlice';
-import { useDispatch } from 'react-redux';
+import { clearCart } from '../../redux/cart/slice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
+import { authData, selectIsAuth } from '../../redux/auth/selectors';
+import { Link } from 'react-router-dom';
 
 type CartProps = {
   onClose: () => void;
@@ -14,7 +17,10 @@ type CartProps = {
 };
 
 const Cart: React.FC<CartProps> = ({ onClose, items, totalPrice, opened }) => {
-  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+  const isAuthData = useSelector(authData);
+
+  const dispatch = useAppDispatch();
 
   const onClickClear = () => {
     dispatch(clearCart());
@@ -45,7 +51,15 @@ const Cart: React.FC<CartProps> = ({ onClose, items, totalPrice, opened }) => {
             <button onClick={onClickClear} className={styles.button}>
               Clear Cart
             </button>
-            <button className={styles.btn}>Checkout</button>
+            {isAuth ? (
+              <Link to="/checkout">
+                <button className={styles.btn}>Checkout</button>
+              </Link>
+            ) : (
+              <Link to='/login'>
+                <button className={styles.btn}>Please Log in to checkout</button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

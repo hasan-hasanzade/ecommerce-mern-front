@@ -6,7 +6,9 @@ import { MdDoneOutline } from 'react-icons/md';
 import Rating from '@mui/material/Rating';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import { addItem, removeItem, cartSelector, CartItem } from '../../redux/slices/cartSlice';
+import { addItem, removeItem } from '../../redux/cart/slice';
+import { cartSelector } from '../../redux/cart/selectors';
+import { CartItem } from '../../redux/cart/types';
 
 type ProductCardProps = {
   _id: string;

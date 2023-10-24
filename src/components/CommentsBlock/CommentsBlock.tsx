@@ -1,16 +1,11 @@
 import React from 'react';
 import styles from './commentsblock.module.scss';
-import { authData, selectIsAuth } from '../../redux/slices/authSlice';
+import { authData, selectIsAuth } from '../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import {
-  commentSelector,
-  fetchComment,
-  fetchCommentPost,
-  setCommentText,
-  commentTextSelector,
-  commentSlice
-} from '../../redux/slices/commentSlice';
+import { commentSelector, commentTextSelector } from '../../redux/comment/selectors';
+import { fetchComment, fetchCommentPost } from '../../redux/comment/asyncActions';
+import { setCommentText, commentSlice } from '../../redux/comment/slice';
 
 const CommentsBlock: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -31,12 +26,12 @@ const CommentsBlock: React.FC = () => {
 
   const handleCommentSubmit = async () => {
     const text = commentText;
-  
+
     try {
       const newComment = await dispatch(fetchCommentPost(text));
-  
+
       dispatch(fetchComment());
-  
+
       dispatch(commentSlice.actions.setCommentText(''));
     } catch (error) {
       console.error('Error posting comment:', error);

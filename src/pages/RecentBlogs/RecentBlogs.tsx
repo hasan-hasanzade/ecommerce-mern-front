@@ -4,7 +4,8 @@ import PageBanner from '../../components/PageBanner/PageBanner';
 import NewsLetter from '../../components/Newsletter/Newsletter';
 import bg from '../../assets/img/blogs-page/bgblog.jpg';
 import Blog from '../../components/Blog/Blog';
-import { blogSelector, fetchBlogs } from '../../redux/slices/blogSlice';
+import { blogSelector } from '../../redux/blog/selectors';
+import { fetchBlogs } from '../../redux/blog/asyncActions';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import Skeleton from './BlogSkeleton';
@@ -17,9 +18,17 @@ const RecentBlogs: React.FC = () => {
   const blogs = useSelector(blogSelector);
 
   React.useEffect(() => {
-    dispatch(fetchBlogs());
-    setIsLoading(false);
-  }, []);
+    setIsLoading(true);
+
+    dispatch(fetchBlogs())
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error loading blogs:', error);
+        setIsLoading(false);
+      });
+  }, [dispatch]);
 
   return (
     <>

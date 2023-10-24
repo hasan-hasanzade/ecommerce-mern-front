@@ -1,32 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from '../store';
-import axios from '../../axios';
-
-export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
-  const { data } = await axios.get<Product[]>('/items');
-  return data as Product[];
-});
-
-export const fetchSingleProduct = createAsyncThunk('blogs/fetchSingleBlog', async (id: string) => {
-  const { data } = await axios.get(`/items/${id}`);
-  return data as Product;
-});
-
-type Product = {
-  _id: string;
-  imageUrl: string;
-  title: string;
-  price: number;
-  count: number;
-  rating: number;
-  category: string;
-};
-
-export enum Status {
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error',
-}
+import { createSlice } from '@reduxjs/toolkit';
+import { Product } from './types';
+import { fetchProducts, fetchSingleProduct, fetchFilteredItems } from './asyncActions';
+import { Status } from '../types/statusEnum';
 
 interface productSliceState {
   items: Product[];
@@ -44,8 +19,8 @@ export const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    setItems: (state, action) => {
-      state.items = action.payload;
+    resetItems(state) {
+      state.items = [];
     },
   },
   extraReducers: (builder) => {
@@ -73,14 +48,22 @@ export const productSlice = createSlice({
       .addCase(fetchSingleProduct.rejected, (state) => {
         state.status = Status.ERROR;
         state.singleItem = null;
+      })
+      .addCase(fetchFilteredItems.pending, (state) => {
+        state.status = Status.LOADING;
+        state.items = [];
+      })
+      .addCase(fetchFilteredItems.fulfilled, (state, action) => {
+        state.status = Status.SUCCESS;
+        state.items = action.payload.items;
+      })
+      .addCase(fetchFilteredItems.rejected, (state) => {
+        state.status = Status.ERROR;
+        state.items = [];
       });
   },
 });
 
-export const productSelector = (state: RootState) => state.products.items;
-
-export const singleProductSelector = (state: RootState) => state.products.singleItem;
-
-export const { setItems } = productSlice.actions;
+export const { resetItems } = productSlice.actions
 
 export default productSlice.reducer;

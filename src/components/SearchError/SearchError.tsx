@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './searcherror.module.scss';
 import search from '../../assets/img/search-err/search.png';
 import { useAppDispatch } from '../../redux/store'; 
-import { setSearchValue } from '../../redux/slices/filterSlice';
+import { setSearchValue } from '../../redux/filter/slice';
 
 type SearchErrorProps = {
   setErrorMessage: (error: boolean) => void;
@@ -13,8 +13,8 @@ const SearchError: React.FC<SearchErrorProps> = ({ setErrorMessage, getFilteredI
   const dispatch = useAppDispatch();
 
   const handleBack = () => {
-    setErrorMessage(false);
     dispatch(setSearchValue(''));
+    setErrorMessage(false);
     getFilteredItems();
   };
 

@@ -1,36 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../axios';
-import { RootState } from '../store';
-import { Status } from './productSlice';
-
-export const fetchComment = createAsyncThunk('comment/fetchComment', async () => {
-  const { data } = await axios.get<Comment[]>('/comments');
-  return data as Comment[];
-});
-
-export const fetchCommentPost = createAsyncThunk(
-   'comment/fetchCommentPost',
-   async (text: string) => {
-     const { data } = await axios.post<Comment>('/comment/post', { text }); // Return a single comment, not an array
-     return data as Comment;
-   },
- );
-
-type Comment = {
-  _id: string;
-  text: string;
-  author: {
-    _id: string;
-    fullName: string;
-    avatarUrl: string;
-  };
-};
-
-interface CommentSliceState {
-  comments: Comment[];
-  commentText: string;
-  status: Status;
-}
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Status } from '../types/statusEnum';
+import { fetchComment, fetchCommentPost } from '../comment/asyncActions';
+import { CommentSliceState } from '../comment/types';
 
 const initialState: CommentSliceState = {
   comments: [],
@@ -42,7 +13,7 @@ export const commentSlice = createSlice({
   name: 'comment',
   initialState,
   reducers: {
-    setCommentText: (state, action) => {
+    setCommentText: (state, action: PayloadAction<string>) => {
       state.commentText = action.payload;
     },
   },
@@ -73,8 +44,5 @@ export const commentSlice = createSlice({
 });
 
 export const { setCommentText } = commentSlice.actions;
-
-export const commentSelector = (state: RootState) => state.comments.comments;
-export const commentTextSelector = (state: RootState) => state.comments.commentText;
 
 export default commentSlice.reducer;

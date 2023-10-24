@@ -8,10 +8,10 @@ import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/store';
-import { fetchRegister, selectIsAuth, setUserImageUrl, selectorUserImg } from '../../redux/slices/authSlice';
+import { selectIsAuth, selectorUserImg } from '../../redux/auth/selectors';
+import { setUserImageUrl } from '../../redux/auth/slice';
+import { fetchRegister } from '../../redux/auth/asyncActions';
 import axios from '../../axios';
-
-
 
 const Register: React.FC = () => {
   const inputFileRef = React.useRef<HTMLInputElement>(null);

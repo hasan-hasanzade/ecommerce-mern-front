@@ -4,29 +4,30 @@ import PageBanner from '../../components/PageBanner/PageBanner';
 import bg from '../../assets/img/shop/shop.jpg';
 import SideBar from '../../components/SideBar/SideBar';
 import ProductCard from '../../components/ProductCard/ProductCard';
-import axios from '../../axios';
 import Skeleton from '../../components/ProductCard/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchError from '../../components/SearchError/SearchError';
-import { useSelector, useDispatch } from 'react-redux';
-import { setPageCount, setCategoryName } from '../../redux/slices/filterSlice';
-import { setItems } from '../../redux/slices/productSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../redux/store';
+import { setPageCount, setCategoryName } from '../../redux/filter/slice';
+import { filterSelector } from '../../redux/filter/selectors';
+import { productSelector } from '../../redux/product/selectors';
+import { resetItems } from '../../redux/product/slice';
+import { fetchFilteredItems } from '../../redux/product/asyncActions';
 import { useLocation } from 'react-router-dom';
 
 const Shop = () => {
   const [originalItems, setOriginalItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [errorMessage, setErrorMessage] = React.useState(false);
-  const currentPage = React.useRef();
+  const currentPage = React.useRef(1);
   const limit = 8;
 
-  const { searchValue, pageCount, categoryName, sortBy, priceRange } = useSelector(
-    (state) => state.filter,
-  );
+  const { searchValue, pageCount, categoryName, sortBy, priceRange } = useSelector(filterSelector);
 
-  const items = useSelector((state) => state.products.items);
+  const items = useSelector(productSelector);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -38,13 +39,15 @@ const Shop = () => {
     }
   }, [categoryName]);
 
+
   React.useEffect(() => {
     if (categoryParam) {
       dispatch(setCategoryName(categoryParam));
     }
   }, [categoryParam, dispatch]);
 
-  const handlePageClick = (e) => {
+
+  const handlePageClick = (e: { selected: number }) => {
     currentPage.current = e.selected + 1;
     getFilteredItems();
   };
@@ -52,7 +55,6 @@ const Shop = () => {
   const handlePriceFilter = () => {
     getFilteredItems();
   };
-
 
   React.useEffect(() => {
     currentPage.current = 1;
@@ -62,14 +64,20 @@ const Shop = () => {
   const getFilteredItems = () => {
     setIsLoading(true);
 
-    axios
-      .get(
-        `/getFilteredItems?q=${searchValue}&c=${categoryName}&sort=${sortBy}&page=${currentPage.current}&limit=${limit}&minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`,
-      )
+    dispatch(
+      fetchFilteredItems({
+        searchValue,
+        categoryName,
+        sortBy,
+        currentPage: currentPage.current,
+        limit,
+        priceRange,
+      }),
+    )
+      .unwrap()
       .then((res) => {
-        dispatch(setItems(res.data.items));
+        dispatch(setPageCount(res.pageCount));
         setIsLoading(false);
-        dispatch(setPageCount(res.data.pageCount));
         setErrorMessage(false);
       })
       .catch((error) => {
@@ -79,12 +87,14 @@ const Shop = () => {
       });
   };
 
+
+
   const handleSearch = () => {
     const searchTerm = searchValue.toLowerCase();
 
     if (searchTerm === '' || searchTerm.length === 1 || items.length === 0) {
       setErrorMessage(true);
-      dispatch(setItems([]));
+      dispatch(resetItems());
       dispatch(setPageCount(0));
     } else {
       getFilteredItems();
@@ -94,13 +104,31 @@ const Shop = () => {
   const handleCategory = () => {
     currentPage.current = 1;
     if (categoryName === 'all') {
-      dispatch(setItems(originalItems));
+      dispatch(
+        fetchFilteredItems({
+          searchValue,
+          categoryName: '', // Provide an appropriate default value
+          sortBy,
+          currentPage: 1, // Reset currentPage to 1
+          limit,
+          priceRange,
+        }),
+      )
+        .unwrap()
+        .then((res) => {
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+          setIsLoading(false);
+        });
     }
   };
+  
 
-  const handleSort = () => {
-    currentPage.current = 1;
-  };
+  // const handleSort = () => {
+  //   currentPage.current = 1;
+  // };
 
   return (
     <>
@@ -111,6 +139,7 @@ const Shop = () => {
             handleSearch={handleSearch}
             handleCategory={handleCategory}
             handlePriceFilter={handlePriceFilter}
+            getFilteredItems={getFilteredItems}
           />
           <div className={styles.inner}>
             <div className={styles.body}>

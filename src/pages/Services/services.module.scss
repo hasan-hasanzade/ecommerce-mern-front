@@ -51,11 +51,20 @@
 .body {
   display: flex;
   align-items: center;
+  justify-content: center;
+  @media (max-width: $tablet) {
+    flex-direction: column;
+  }
 }
 
 .center {
   img {
     max-width: 100%;
+    position: relative;
+    z-index: -2;
+  }
+  @media (max-width: $tablet) {
+    display: none;
   }
 }
 
@@ -64,16 +73,39 @@
   margin-bottom: 30px;
 }
 
-.img {
+.leftImg {
   margin-bottom: 20px;
   position: relative;
-  ::after {
+  &::after {
     content: '';
     position: absolute;
-    width: 29px;
-    height: 29px;
-    top: 18px;
-    right: 21px;
+    width: 23px;
+    height: 23px;
+    top: 28px;
+    left: 31px;
+    z-index: -1;
+    background-color: #fff4cd;
+    border-radius: 50%;
+  }
+}
+
+.left_items, .right_items {
+  @media (max-width: $tablet) {
+    width: 100%;
+  }
+}
+
+.right_img {
+  margin-bottom: 20px;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    top: 33px;
+    left: -5px;
+    z-index: -1;
     background-color: #fff4cd;
     border-radius: 50%;
   }
@@ -85,6 +117,9 @@
     font-weight: 500;
     letter-spacing: 0.2px;
     margin-bottom: 20px;
+    @media (max-width: $mobileSmall) {
+      font-size: 20px;
+    }
   }
   p {
     color: #525c60;
@@ -103,6 +138,7 @@
   padding: 130px 0 500px 0;
   @media (max-width: $tablet) {
     padding: 80px 0;
+    margin-bottom: 50px;
   }
   @media (max-width: $mobileSmall) {
     padding: 60px 0;
@@ -124,6 +160,13 @@
   left: 0;
   top: 0;
   object-fit: cover;
+}
+
+.playBtn {
+  @media (max-width: $mobile) {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .videobg {
@@ -148,7 +191,7 @@
 }
 
 .button {
-   cursor: pointer;
+  cursor: pointer;
   width: 107px;
   height: 107px;
   background-color: #7eb693;
@@ -158,5 +201,8 @@
   transition: background-color 0.2s;
   display: flex;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.43);
+  @media (max-width: $mobile) {
+    width: 60px;
+    height: 60px;
+  }
 }
-

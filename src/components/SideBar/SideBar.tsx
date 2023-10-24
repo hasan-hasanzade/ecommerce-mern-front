@@ -3,13 +3,13 @@ import styles from './sidebar.module.scss';
 import { AiOutlineSearch, AiOutlineCloseSquare } from 'react-icons/ai';
 import Slider from 'react-slider';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterSelector } from '../../redux/slices/filterSlice';
+import { filterSelector } from '../../redux/filter/selectors';
 import {
   setSearchValue,
   setCategoryName,
   setSortBy,
   setPriceRange,
-} from '../../redux/slices/filterSlice';
+} from '../../redux/filter/slice';
 
 const MIN = 1;
 const MAX = 50;
@@ -18,6 +18,7 @@ type SideBarProps = {
   handleSearch: () => void;
   handleCategory: () => void;
   handlePriceFilter: () => void;
+  getFilteredItems: () => void;
 };
 
 const categories = ['All', 'Fruits', 'Vegetables', 'Nuts', 'Berries'];
@@ -29,7 +30,7 @@ const sort = [
   'price ( low to high )',
 ];
 
-const SideBar: React.FC<SideBarProps> = ({ handleSearch, handleCategory, handlePriceFilter }) => {
+const SideBar: React.FC<SideBarProps> = ({ handleSearch, handleCategory, handlePriceFilter, getFilteredItems }) => {
   const [selectedSort, setSelectedSort] = React.useState('popular ( high to low )');
 
   const { priceRange, searchValue } = useSelector(filterSelector);

@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './cartitem.module.scss';
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineCloseCircle } from 'react-icons/ai';
 import { useAppDispatch } from '../../redux/store';
-import { CartItem } from '../../redux/slices/cartSlice';
-import { addItem, decreaseItem, removeItem } from '../../redux/slices/cartSlice';
+import { CartItem } from '../../redux/cart/types';
+import { addItem, decreaseItem, removeItem } from '../../redux/cart/slice';
 
 type CartItemProps = {
   _id: string;

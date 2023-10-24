@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import Blog from '../Blog/Blog';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import { blogSelector, fetchBlogs } from '../../redux/slices/blogSlice';
+import { blogSelector } from '../../redux/blog/selectors';
+import { fetchBlogs } from '../../redux/blog/asyncActions';
 
 const BlogsBlock: React.FC = () => {
-  const  blogItems  = useSelector(blogSelector);
+  const blogItems = useSelector(blogSelector);
 
   const dispatch = useAppDispatch();
 

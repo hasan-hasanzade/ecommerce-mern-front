@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './products.module.scss';
 import ProductCard from '../ProductCard/ProductCard';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import { productSelector, fetchProducts } from '../../redux/slices/productSlice';
+import { productSelector } from '../../redux/product/selectors';
+import { fetchProducts } from '../../redux/product/asyncActions';
 
 const Products: React.FC = () => {
   const  items  = useSelector(productSelector);

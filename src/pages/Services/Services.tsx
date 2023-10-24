@@ -27,7 +27,7 @@ const Services: React.FC = () => {
           <div className={styles.body}>
             <div className={styles.left_items}>
               <div className={styles.item}>
-                <div className={styles.img}>
+                <div className={styles.leftImg}>
                   <img src={bottle} alt="milk bottle" />
                 </div>
                 <div className={styles.desc}>
@@ -39,7 +39,7 @@ const Services: React.FC = () => {
                 </div>
               </div>
               <div className={styles.item}>
-                <div className={styles.img}>
+                <div className={styles.leftImg}>
                   <img src={store} alt="online store" />
                 </div>
                 <div className={styles.desc}>
@@ -51,7 +51,7 @@ const Services: React.FC = () => {
                 </div>
               </div>
               <div className={styles.item}>
-                <div className={styles.img}>
+                <div className={styles.leftImg}>
                   <img src={delivery} alt="milk bottle" />
                 </div>
                 <div className={styles.desc}>
@@ -118,11 +118,11 @@ const Services: React.FC = () => {
           </p>
         </div>
         <div className={`${styles.videobg} ${styles._ibg}`}>
-          <img src={bgForVideo} alt="" />
+          <img  src={bgForVideo} alt="" />
         </div>
 
         <div className={styles.button}>
-          <img src={play} alt="" />
+          <img className={styles.playBtn} src={play} alt="" />
         </div>
       </section>
     </>

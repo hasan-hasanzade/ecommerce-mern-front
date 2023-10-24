@@ -3,7 +3,7 @@ import styles from './pagination.module.scss';
 import ReactPaginate from 'react-paginate';
 
 type PaginationProps = {
-  handlePageClick: () => void;
+  handlePageClick: (selectedItem: { selected: number }) => void;
   pageCount: number;
 };
 
