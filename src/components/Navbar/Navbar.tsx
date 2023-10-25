@@ -80,6 +80,10 @@ const Navbar: React.FC = () => {
     }
   };
 
+  const closeBurgerMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <header className={navbar ? styles['header-scroll'] : styles['header']}>
       <Cart items={items} totalPrice={totalPrice} onClose={handleCartClose} opened={cartOpened} />
@@ -91,27 +95,27 @@ const Navbar: React.FC = () => {
         <nav className={isOpen ? styles['nav-active'] : styles['nav']}>
           <ul className={styles.menu}>
             <li className={styles.list}>
-              <Link className={styles.item} to="/">
+              <Link className={styles.item} onClick={closeBurgerMenu} to="/">
                 Home
               </Link>
             </li>
             <li className={styles.list}>
-              <Link className={styles.item} to="/about">
+              <Link className={styles.item} onClick={closeBurgerMenu} to="/about">
                 About
               </Link>
             </li>
             <li className={styles.list}>
-              <Link className={styles.item} to="/shop">
+              <Link className={styles.item} onClick={closeBurgerMenu} to="/shop">
                 Shop
               </Link>
             </li>
             <li className={styles.list}>
-              <Link className={styles.item} to="/blogs">
+              <Link className={styles.item} onClick={closeBurgerMenu} to="/blogs">
                 Blog
               </Link>
             </li>
             <li className={styles.list}>
-              <Link className={styles.item} to="/contact">
+              <Link className={styles.item} onClick={closeBurgerMenu} to="/contact">
                 Contact us
               </Link>
             </li>

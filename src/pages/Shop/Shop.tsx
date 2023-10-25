@@ -107,9 +107,9 @@ const Shop = () => {
       dispatch(
         fetchFilteredItems({
           searchValue,
-          categoryName: '', // Provide an appropriate default value
+          categoryName: '',
           sortBy,
-          currentPage: 1, // Reset currentPage to 1
+          currentPage: 1, 
           limit,
           priceRange,
         }),
@@ -125,11 +125,6 @@ const Shop = () => {
     }
   };
   
-
-  // const handleSort = () => {
-  //   currentPage.current = 1;
-  // };
-
   return (
     <>
       <PageBanner title={'Our Shop'} img={bg} />

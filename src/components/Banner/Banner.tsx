@@ -3,10 +3,24 @@ import styles from './banner.module.scss';
 import fruit from '../../assets/img/hero/fruits.png';
 import veget from '../../assets/img/hero/veget.png';
 import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Banner: React.FC = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['1.33 2.5', '0.1'],
+  });
+
+  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
+  const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.6, 1.2]);
+
   return (
-    <div className="container">
+    <motion.div
+      ref={ref}
+      style={{ scale: scaleProgress, opacity: opacityProgress }}
+      className="container">
       <div className={styles.offer}>
         <Link to="/shop?category=fruits" className={styles.fruit}>
           <div className={styles.content}>
@@ -31,7 +45,7 @@ const Banner: React.FC = () => {
           </div>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

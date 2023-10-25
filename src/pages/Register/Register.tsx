@@ -98,7 +98,7 @@ const Register: React.FC = () => {
               <img
                 className={styles.userImage}
                 src={`http://localhost:3333${userImageUrl}`}
-                alt="uploaded"
+                alt="user"
               />
             </>
           ) : (

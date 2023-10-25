@@ -9,6 +9,7 @@ import { useAppDispatch } from '../../redux/store';
 import { addItem, removeItem } from '../../redux/cart/slice';
 import { cartSelector } from '../../redux/cart/selectors';
 import { CartItem } from '../../redux/cart/types';
+import toast, { Toaster } from 'react-hot-toast';
 
 type ProductCardProps = {
   _id: string;
@@ -38,6 +39,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
     setIsAdded(!!existingItem);
   }, [cartItems, _id]);
 
+  const notify = () => toast.success('Item Added to Cart');
+
   const handleAddItem = () => {
     const item = {
       _id,
@@ -50,47 +53,53 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
     if (!existingItem) {
       dispatch(addItem(item));
+      notify();
     } else {
       dispatch(removeItem(item._id));
+      const notify = () => toast.error("Item Deleted from Cart");
+      notify();
     }
   };
 
   return (
-    <div className={styles.content}>
-      <article className={styles.item}>
-        <div className={styles.category}>
-          <span className={styles.categoryTitle}>{category}</span>
-        </div>
-        <Link to={`/items/${_id}`} className={`${styles.image} ${styles._ibg}`}>
-          <img src={imageUrl} alt="" />
-        </Link>
-        <div className={styles.bottom}>
-          <div className={styles.main}>
-            <div className={styles.name}>{title}</div>
-            <button onClick={handleAddItem} className={styles.add}>
-              {isAdded ? (
-                <MdDoneOutline size={30} color="#7eb693" />
-              ) : (
-                <AiOutlinePlusCircle size={30} />
-              )}
-            </button>
+    <>
+      <div className={styles.content}>
+        <article className={styles.item}>
+          <div className={styles.category}>
+            <span className={styles.categoryTitle}>{category}</span>
           </div>
-          <div className={styles.pricing}>
-            <div className={styles.price}>
-              <div className={styles.new}>${price}</div>
+          <Link to={`/items/${_id}`} className={`${styles.image} ${styles._ibg}`}>
+            <img src={imageUrl} alt="" />
+          </Link>
+          <div className={styles.bottom}>
+            <div className={styles.main}>
+              <div className={styles.name}>{title}</div>
+              <button onClick={handleAddItem} className={styles.add}>
+                {isAdded ? (
+                  <MdDoneOutline size={30} color="#7eb693" />
+                ) : (
+                  <AiOutlinePlusCircle size={30} />
+                )}
+              </button>
             </div>
-            <div className={styles.rating}>
-              <Rating
-                name="half-rating-read"
-                defaultValue={rating > 5 ? rating - 4 : rating}
-                precision={0.5}
-                readOnly
-              />
+            <div className={styles.pricing}>
+              <div className={styles.price}>
+                <div className={styles.new}>${price}</div>
+              </div>
+              <div className={styles.rating}>
+                <Rating
+                  name="half-rating-read"
+                  defaultValue={rating > 5 ? rating - 4 : rating}
+                  precision={0.5}
+                  readOnly
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </article>
-    </div>
+        </article>
+      </div>
+      <Toaster position="bottom-left" reverseOrder={false} />
+    </>
   );
 };
 

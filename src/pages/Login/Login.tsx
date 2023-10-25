@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../redux/store';
 import { selectIsAuth } from '../../redux/auth/selectors';
 import { fetchLogin } from '../../redux/auth/asyncActions';
 import { Navigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -42,6 +43,11 @@ const Login: React.FC = () => {
   };
 
   if (isAuth) {
+    const notify = () =>
+      toast.success('Done', {
+        position: 'bottom-left',
+      });
+    notify();
     return <Navigate to="/" />;
   }
 
@@ -80,6 +86,7 @@ const Login: React.FC = () => {
       <div className={`${styles.image} ${styles._ibg}`}>
         <img src={bg} alt="" />
       </div>
+      <Toaster />
     </section>
   );
 };

@@ -14,7 +14,6 @@ import { singleProductSelector } from '../../redux/product/selectors';
 import { fetchSingleProduct } from '../../redux/product/asyncActions';
 
 const FullProduct: React.FC = () => {
-  // const [isLoading, setIsLoading] = React.useState(true);
   const [tab, setTab] = React.useState(1);
   const items = useSelector(cartSelector);
   const data = useSelector(singleProductSelector);

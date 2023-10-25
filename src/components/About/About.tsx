@@ -5,11 +5,24 @@ import vegan from '../../assets/img/about/vegan.svg';
 import mailbox from '../../assets/img/about/mailbox.svg';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const About: React.FC = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['1.33 2.5', '0.1'],
+  });
+
+  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
+  const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.6, 1.2]);
+
+
   return (
     <>
-      <section className={styles.about}>
+      <motion.section ref={ref}
+      style={{ scale: scaleProgress, opacity: opacityProgress }} className={styles.about}>
         <div className="container">
           <div className={styles.wrapper}>
             <div className={styles.image}>
@@ -62,7 +75,7 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 };
