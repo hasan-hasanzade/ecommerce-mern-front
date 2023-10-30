@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './products.module.scss';
-import ProductCard from '../ProductCard/ProductCard';
+import { MProductCard } from '../ProductCard/ProductCard';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import { productSelector } from '../../redux/product/selectors';
 import { fetchProducts } from '../../redux/product/asyncActions';
+import { motion } from 'framer-motion';
 
 const Products: React.FC = () => {
-  const  items  = useSelector(productSelector);
+  const items = useSelector(productSelector);
 
   const dispatch = useAppDispatch();
 
@@ -19,14 +20,52 @@ const Products: React.FC = () => {
     }
   }, [dispatch]);
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
+
+  const productAnimation = {
+    hidden: {
+      x: 0,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      x: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
+
   return (
-    <section className={styles.products}>
+    <motion.section
+      initial="hidden"
+      whileInView={'visible'}
+      viewport={{ amount: 0.2, once: true }}
+      className={styles.products}>
       <div className="container">
-        <h3 className={styles.title}>Categories</h3>
-        <div className={styles.subtitle}>Our Products</div>
-        <div className={styles.body}>
-          {items.slice(8, 16).map((obj) => (
-            <ProductCard
+        <motion.h3 custom={1} variants={textAnimation} className={styles.title}>
+          Categories
+        </motion.h3>
+        <motion.div custom={2} variants={textAnimation} className={styles.subtitle}>
+          Our Products
+        </motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView={'visible'}
+          viewport={{ amount: 0.2, once: true }}
+          className={styles.body}>
+          {items.slice(8, 16).map((obj, i) => (
+            <MProductCard
+              custom={i + 1}
+              variants={productAnimation}
               key={obj._id}
               rating={obj.rating}
               _id={obj._id}
@@ -36,9 +75,9 @@ const Products: React.FC = () => {
               price={obj.price}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

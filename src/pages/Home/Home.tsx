@@ -9,12 +9,11 @@ import Newsletter from '../../components/Newsletter/Newsletter';
 import Banner from '../../components/Banner/Banner';
 import BlogsBlock from '../../components/BlogsBlock/BlogsBlock';
 
-
 const Home: React.FC = () => {
   return (
     <>
-      <HeroSection /> 
-      <Banner /> 
+      <HeroSection />
+      <Banner />
       <About />
       <Products />
       <Testimonials />
@@ -23,8 +22,7 @@ const Home: React.FC = () => {
       <BlogsBlock />
       <Newsletter />
     </>
+  );
+};
 
-  )
-}
-
-export default Home
+export default Home;

@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './offer.module.scss';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
-import ProductCard from '../ProductCard/ProductCard';
+import { MProductCard } from '../ProductCard/ProductCard';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import { productSelector } from '../../redux/product/selectors';
 import { fetchProducts } from '../../redux/product/asyncActions';
+import { motion } from 'framer-motion';
 
 const Offer: React.FC = () => {
   const items = useSelector(productSelector);
@@ -21,24 +22,62 @@ const Offer: React.FC = () => {
     }
   }, [dispatch]);
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
+
+  const productAnimation = {
+    hidden: {
+      x: 0,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      x: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
+
   return (
-    <section className={styles.offer}>
+    <motion.section
+      initial="hidden"
+      whileInView={'visible'}
+      viewport={{ amount: 0.2, once: true }}
+      className={styles.offer}>
       <div className="container">
         <div className={styles.heading}>
-          <div className={styles.subtitle}>Offer</div>
-          <div className={styles.title}>
+          <motion.div custom={1} variants={textAnimation} className={styles.subtitle}>
+            Offer
+          </motion.div>
+          <motion.div custom={2} variants={textAnimation} className={styles.title}>
             <h2>We Offer Organic For You</h2>
-            <Link to="/shop" className={styles.button}>
-              View All Product{' '}
-              <span className={styles.arrow}>
-                <BsFillArrowRightCircleFill />
-              </span>{' '}
+            <Link to="/shop">
+              <button className={styles.button}>
+                View All Product{' '}
+                <span className={styles.arrow}>
+                  <BsFillArrowRightCircleFill />
+                </span>{' '}
+              </button>
             </Link>
-          </div>
+          </motion.div>
         </div>
-        <div className={styles.body}>
-          {items.slice(4, 8).map((obj) => (
-            <ProductCard
+        <motion.div
+          initial="hidden"
+          whileInView={'visible'}
+          viewport={{ amount: 0.2, once: true }}
+          className={styles.body}>
+          {items.slice(4, 8).map((obj, i) => (
+            <MProductCard
+              custom={i + 1}
+              variants={productAnimation}
               key={obj._id}
               rating={obj.rating}
               _id={obj._id}
@@ -48,9 +87,9 @@ const Offer: React.FC = () => {
               price={obj.price}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './testimonials.module.scss';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import { motion } from 'framer-motion';
 
 const Testimonials: React.FC = () => {
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
@@ -87,13 +88,29 @@ const Testimonials: React.FC = () => {
     ],
   };
 
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
+
   return (
-    <section className={styles.testimonials}>
+    <motion.section
+      initial="hidden"
+      whileInView={'visible'}
+      viewport={{ amount: 0.2, once: true }}
+      className={styles.testimonials}>
       <div className="container">
         <div className={styles.body}>
-          <div className={styles.subtitle}>Testimonials</div>
-          <h3 className={styles.title}>What Our Customer Saying?</h3>
-          <div className={styles.content}>
+          <motion.div custom={1} variants={textAnimation} className={styles.subtitle}>Testimonials</motion.div>
+          <motion.h3 custom={2} variants={textAnimation} className={styles.title}>What Our Customer Saying?</motion.h3>
+          <motion.div custom={3} variants={textAnimation} className={styles.content}>
             <Slider {...settings}>
               <div className={styles.item}>
                 <div className={styles.user}>
@@ -139,12 +156,12 @@ const Testimonials: React.FC = () => {
                 <div className={styles.role}>Consumer</div>
               </div>
             </Slider>
-          </div>
+          </motion.div>
         </div>
         <div className={styles.countup}>
-          <div className={styles.green}>
+          <motion.div custom={4} variants={textAnimation} className={styles.green}>
             <div className={styles.gray}>
-              <div className={styles.count}>
+              <motion.div className={styles.count}>
                 <CountUp end={100} redraw={true}>
                   {({ countUpRef, start }) => (
                     <VisibilitySensor onChange={start} delayedCall>
@@ -153,11 +170,11 @@ const Testimonials: React.FC = () => {
                   )}
                 </CountUp>
                 %
-              </div>
+              </motion.div>
               <div className={styles.desc}>Organic</div>
             </div>
-          </div>
-          <div className={styles.green}>
+          </motion.div>
+          <motion.div custom={5} variants={textAnimation} className={styles.green}>
             <div className={styles.gray}>
               <div className={styles.count}>
                 <CountUp end={285} redraw={true}>
@@ -170,8 +187,8 @@ const Testimonials: React.FC = () => {
               </div>
               <div className={styles.desc}>Active Product</div>
             </div>
-          </div>
-          <div className={styles.green}>
+          </motion.div>
+          <motion.div custom={6} variants={textAnimation} className={styles.green}>
             <div className={styles.gray}>
               <div className={styles.count}>
                 <CountUp end={350} redraw={true}>
@@ -185,8 +202,8 @@ const Testimonials: React.FC = () => {
               </div>
               <div className={styles.desc}>Organic Orchads</div>
             </div>
-          </div>
-          <div className={styles.green}>
+          </motion.div>
+          <motion.div custom={7} variants={textAnimation} className={styles.green}>
             <div className={styles.gray}>
               <div className={styles.count}>
                 <CountUp end={25} redraw={true}>
@@ -200,13 +217,13 @@ const Testimonials: React.FC = () => {
               </div>
               <div className={styles.desc}>Years of Farming</div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       <div className={`${styles.image} ${styles._ibg}`}>
         <img src={bg} alt="" />
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -5,38 +5,46 @@ import vegan from '../../assets/img/about/vegan.svg';
 import mailbox from '../../assets/img/about/mailbox.svg';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['1.33 2.5', '0.1'],
-  });
-
-  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
-  const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.6, 1.2]);
-
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
 
   return (
     <>
-      <motion.section ref={ref}
-      style={{ scale: scaleProgress, opacity: opacityProgress }} className={styles.about}>
+      <motion.section
+        initial="hidden"
+        whileInView={'visible'}
+        viewport={{ amount: 0.2, once: true }}
+        className={styles.about}>
         <div className="container">
           <div className={styles.wrapper}>
-            <div className={styles.image}>
+            <motion.div custom={1} variants={textAnimation} className={styles.image}>
               <img src={bgAbout} alt="cover" />
-            </div>
+            </motion.div>
             <div className={styles.body}>
-              <div className={styles.subtitle}>About Us</div>
-              <h2 className={styles.title}>We Believe in Working Accredited Farmers</h2>
-              <p className={styles.text}>
+              <motion.h2 custom={2} variants={textAnimation} className={styles.subtitle}>
+                About Us
+              </motion.h2>
+              <motion.p custom={2} variants={textAnimation} className={styles.title}>
+                We Believe in Working Accredited Farmers
+              </motion.p>
+              <motion.p custom={2} variants={textAnimation} className={styles.text}>
                 Welcome to the world of natural and organic. Here you can discover the bounty of
                 nature. We have grown on the principles of health, and care. We aim to give our
                 customers a healthy chemical-free meal for perfect nutrition.
-              </p>
-              <div className={styles.content}>
+              </motion.p>
+              <motion.div custom={3} variants={textAnimation} className={styles.content}>
                 <div className={styles.icon}>
                   <div className={styles.block}>
                     <img src={vegan} alt="vegan" />
@@ -49,8 +57,8 @@ const About: React.FC = () => {
                     will start to move on with the next step.
                   </p>
                 </div>
-              </div>
-              <div className={styles.content}>
+              </motion.div>
+              <motion.div custom={4} variants={textAnimation} className={styles.content}>
                 <div className={styles.icon}>
                   <div className={styles.mblock}>
                     <img src={mailbox} alt="vegan" />
@@ -63,15 +71,15 @@ const About: React.FC = () => {
                     directly visit the to buy the product.
                   </p>
                 </div>
-              </div>
-              <div className={styles.btn}>
+              </motion.div>
+              <motion.div custom={5} variants={textAnimation} className={styles.btn}>
                 <Link to="/shop" className={styles.button}>
                   Shop Now{' '}
                   <span className={styles.arrow}>
                     <BsFillArrowRightCircleFill />
                   </span>{' '}
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

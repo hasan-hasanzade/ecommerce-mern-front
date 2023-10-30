@@ -2,7 +2,9 @@ import React from 'react';
 import { BsFillArrowRightCircleFill, BsFillPersonFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import styles from './blog.module.scss';
-import img from '../../assets/img/skel.jpg'
+import img from '../../assets/img/skel.jpg';
+import { motion } from 'framer-motion';
+import { forwardRef, Ref} from 'react';
 
 type BlogProps = {
   title: string;
@@ -14,7 +16,7 @@ type BlogProps = {
   _id: string;
 };
 
-const Blog: React.FC<BlogProps> = ({ title, imageUrl, author, text, date, month, _id }) => {
+export const Blog: React.FC<BlogProps> = forwardRef(({ title, imageUrl, author, text, date, month, _id }, ref: Ref<HTMLDivElement>) => {
   const [imageLoaded, setImageLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -25,14 +27,10 @@ const Blog: React.FC<BlogProps> = ({ title, imageUrl, author, text, date, month,
     };
   }, [imageUrl]);
   return (
-    <div className={styles.card}>
+    <div ref={ref} className={styles.card}>
       <div className={styles.picture}>
-      {imageLoaded ? (
-          <img
-            className={styles.cardimg}
-            src={imageUrl}
-            alt=""
-          />
+        {imageLoaded ? (
+          <img className={styles.cardimg} src={imageUrl} alt="" />
         ) : (
           <img className={styles.cardimg} src={img} alt="" />
         )}
@@ -59,6 +57,6 @@ const Blog: React.FC<BlogProps> = ({ title, imageUrl, author, text, date, month,
       </div>
     </div>
   );
-};
+});
 
-export default Blog;
+export const MBlog = motion(Blog);

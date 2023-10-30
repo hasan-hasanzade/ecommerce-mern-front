@@ -3,7 +3,7 @@ import styles from './shop.module.scss';
 import PageBanner from '../../components/PageBanner/PageBanner';
 import bg from '../../assets/img/shop/shop.jpg';
 import SideBar from '../../components/SideBar/SideBar';
-import ProductCard from '../../components/ProductCard/ProductCard';
+import {MProductCard} from '../../components/ProductCard/ProductCard';
 import Skeleton from '../../components/ProductCard/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchError from '../../components/SearchError/SearchError';
@@ -146,7 +146,7 @@ const Shop = () => {
               )}
               {isLoading
                 ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-                : items.map((obj) => <ProductCard key={obj._id} {...obj} />)}
+                : items.map((obj) => <MProductCard key={obj._id} {...obj} />)}
             </div>
             <Pagination handlePageClick={handlePageClick} pageCount={pageCount} />
           </div>

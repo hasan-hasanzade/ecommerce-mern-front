@@ -3,7 +3,7 @@ import styles from './recentblogs.module.scss';
 import PageBanner from '../../components/PageBanner/PageBanner';
 import NewsLetter from '../../components/Newsletter/Newsletter';
 import bg from '../../assets/img/blogs-page/bgblog.jpg';
-import Blog from '../../components/Blog/Blog';
+import { MBlog } from '../../components/Blog/Blog';
 import { blogSelector } from '../../redux/blog/selectors';
 import { fetchBlogs } from '../../redux/blog/asyncActions';
 import { useSelector } from 'react-redux';
@@ -40,7 +40,7 @@ const RecentBlogs: React.FC = () => {
               ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
               : blogs.map((obj) => (
                   <div className={styles.blogCard} key={obj._id}>
-                    <Blog {...obj} />
+                    <MBlog {...obj} />
                   </div>
                 ))}
           </div>
