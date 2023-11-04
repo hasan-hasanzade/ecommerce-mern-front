@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './register.module.scss';
 import bg from '../../assets/img/bgsign.jpg';
-import user from '../../assets/img/userg.png';
+// import user from '../../assets/img/userg.png';
 import { AiFillGoogleCircle } from 'react-icons/ai';
+import { FcAddImage } from 'react-icons/fc';
 import { BsFacebook } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -12,6 +13,7 @@ import { selectIsAuth, selectorUserImg } from '../../redux/auth/selectors';
 import { setUserImageUrl } from '../../redux/auth/slice';
 import { fetchRegister } from '../../redux/auth/asyncActions';
 import axios from '../../axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Register: React.FC = () => {
   const inputFileRef = React.useRef<HTMLInputElement>(null);
@@ -27,9 +29,9 @@ const Register: React.FC = () => {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      fullName: 'Abrams',
-      email: 'abrams@test.ru',
-      password: '123456',
+      fullName: '',
+      email: '',
+      password: '',
     },
     mode: 'onChange',
   });
@@ -43,18 +45,46 @@ const Register: React.FC = () => {
     const data = await dispatch(fetchRegister(dataToSend));
 
     if (!data.payload) {
-      alert('Cannot Register');
+      const err = () =>
+      toast.error('You entered an incorrect email or password.', {
+        style: {
+          border: '2px solid #fff',
+          padding: '16px',
+          color: '#fff',
+          fontSize: '17px',
+          backgroundColor: '#274C5B',
+        },
+        iconTheme: {
+          primary: 'red',
+          secondary: '#FFFAEE',
+        },
+      });
+      err();
     }
 
     if (fetchRegister.fulfilled.match(data)) {
       const token = data.payload.token;
       window.localStorage.setItem('token', token);
     } else if (fetchRegister.rejected.match(data)) {
-      alert('Cannot Register');
+      console.log('Cannot Register');
     }
   };
 
   if (isAuth) {
+    const notify = () =>
+      toast.success('Done', {
+        style: {
+          padding: '16px',
+          color: '#274C5B',
+          fontSize: '17px',
+          backgroundColor: '#EFD372',
+        },
+        iconTheme: {
+          primary: '#7EB693',
+          secondary: '#FFFAEE',
+        },
+      });
+    notify();
     return <Navigate to="/" />;
   }
 
@@ -103,7 +133,8 @@ const Register: React.FC = () => {
             </>
           ) : (
             <>
-              <img onClick={() => inputFileRef.current?.click()} src={user} alt="" />
+              {/* <img onClick={() => inputFileRef.current?.click()} src={user} alt="user" className={styles.noUser} /> */}
+              <p onClick={() => inputFileRef.current?.click()} className={styles.noUser}><FcAddImage size={55} /> </p>
               <input ref={inputFileRef} onChange={handleChangeFile} type="file" hidden />
             </>
           )}
@@ -113,22 +144,25 @@ const Register: React.FC = () => {
           className={`${styles.input} ${errors.fullName ? styles['errorBorder'] : ''}`}
           type="text"
           {...register('fullName', { required: 'Enter your full name' })}
+          placeholder="Fullname"
         />
         {errors.fullName?.message && <p className={styles.error}>Name is required.</p>}
         <input
           className={`${styles.input} ${errors.email ? styles['errorBorder'] : ''}`}
           type="email"
           {...register('email', { required: 'Enter your Email' })}
+          placeholder="Email"
         />
         {errors.email?.message && <p className={styles.error}>Email is required.</p>}
         <input
           className={`${styles.input} ${errors.password ? styles['errorBorder'] : ''}`}
           type="password"
+          placeholder="Password"
           {...register('password', { required: 'Enter your password' })}
         />
         {errors.password?.message && <p className={styles.error}>Password is required.</p>}
         <div className={styles.btn}>
-          <button disabled={!isValid} type="submit" className={styles.button}>
+          <button type="submit" className={styles.button}>
             Sign In
           </button>
         </div>
@@ -141,6 +175,7 @@ const Register: React.FC = () => {
           </div>
         </div>
       </form>
+      <Toaster position="bottom-left" reverseOrder={false} />
     </section>
   );
 };

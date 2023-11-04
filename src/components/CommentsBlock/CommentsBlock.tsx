@@ -6,13 +6,14 @@ import { useAppDispatch } from '../../redux/store';
 import { commentSelector, commentTextSelector } from '../../redux/comment/selectors';
 import { fetchComment, fetchCommentPost } from '../../redux/comment/asyncActions';
 import { setCommentText, commentSlice } from '../../redux/comment/slice';
+import profile from '../../assets/img/user.png';
+import toast, { Toaster } from 'react-hot-toast';
 
 const CommentsBlock: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const comments = useSelector(commentSelector);
 
-  console.log(comments);
   const commentText = useSelector(commentTextSelector);
 
   const isAuth = useSelector(selectIsAuth);
@@ -42,6 +43,20 @@ const CommentsBlock: React.FC = () => {
     dispatch(fetchComment());
   }, []);
 
+  const notify = () => toast.error('To add a comment, please log in.', {
+    style: {
+      border: '2px solid #fff',
+      padding: '16px',
+      color: '#fff',
+      fontSize: '17px',
+      backgroundColor: '#274C5B',
+    },
+    iconTheme: {
+      primary: 'red',
+      secondary: '#FFFAEE',
+    },
+  });
+
   return (
     <section className={styles.comments}>
       <div className={styles.body}>
@@ -49,7 +64,15 @@ const CommentsBlock: React.FC = () => {
         {comments.map((obj) => (
           <div key={obj._id} className={styles.item}>
             <div className={styles.image}>
-              {obj.author && <img src={`http://localhost:3333${obj.author?.avatarUrl}`} alt="" />}
+              {obj.author && (
+                <div className={styles.image}>
+                  {obj.author.avatarUrl ? (
+                    <img src={`http://localhost:3333${obj.author.avatarUrl}`} alt="user" />
+                  ) : (
+                    <img src={profile} alt="user" />
+                  )}
+                </div>
+              )}
             </div>
             <div className={styles.desc}>
               <span className={styles.name}>{obj.author?.fullName}</span>
@@ -62,7 +85,7 @@ const CommentsBlock: React.FC = () => {
             {isAuth ? (
               <img src={`http://localhost:3333${avatarUrl}`} alt="" />
             ) : (
-              <img src="https://mui.com/static/images/avatar/6.jpg" alt="" />
+              <img src={profile} alt="" />
             )}
           </div>
           <div className={styles.postInput}>
@@ -76,11 +99,18 @@ const CommentsBlock: React.FC = () => {
           </div>
         </div>
         <div className={styles.buttonSubmit}>
-          <button type="submit" onClick={handleCommentSubmit} className={styles.btn}>
-            Add comment
-          </button>
+          {isAuth ? (
+            <button type="submit" onClick={handleCommentSubmit} className={styles.btn}>
+              Add comment
+            </button>
+          ) : (
+            <button onClick={notify} className={styles.btn}>
+              Add comment
+            </button>
+          )}
         </div>
       </div>
+      <Toaster position="bottom-left" reverseOrder={false} />
     </section>
   );
 };

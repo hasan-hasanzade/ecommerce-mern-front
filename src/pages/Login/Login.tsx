@@ -31,21 +31,44 @@ const Login: React.FC = () => {
     const data = await dispatch(fetchLogin(values));
 
     if (!data.payload) {
-      alert('Cannot Log in');
+      const err = () =>
+      toast.error('You entered an incorrect email or password.', {
+        style: {
+          border: '2px solid #fff',
+          padding: '16px',
+          color: '#fff',
+          fontSize: '17px',
+          backgroundColor: '#274C5B',
+        },
+        iconTheme: {
+          primary: 'red',
+          secondary: '#FFFAEE',
+        },
+      });
+      err();
     }
 
     if (fetchLogin.fulfilled.match(data)) {
       const token = data.payload.token;
       window.localStorage.setItem('token', token);
     } else if (fetchLogin.rejected.match(data)) {
-      alert('Cannot Log in');
+      console.log('err')
     }
   };
 
   if (isAuth) {
     const notify = () =>
       toast.success('Done', {
-        position: 'bottom-left',
+        style: {
+          padding: '16px',
+          color: '#274C5B',
+          fontSize: '17px',
+          backgroundColor: '#EFD372',
+        },
+        iconTheme: {
+          primary: '#7EB693',
+          secondary: '#FFFAEE',
+        },
       });
     notify();
     return <Navigate to="/" />;
@@ -86,7 +109,7 @@ const Login: React.FC = () => {
       <div className={`${styles.image} ${styles._ibg}`}>
         <img src={bg} alt="" />
       </div>
-      <Toaster />
+      <Toaster position="bottom-left" reverseOrder={false} />
     </section>
   );
 };

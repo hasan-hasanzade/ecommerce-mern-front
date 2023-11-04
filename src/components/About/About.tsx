@@ -73,11 +73,13 @@ const About: React.FC = () => {
                 </div>
               </motion.div>
               <motion.div custom={5} variants={textAnimation} className={styles.btn}>
-                <Link to="/shop" className={styles.button}>
-                  Shop Now{' '}
-                  <span className={styles.arrow}>
-                    <BsFillArrowRightCircleFill />
-                  </span>{' '}
+                <Link to="/shop">
+                  <button className={styles.button}>
+                    Shop Now{' '}
+                    <span className={styles.arrow}>
+                      <BsFillArrowRightCircleFill />
+                    </span>{' '}
+                  </button>
                 </Link>
               </motion.div>
             </div>

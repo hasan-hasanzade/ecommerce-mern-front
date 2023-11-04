@@ -1,7 +1,8 @@
 @use '../../scss/global' as *;
 
 .footer {
-   padding-top: 100px;
+   // padding-top: 100px;
+   margin-top: 50px;
    @media (max-width: $tablet) {
       padding-top: 80px;
    }
@@ -159,6 +160,12 @@
    letter-spacing: 0.5px;
    margin-bottom: 15px;
    color: $textGray;
+   transition: color .3s ease;
+}
+@media(any-hover) {
+   .link:hover {
+      color: $primaryGreen;
+   }
 }
 
 .copy {

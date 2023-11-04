@@ -10,14 +10,30 @@ import keiraImg from '../../assets/img/team-page/keira.jpg';
 import scottImg from '../../assets/img/team-page/scott.jpg';
 import karenImg from '../../assets/img/team-page/karen.jpg';
 import Newsletter from '../../components/Newsletter/Newsletter';
+import { motion } from 'framer-motion';
 
 const OurTeam: React.FC = () => {
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
   return (
     <>
       <PageBanner title={'Our Team'} img={bg} />
-      <section className={styles.team}>
+      <motion.section
+        initial="hidden"
+        whileInView={'visible'}
+        viewport={{ amount: 0.2, once: true }}
+        className={styles.team}>
         <div className="container">
-          <div className={styles.heading}>
+          <motion.div custom={1} variants={textAnimation} className={styles.heading}>
             <h2 className={styles.subtitle}>The Team</h2>
             <h5 className={styles.title}>Our Organic Experts</h5>
             <p>
@@ -25,8 +41,8 @@ const OurTeam: React.FC = () => {
               <br />
               customers a healthy chemical-free meal for perfect nutrition.
             </p>
-          </div>
-          <div className={styles.team_cards}>
+          </motion.div>
+          <motion.div custom={2} variants={textAnimation} className={styles.team_cards}>
             <div className={styles.team_card}>
               <div className={`${styles.team_img} ${styles._ibg}`}>
                 <img src={shaneImg} alt="Giovanni" />
@@ -159,12 +175,12 @@ const OurTeam: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       <Newsletter />
     </>
-  )
-}
+  );
+};
 
-export default OurTeam
+export default OurTeam;

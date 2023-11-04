@@ -11,22 +11,38 @@ import vegetables from '../../assets/img/services/Vegetables-Bag.png';
 import radish from '../../assets/img/services/Radish.png';
 import bgForVideo from '../../assets/img/services/bgvideo.jpg';
 import play from '../../assets/img/services/play.svg';
+import { motion } from 'framer-motion';
 
 const Services: React.FC = () => {
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
   return (
     <>
       <PageBanner title={'Services'} img={bg} />
-      <section className={styles.services}>
+      <motion.section
+        initial="hidden"
+        whileInView={'visible'}
+        viewport={{ amount: 0.2, once: true }}
+        className={styles.services}>
         <div className="container">
-          <div className={styles.heading}>
+          <motion.div custom={1} variants={textAnimation} className={styles.heading}>
             <h2 className={styles.subtitle}>We Are The Best</h2>
             <h5 className={styles.title}>
               The Way Organic <br /> Magic Happens
             </h5>
-          </div>
+          </motion.div>
           <div className={styles.body}>
             <div className={styles.left_items}>
-              <div className={styles.item}>
+              <motion.div custom={3} variants={textAnimation} className={styles.item}>
                 <div className={styles.leftImg}>
                   <img src={bottle} alt="milk bottle" />
                 </div>
@@ -37,8 +53,8 @@ const Services: React.FC = () => {
                     place where you need to choose the product.
                   </p>
                 </div>
-              </div>
-              <div className={styles.item}>
+              </motion.div>
+              <motion.div custom={4} variants={textAnimation} className={styles.item}>
                 <div className={styles.leftImg}>
                   <img src={store} alt="online store" />
                 </div>
@@ -49,8 +65,8 @@ const Services: React.FC = () => {
                     directly visit the to buy the product.
                   </p>
                 </div>
-              </div>
-              <div className={styles.item}>
+              </motion.div>
+              <motion.div custom={5} variants={textAnimation} className={styles.item}>
                 <div className={styles.leftImg}>
                   <img src={delivery} alt="milk bottle" />
                 </div>
@@ -61,13 +77,13 @@ const Services: React.FC = () => {
                     your product to your doorstep.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
-            <div className={styles.center}>
+            <motion.div custom={2} variants={textAnimation} className={styles.center}>
               <img src={snack} alt="" />
-            </div>
+            </motion.div>
             <div className={styles.right_items}>
-              <div className={styles.item}>
+              <motion.div custom={6} variants={textAnimation} className={styles.item}>
                 <div className={styles.right_img}>
                   <img src={natural} alt="natural food" />
                 </div>
@@ -78,8 +94,8 @@ const Services: React.FC = () => {
                     and also for our success.
                   </p>
                 </div>
-              </div>
-              <div className={styles.item}>
+              </motion.div>
+              <motion.div custom={7} variants={textAnimation} className={styles.item}>
                 <div className={styles.right_img}>
                   <img src={vegetables} alt="online store" />
                 </div>
@@ -90,8 +106,8 @@ const Services: React.FC = () => {
                     will start to move on with the next step.
                   </p>
                 </div>
-              </div>
-              <div className={styles.item}>
+              </motion.div>
+              <motion.div custom={8} variants={textAnimation} className={styles.item}>
                 <div className={styles.right_img}>
                   <img src={radish} alt="milk bottle" />
                 </div>
@@ -102,13 +118,17 @@ const Services: React.FC = () => {
                     fresh and organic vegetables.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
-      </section>
-      <section className={styles.video}>
-        <div className={styles.heading}>
+      </motion.section>
+      <motion.section
+        initial="hidden"
+        whileInView={'visible'}
+        viewport={{ amount: 0.2, once: true }}
+        className={styles.video}>
+        <motion.div custom={1} variants={textAnimation} className={styles.heading}>
           <h2 className={styles.subtitle}>Organick Only</h2>
           <h5 className={styles.title}>Fresh & Organic Everyday</h5>
           <p>
@@ -116,15 +136,15 @@ const Services: React.FC = () => {
             role in our success. <br />
             Each and everyone is most important to us and also for our success.
           </p>
-        </div>
+        </motion.div>
         <div className={`${styles.videobg} ${styles._ibg}`}>
-          <img  src={bgForVideo} alt="" />
+          <img src={bgForVideo} alt="" />
         </div>
 
-        <div className={styles.button}>
+        <motion.div custom={2} variants={textAnimation} className={styles.button}>
           <img className={styles.playBtn} src={play} alt="" />
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
     </>
   );
 };

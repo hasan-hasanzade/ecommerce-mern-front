@@ -54,7 +54,7 @@ const Products: React.FC = () => {
         <motion.h3 custom={1} variants={textAnimation} className={styles.title}>
           Categories
         </motion.h3>
-        <motion.div custom={2} variants={textAnimation} className={styles.subtitle}>
+        <motion.div custom={1} variants={textAnimation} className={styles.subtitle}>
           Our Products
         </motion.div>
         <motion.div

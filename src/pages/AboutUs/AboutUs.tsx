@@ -16,41 +16,68 @@ import Newsletter from '../../components/Newsletter/Newsletter';
 import bg from '../../assets/img/about-page/about-banner.jpg';
 import Offer from '../../components/Offer/Offer';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { AiOutlineInstagram, AiOutlineTwitter, AiFillFacebook } from 'react-icons/ai';
 
 const AboutUs: React.FC = () => {
+  const textAnimation = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
+  const cardAnimation = {
+    hidden: {
+      x: 0,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      x: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
   return (
     <>
       <PageBanner title={'About Us'} img={bg} />
-      <section className={styles.hero}>
+      <motion.section
+        initial="hidden"
+        whileInView={'visible'}
+        viewport={{ amount: 0.2, once: true }}
+        className={styles.hero}>
         <div className="container">
           <div className={styles.body}>
-            <div className={styles.image}>
+            <motion.div custom={1} variants={textAnimation} className={styles.image}>
               <img src={salad} alt="" />
-            </div>
+            </motion.div>
             <div className={styles.content}>
-              <div className={styles.heading}>
+              <motion.div custom={2} variants={textAnimation} className={styles.heading}>
                 <h4 className={styles.subtitle}>Only pure and organic</h4>
                 <h2 className={styles.title}>
                   Fresh from farm <br /> Return to purity
                 </h2>
-              </div>
+              </motion.div>
               <div className={styles.texts}>
-                <p>
+                <motion.p custom={3} variants={textAnimation}>
                   Our rich experience helps us in ensuring that the products brought to you are 100%
                   chemical-free. To live a better, healthier, and wholesome life by providing them
                   with 100% certified, authentic organic food.
-                </p>
-                <p>
+                </motion.p>
+                <motion.p custom={3} variants={textAnimation}>
                   Welcome to the world of nature and organic. Here you can discover the bounty of
                   nature. We have grown on the principles of health and care. We aim to give our
                   customers a healthy chemical-free meal for perfect nutrition.{' '}
-                </p>
+                </motion.p>
               </div>
               <div className={styles.priority}>
-                <div className={styles.item}>
+                <motion.div custom={4} variants={textAnimation} className={styles.item}>
                   <div className={styles.trac}>
                     <img src={tractor} alt="" />
                   </div>
@@ -58,8 +85,8 @@ const AboutUs: React.FC = () => {
                     Modern Agriculture <br />
                     Equipmnet
                   </h5>
-                </div>
-                <div className={styles.item}>
+                </motion.div>
+                <motion.div custom={4} variants={textAnimation} className={styles.item}>
                   <div className={styles.chem}>
                     <img src={chemical} alt="" />
                   </div>
@@ -67,61 +94,76 @@ const AboutUs: React.FC = () => {
                     No Chemicals & <br />
                     Hormones Are Used
                   </h5>
-                </div>
+                </motion.div>
               </div>
-              <div className={styles.action}>
-                <Link to="/shop" className={styles.button}>
-                  Explore More{' '}
-                  <span className={styles.arrow}>
-                    <BsFillArrowRightCircleFill />
-                  </span>{' '}
+              <motion.div custom={5} variants={textAnimation} className={styles.action}>
+                <Link to="/shop">
+                  <button className={styles.button}>
+                    {' '}
+                    Explore More{' '}
+                    <span className={styles.arrow}>
+                      <BsFillArrowRightCircleFill />
+                    </span>{' '}
+                  </button>
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
-      </section>
-      <section className={styles.store}>
+      </motion.section>
+      <motion.section
+        initial="hidden"
+        whileInView={'visible'}
+        viewport={{ amount: 0.2, once: true }}
+        className={styles.store}>
         <div className="container">
           <div className={styles.wrapper}>
             <div className={styles.store_body}>
-              <div className={styles.heading}>
+              <motion.div custom={1} variants={textAnimation} className={styles.heading}>
                 <h2 className={styles.subtitle}>Why Organick Store?</h2>
                 <h5 className={styles.title}>
                   We Cultivating the chemical & <br /> Fertilizer Free Products
                 </h5>
-              </div>
-              <p className={styles.texts}>
+              </motion.div>
+              <motion.p custom={3} variants={textAnimation} className={styles.texts}>
                 After a lot of struggles in our lives, we now are popular and now we are producing
                 the best organic products. Initially.
-              </p>
+              </motion.p>
               <div className={styles.store_content}>
-                <div className={styles.store_wrap}>
-                  <h6 className={styles.store_title}>100% Natural Product</h6>
-                </div>
-                <div className={styles.texts}>
-                  <p className={styles._pl}>
-                    In our listing, we have several collections of organic products and <br /> place
-                    where you need to choose the product you want.{' '}
-                  </p>
-                </div>
-                <div className={styles.store_wrap}>
-                  <h6 className={styles.store_title}>Same Day Delivery</h6>
-                </div>
-                <div className={styles.texts}>
-                  <p className={styles._pl}>
-                    If you are not comfortable going to the nearby market place we <br /> also will
-                    deliver your product to your doorstep.{' '}
-                  </p>
-                </div>
+                <motion.div custom={4} variants={textAnimation}>
+                  <div className={styles.store_wrap}>
+                    <h6 className={styles.store_title}>100% Natural Product</h6>
+                  </div>
+                  <div className={styles.texts}>
+                    <p className={styles._pl}>
+                      In our listing, we have several collections of organic products and <br />{' '}
+                      place where you need to choose the product you want.{' '}
+                    </p>
+                  </div>
+                </motion.div>
+                <motion.div custom={5} variants={textAnimation}>
+                  <div className={styles.store_wrap}>
+                    <h6 className={styles.store_title}>Same Day Delivery</h6>
+                  </div>
+                  <div className={styles.texts}>
+                    <p className={styles._pl}>
+                      If you are not comfortable going to the nearby market place we <br /> also
+                      will deliver your product to your doorstep.{' '}
+                    </p>
+                  </div>
+                </motion.div>
               </div>
             </div>
-            <div className={styles.store_image}>
+            <motion.div custom={2} variants={textAnimation} className={styles.store_image}>
               <img src={greenImg} alt="green products" />
-            </div>
+            </motion.div>
           </div>
-          <div className={styles.cards}>
-            <div className={styles.card}>
+          <motion.div
+            initial="hidden"
+            whileInView={'visible'}
+            viewport={{ amount: 0.2, once: true }}
+            className={styles.cards}>
+            <motion.div custom={1} variants={cardAnimation} className={styles.card}>
               <div className={styles.inner}>
                 <div className={styles.icon}>
                   <img src={returnIcon} alt="" />
@@ -129,8 +171,8 @@ const AboutUs: React.FC = () => {
                 <h6>Return Policy</h6>
                 <p>If the product having any issues you can return the product.</p>
               </div>
-            </div>
-            <div className={styles.card}>
+            </motion.div>
+            <motion.div custom={2} variants={cardAnimation} className={styles.card}>
               <div className={styles.inner}>
                 <div className={styles.icon}>
                   <img src={naturalIcon} alt="" />
@@ -138,8 +180,8 @@ const AboutUs: React.FC = () => {
                 <h6>100% Fresh</h6>
                 <p>Fully organic and fresh products are delivered at door step.</p>
               </div>
-            </div>
-            <div className={styles.card}>
+            </motion.div>
+            <motion.div custom={3} variants={cardAnimation} className={styles.card}>
               <div className={styles.inner}>
                 <div className={styles.icon}>
                   <img src={supportIcon} alt="" />
@@ -147,8 +189,8 @@ const AboutUs: React.FC = () => {
                 <h6>Support 24/7</h6>
                 <p>Our support team is available for take care the customers.</p>
               </div>
-            </div>
-            <div className={styles.card}>
+            </motion.div>
+            <motion.div custom={4} variants={cardAnimation} className={styles.card}>
               <div className={styles.inner}>
                 <div className={styles.icon}>
                   <img src={securedIcon} alt="" />
@@ -156,13 +198,17 @@ const AboutUs: React.FC = () => {
                 <h6>Secured Payment</h6>
                 <p>Fully secured payment methods are used for buying product.</p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
-      <section className={styles.team}>
+      </motion.section>
+      <motion.section
+        initial="hidden"
+        whileInView={'visible'}
+        viewport={{ amount: 0.2, once: true }}
+        className={styles.team}>
         <div className="container">
-          <div className={styles.heading}>
+          <motion.div custom={1} variants={textAnimation} className={styles.heading}>
             <h2 className={styles.subtitle}>The Team</h2>
             <h5 className={styles.title}>Our Organic Experts</h5>
             <p>
@@ -170,8 +216,8 @@ const AboutUs: React.FC = () => {
               <br />
               customers a healthy chemical-free meal for perfect nutrition.
             </p>
-          </div>
-          <div className={styles.team_cards}>
+          </motion.div>
+          <motion.div custom={2} variants={textAnimation} className={styles.team_cards}>
             <div className={styles.team_card}>
               <div className={`${styles.team_img} ${styles._ibg}`}>
                 <img src={shaneImg} alt="Giovanni" />
@@ -238,9 +284,9 @@ const AboutUs: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       <Newsletter />
       <Offer />
     </>

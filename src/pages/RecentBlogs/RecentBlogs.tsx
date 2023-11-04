@@ -9,6 +9,7 @@ import { fetchBlogs } from '../../redux/blog/asyncActions';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import Skeleton from './BlogSkeleton';
+import { motion } from 'framer-motion';
 
 const RecentBlogs: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -30,6 +31,18 @@ const RecentBlogs: React.FC = () => {
       });
   }, [dispatch]);
 
+  const blogAnimation = {
+    hidden: {
+      x: 0,
+      opacity: 0,
+    },
+    visible: (custom: number) => ({
+      x: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: 1, delay: custom * 0.5 },
+    }),
+  };
+
   return (
     <>
       <PageBanner title={'Recent News'} img={bg} />
@@ -38,10 +51,15 @@ const RecentBlogs: React.FC = () => {
           <div className={styles.body}>
             {isLoading
               ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-              : blogs.map((obj) => (
-                  <div className={styles.blogCard} key={obj._id}>
-                    <MBlog {...obj} />
-                  </div>
+              : blogs.map((obj, i) => (
+                  <motion.div
+                    initial="hidden"
+                    whileInView={'visible'}
+                    viewport={{ amount: 0.2, once: true }}
+                    className={styles.blogCard}
+                    key={obj._id}>
+                    <MBlog custom={i + 1} variants={blogAnimation} {...obj} />
+                  </motion.div>
                 ))}
           </div>
         </div>

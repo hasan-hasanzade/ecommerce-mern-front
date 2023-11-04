@@ -8,27 +8,29 @@ const NotFound: React.FC = () => {
   return (
     <section className={styles.notfound}>
       <div className={`${styles.image} ${styles._ibg}`}>
-         <img src={bg} alt="" />
+        <img src={bg} alt="" />
       </div>
       <div className="container">
-         <div className={styles.content}>
-            <div className={styles.heading}>
-               <h2>404</h2>
-               <h4>Page Not Found</h4>
-               <p>The page you are looking for doesn't exist or has been moved</p>
-               <button className={styles.button}>
-                <Link to="/" className={styles.btn}>
+        <div className={styles.content}>
+          <div className={styles.heading}>
+            <h2>404</h2>
+            <h4>Page Not Found</h4>
+            <p>The page you are looking for doesn't exist or has been moved</p>
+            <div className={styles.btn}>
+              <Link to="/">
+                <button className={styles.button}>
                   Go To Home Page{' '}
                   <span className={styles.arrow}>
                     <BsFillArrowRightCircleFill />
                   </span>{' '}
-                </Link>
-              </button>
+                </button>
+              </Link>
             </div>
-         </div>
+          </div>
+        </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default NotFound;

@@ -1,32 +1,40 @@
 @use '../../scss/global' as *;
 
-.wrapper {
-   width: 1500px;
+.wrap {
+   // width: 100%;
 }
 
 .body {
-   display: flex;
-   align-items: center;
-   justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .title {
-   font-weight: 700;
-   font-size: 25px;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.image {
+  img {
+    width: 300px;
+    height: 300px;
+  }
 }
 
 .list {
-   margin-top: 50px;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   gap: 10px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .item {
-   list-style-type: disc;
-   font-weight: normal;
-   text-align: left;
-   font-size: 19px;
+  list-style-type: disc;
+  font-weight: normal;
+  text-align: left;
+  font-size: 19px;
 }

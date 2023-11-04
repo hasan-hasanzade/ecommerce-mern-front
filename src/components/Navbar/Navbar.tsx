@@ -2,11 +2,10 @@ import React from 'react';
 import logo from '../../assets/img/logo.png';
 import { AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
-import { CgProfile } from 'react-icons/cg';
 import { BiLogOut } from 'react-icons/bi';
 import Cart from '../Cart/Cart';
 import { Link } from 'react-router-dom';
-import profile from '../../assets/img/userg.png';
+import profile from '../../assets/img/userg1.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartSelector } from '../../redux/cart/selectors';
 import styles from './navbar.module.scss';
@@ -101,7 +100,7 @@ const Navbar: React.FC = () => {
             </li>
             <li className={styles.list}>
               <Link className={styles.item} onClick={closeBurgerMenu} to="/about">
-                About
+                About Us
               </Link>
             </li>
             <li className={styles.list}>
@@ -116,7 +115,7 @@ const Navbar: React.FC = () => {
             </li>
             <li className={styles.list}>
               <Link className={styles.item} onClick={closeBurgerMenu} to="/contact">
-                Contact us
+                Contact Us
               </Link>
             </li>
           </ul>

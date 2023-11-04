@@ -20,6 +20,7 @@ const SearchError: React.FC<SearchErrorProps> = ({ setErrorMessage, getFilteredI
 
   return (
     <div className={styles.wrapper}>
+      <div className="container">
       <div className={styles.body}>
         <div className={styles.image}>
           <img src={search} alt="err" />
@@ -36,6 +37,8 @@ const SearchError: React.FC<SearchErrorProps> = ({ setErrorMessage, getFilteredI
           <button onClick={handleBack}>Back</button>
         </div>
       </div>
+      </div>
+
     </div>
   );
 };

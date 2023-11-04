@@ -3,7 +3,7 @@ import styles from './shop.module.scss';
 import PageBanner from '../../components/PageBanner/PageBanner';
 import bg from '../../assets/img/shop/shop.jpg';
 import SideBar from '../../components/SideBar/SideBar';
-import {MProductCard} from '../../components/ProductCard/ProductCard';
+import { MProductCard } from '../../components/ProductCard/ProductCard';
 import Skeleton from '../../components/ProductCard/Skeleton';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchError from '../../components/SearchError/SearchError';
@@ -17,7 +17,7 @@ import { fetchFilteredItems } from '../../redux/product/asyncActions';
 import { useLocation } from 'react-router-dom';
 
 const Shop = () => {
-  const [originalItems, setOriginalItems] = React.useState([]);
+  // const [originalItems, setOriginalItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [errorMessage, setErrorMessage] = React.useState(false);
   const currentPage = React.useRef(1);
@@ -39,13 +39,17 @@ const Shop = () => {
     }
   }, [categoryName]);
 
+  React.useEffect(() => {
+    if (searchValue === '') {
+      getFilteredItems();
+    }
+  }, [searchValue]);
 
   React.useEffect(() => {
     if (categoryParam) {
       dispatch(setCategoryName(categoryParam));
     }
   }, [categoryParam, dispatch]);
-
 
   const handlePageClick = (e: { selected: number }) => {
     currentPage.current = e.selected + 1;
@@ -76,9 +80,13 @@ const Shop = () => {
     )
       .unwrap()
       .then((res) => {
+        if (res.items.length === 0) {
+          setErrorMessage(true);
+        } else {
+          setErrorMessage(false);
+        }
         dispatch(setPageCount(res.pageCount));
         setIsLoading(false);
-        setErrorMessage(false);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -87,12 +95,10 @@ const Shop = () => {
       });
   };
 
-
-
   const handleSearch = () => {
     const searchTerm = searchValue.toLowerCase();
 
-    if (searchTerm === '' || searchTerm.length === 1 || items.length === 0) {
+    if (searchTerm === '' || searchTerm.length === 1) {
       setErrorMessage(true);
       dispatch(resetItems());
       dispatch(setPageCount(0));
@@ -109,7 +115,7 @@ const Shop = () => {
           searchValue,
           categoryName: '',
           sortBy,
-          currentPage: 1, 
+          currentPage: 1,
           limit,
           priceRange,
         }),
@@ -124,7 +130,7 @@ const Shop = () => {
         });
     }
   };
-  
+
   return (
     <>
       <PageBanner title={'Our Shop'} img={bg} />
